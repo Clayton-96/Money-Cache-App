@@ -1,0 +1,182 @@
+[
+  {
+    "date": "10/27/2021",
+    "memo": "PAYROLL",
+    "amount": 2400.28
+  },
+  {
+    "date": "10/27/2021",
+    "memo": "Walmart.com         Bentonville     ARUS",
+    "amount": -97.0
+  },
+  {
+    "date": "10/27/2021",
+    "memo": "GEICO  *AUTO        800-841-3000    DCUS",
+    "amount": -145.88
+  },
+  {
+    "date": "10/25/2021",
+    "memo": "PRIMERICA LIFE         INS. PREM",
+    "amount": -43.93
+  },
+  {
+    "date": "10/25/2021",
+    "memo": "WEST KNOX UTILIT       BANK DRAFT",
+    "amount": -35.77
+  },
+  {
+    "date": "10/24/2021",
+    "memo": "SAMSCLUB #8256      KNOXVILLE       TNUS",
+    "amount": -48.2
+  },
+  {
+    "date": "10/23/2021",
+    "memo": "Happy Birthday",
+    "amount": -20.0
+  },
+  {
+    "date": "10/23/2021",
+    "memo": "SALON YEAGER        KNOXVILLE       TNUS",
+    "amount": -54.0
+  },
+  {
+    "date": "10/22/2021",
+    "memo": "DOMINO\u0027S 5457       540-293-0306    TNUS",
+    "amount": -35.8
+  },
+  {
+    "date": "10/21/2021",
+    "memo": "FOOD CITY #672      KNOXVILLE       TNUS",
+    "amount": -56.62
+  },
+  {
+    "date": "10/21/2021",
+    "memo": "INTERNAL MED WES    KNOXVILLE       TNUS",
+    "amount": -70.63
+  },
+  {
+    "date": "10/19/2021",
+    "memo": "TMOBILE*AUTO PAY    800-937-8997    WAUS",
+    "amount": -64.7
+  },
+  {
+    "date": "10/18/2021",
+    "memo": "WALGREENS STORE 920 KNOXVILLE       TNUS",
+    "amount": -14.04
+  },
+  {
+    "date": "10/18/2021",
+    "memo": "HOME DEPOT             ONLINE PMT",
+    "amount": -48.2
+  },
+  {
+    "date": "10/18/2021",
+    "memo": "LDS-TITHING            BILL PAYMT",
+    "amount": -88.55
+  },
+  {
+    "date": "10/18/2021",
+    "memo": "LDS-FAST OFFERIN       BILL PAYMT",
+    "amount": -10.0
+  },
+  {
+    "date": "10/17/2021",
+    "memo": "KROGER #530         770-496-7418    TNUS",
+    "amount": -47.31
+  },
+  {
+    "date": "10/16/2021",
+    "memo": "REG PINNACLE 18  06 KNOXVILLE       TNUS",
+    "amount": -24.77
+  },
+  {
+    "date": "10/16/2021",
+    "memo": "RURALMTRO KNXVLE_AU STEVE.HENKE@R   TNUS",
+    "amount": -30.9
+  },
+  {
+    "date": "10/15/2021",
+    "memo": "Lenoir City Util       UTIL PYMT",
+    "amount": -67.82
+  },
+  {
+    "date": "10/14/2021",
+    "memo": "EBAY                   EDI PYMNTS",
+    "amount": 115.05
+  },
+  {
+    "date": "10/13/2021",
+    "memo": "WM SUPERCENTER  Wal-Mart Super Cent KNOXVILLE (W)   TNUS",
+    "amount": -68.13
+  },
+  {
+    "date": "10/13/2021",
+    "memo": "PAYROLL",
+    "amount": 2453.26
+  },
+  {
+    "date": "10/13/2021",
+    "memo": "CREDIT CRD       AUTOPAY",
+    "amount": -40.0
+  },
+  {
+    "date": "10/12/2021",
+    "memo": "Mobile Transfer",
+    "amount": -27.0
+  },
+  {
+    "date": "10/12/2021",
+    "memo": "GEICO                  PREM COLL",
+    "amount": -79.91
+  },
+  {
+    "date": "10/12/2021",
+    "memo": "KNOX UTIL BOARD        KUB PAYMNT",
+    "amount": -39.56
+  },
+  {
+    "date": "10/12/2021",
+    "memo": "APPLE HEALTH \u0026 WELL KNOXVILLE       TNUS",
+    "amount": -50.0
+  },
+  {
+    "date": "10/11/2021",
+    "memo": "PET SUPPLIES PLU    KNOXVILLE       TNUS",
+    "amount": -56.8
+  },
+  {
+    "date": "10/11/2021",
+    "memo": "CHICK-FIL-A #04182  KNOXVILLE       TNUS",
+    "amount": -18.83
+  },
+  {
+    "date": "10/10/2021",
+    "memo": "SAMSCLUB #8256      KNOXVILLE       TNUS",
+    "amount": -34.19
+  },
+  {
+    "date": "10/7/2021",
+    "memo": "Repayment for boots",
+    "amount": 211.0
+  },
+  {
+    "date": "10/7/2021",
+    "memo": "FIVE GUYS TN 1150 Q KNOXVILLE       TNUS",
+    "amount": -29.13
+  },
+  {
+    "date": "10/5/2021",
+    "memo": "TARGET T-1370   11100 Parkside Dr   Knoxville       TNUS",
+    "amount": -25.0
+  },
+  {
+    "date": "10/5/2021",
+    "memo": "",
+    "amount": -135.0
+  },
+  {
+    "date": "10/4/2021",
+    "memo": "PENNYMAC LOAN SE       BILL PAYMT",
+    "amount": -800.0
+  }
+]
