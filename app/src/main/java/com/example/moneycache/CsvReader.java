@@ -23,6 +23,7 @@ import com.opencsv.exceptions.CsvValidationException;
 
 
     /**
+     ******* SEE NOTES AT BOTTOM FOR IMPLEMENTATION*******
      * CsvReader reads a csv file, creates Bank_data objects out of the data, and stores the objects
      * into a List. That List is changed to Json format and written to a txt file.
      * method: readCSVFile(file)
@@ -153,5 +154,15 @@ import com.opencsv.exceptions.CsvValidationException;
 
         }
     }
-
+// *****IMPLEMENTATION: Needs CSV file to read from and a txt file to read Json to.
+//    static final String CSV_FILE = "src/cravens/Export.csv";
+//    static final String CSV2_FILE = "src/cravens/MackBudget.csv";
+//    static final String JSON_FILE = "src/cravens/bankData.txt";
+//
+//  ****Create an instance of the object and call readCSVFile(csv_file) then writeToJson(JSON_file)****
+//        //code for CsvReader.java--saves data to an object and sends to JSON only the data wanted
+//        CsvReader file1 = new CsvReader();
+//        file1.readCSVFile(CSV2_FILE);
+//        file1.writeToJson(JSON_FILE);
+//
 
