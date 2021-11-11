@@ -16,7 +16,7 @@ public class DataModel {
         //temporary data for getBudgetItems
         List<Float> items = new ArrayList<>(Arrays.asList(4085.00f, 2795.34f, 800.00f, 200.00f, 200.00f));
 
-        //gets values from DB and returns the Float values of the User's EditBudget categories
+        //TODO: get values from DB and return the Float values of the User's EditBudget categories
         // to EditBudgetController
         return items;
     }
