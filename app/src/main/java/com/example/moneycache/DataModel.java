@@ -9,7 +9,7 @@ public class DataModel {
 
     /**
      * Gets the Float values of the User's EditBudget categories from DB
-     * and returns an ArrayList to EditBudgetController getBudgetItemData().
+     * and returns an ArrayList to EditBudgetController start().
      * @return 'items' as Array
      */
     public static List<Float> getBudgetItems() {

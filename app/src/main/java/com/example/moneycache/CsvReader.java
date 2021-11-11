@@ -155,9 +155,9 @@ import com.opencsv.exceptions.CsvValidationException;
         }
     }
 // *****IMPLEMENTATION: Needs CSV file to read from and a txt file to read Json to.
-//    static final String CSV_FILE = "src/cravens/Export.csv";
-//    static final String CSV2_FILE = "src/cravens/MackBudget.csv";
-//    static final String JSON_FILE = "src/cravens/bankData.txt";
+//    static final String CSV_FILE = "src/cravens/Export.csv";//does not exist in Android yet
+//    static final String CSV2_FILE = "src/cravens/MackBudget.csv";//does not exist in Android yet
+//    static final String JSON_FILE = "app/src/main/java/com/example/moneycache/bankData.txt"; //this one should be correct for Android
 //
 //  ****Create an instance of the object and call readCSVFile(csv_file) then writeToJson(JSON_file)****
 //        //code for CsvReader.java--saves data to an object and sends to JSON only the data wanted
