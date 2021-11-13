@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class LoginActivity extends AppCompatActivity {
-    LoginController controller = new LoginController();
+    LoginController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
