@@ -28,9 +28,9 @@ public class DataModel {
      * and returns an ArrayList to EditBudgetController start().
      * @return 'items' as Array
      */
-    public static List<Float> getBudgetItems() {
+    public static List<String> getBudgetItems() {
         //temporary data for getBudgetItems
-        List<Float> items = new ArrayList<>(Arrays.asList(4085.00f, 2795.34f, 800.00f, 200.00f, 200.00f));
+        List<String> items = new ArrayList<>(Arrays.asList("4085.00", "2795.34", "800.00", "200.00", "200.00"));
 
         //TODO: get values from DB and return the Float values of the User's EditBudget categories
         // to EditBudgetController

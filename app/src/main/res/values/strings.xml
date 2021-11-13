@@ -3,4 +3,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="edit_budget_amount">0.00</string>
     <string name="edit_budget_category">Category Name</string>
+    <string name="income_text">Income: $%1$s</string>
+    <string name="bills_text">Bills: $%1$s</string>
+    <string name="discretionary_text">Discretionary: $%1$s</string>
+    <string name="debt_reduction_text">Debt Reduction: $%1$s</string>
+    <string name="savings_text">Savings: $%1$s</string>
 </resources>
