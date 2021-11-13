@@ -32,6 +32,7 @@ public class EditBudgetController {
 
     // edit data in BI  amount box
     //   create ONE field box for editing with appropriate text (Not allowing editing of category name)
+    //should this be some sort of onClick?
     public void editBudgetAmount(/*budget category being edited*/) {
         //create fragment in EditBudgetActivity
         //pass that data to fragment upon start
