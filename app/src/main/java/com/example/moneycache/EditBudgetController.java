@@ -85,6 +85,7 @@ public class EditBudgetController {
      * categories are edited in a fragment with a final update when any/all categories are edited
      */
     public void onUpdate() {
+        //call set(Category)() for all?? categories. are there exceptions that need to be dealt with like null?
 
     }
 

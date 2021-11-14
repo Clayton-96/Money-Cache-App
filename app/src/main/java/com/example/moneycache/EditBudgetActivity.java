@@ -42,10 +42,12 @@ public class EditBudgetActivity extends AppCompatActivity {
             // bring in data with Bundle for each unique edit view
             // each edit button is going to have to have a unique identifier.
             Bundle bundle = new Bundle();
+            //data to pass to fragment-- this needs to know which category is being edited
+            //TODO: how do I pass info with an OnClick event?
             bundle.putInt("some_int", 0);
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.fragment_container_view, EditBudgetFragment.class, null)
+                    .add(R.id.frag_placeholder_income, EditBudgetFragment.class, bundle)
                     .commit();
         }
     }

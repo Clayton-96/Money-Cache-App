@@ -8,4 +8,10 @@
     <string name="discretionary_text">Discretionary: $%1$s</string>
     <string name="debt_reduction_text">Debt Reduction: $%1$s</string>
     <string name="savings_text">Savings: $%1$s</string>
+    <string name="income_edit">Edit</string>
+    <string name="bill_edit">Edit</string>
+    <string name="discretionary_edit">Edit</string>
+    <string name="debt_reduction_edit">Edit</string>
+    <string name="savings_edit">Edit</string>
+    <string name="edit_budget_update">Update</string>
 </resources>
