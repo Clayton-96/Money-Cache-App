@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools">-->
+<!--    <data>-->
+<!--        <variable-->
+<!--            name="activity"-->
+<!--            type="com.example.moneycache.EditBudgetActivity" />-->
+<!--    </data>-->
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditBudgetActivity">
+
+
 
     <EditText
         android:id="@+id/income_category"
@@ -188,3 +200,5 @@
         app:layout_constraintTop_toBottomOf="@+id/savings_category" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    tools:text="BILL"-->
+<!--    android:onClick="@{() -> activity.onEditClick(bill_edit_button.gettext())}"-->
