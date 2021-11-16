@@ -1,8 +1,13 @@
 package com.example.moneycache;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+import static java.lang.String.valueOf;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -19,6 +24,8 @@ public class EditBudgetActivity extends AppCompatActivity {
     private EditText dr;
     private EditText s;
     private String placeholder;
+    EditBudgetFragment f = new EditBudgetFragment();
+
 
     public EditText getI() {
         return i;
@@ -153,6 +160,22 @@ public class EditBudgetActivity extends AppCompatActivity {
         //hide or detach the fragment: https://developer.android.com/guide/fragments/transactions#views
     }
 
+    /**
+     * onClick response to 'Done button in fragment edit activity
+     * resets the budget item view to the new amount
+     * @param view id the selected budget category item (value only)
+     * author: Dixie Cravens
+     */
+    public void onDoneClick(View view) {
+        EditText a = findViewById(R.id.editBudgetAmount);
+        s.setText(getString(R.string.savings_text, a.getText().toString()));
+
+        //remove fragment from activity
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.frag_placeholder_savings);
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.remove(fragment).commit();
+    }
 }
 //how do I pass info with an OnClick event?
 //https://stackoverflow.com/questions/37105066/android-data-binding-pass-arguments-to-onclick-method

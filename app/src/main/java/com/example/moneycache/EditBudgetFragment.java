@@ -44,13 +44,5 @@ public class EditBudgetFragment extends Fragment {
 
        return view;
     }
-    public void onDoneClick(View view){
-        String amount = valueOf(view.findViewById(R.id.editBudgetAmount));
-        // need to fill EditBudgetActivity field with new edited amount
 
-
-        //need to close fragment (detach?)
-
-
-    }
 }
