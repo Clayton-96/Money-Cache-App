@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +24,10 @@ public class EditBudgetFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    //amount comes from bundle
+    private String amount;
+
+    private EditText budgetAmount;
 
     public EditBudgetFragment() {
         // Required empty public constructor
@@ -52,6 +57,8 @@ public class EditBudgetFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            amount = getArguments().getString("amount");
+
         }
     }
 
@@ -59,6 +66,10 @@ public class EditBudgetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_budget, container, false);
+       View view =  inflater.inflate(R.layout.fragment_edit_budget, container, false);
+        budgetAmount = view.findViewById(R.id.editBudgetAmount);
+        budgetAmount.setText(amount);
+
+       return view;
     }
 }

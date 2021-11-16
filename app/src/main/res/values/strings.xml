@@ -14,4 +14,5 @@
     <string name="debt_reduction_edit">Edit</string>
     <string name="savings_edit">Edit</string>
     <string name="edit_budget_update">Update</string>
+    <string name="edit_done">Done</string>
 </resources>
