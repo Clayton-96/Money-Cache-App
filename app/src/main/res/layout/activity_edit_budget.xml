@@ -26,8 +26,7 @@
     <FrameLayout
         android:id="@+id/frag_placeholder_income"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/income_category" />
 
@@ -48,8 +47,7 @@
     <FrameLayout
         android:id="@+id/frag_placeholder_bills"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bills_category" />
 
@@ -70,8 +68,7 @@
     <FrameLayout
         android:id="@+id/frag_placeholder_discretionary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/discretionary_category" />
 
@@ -92,8 +89,7 @@
     <FrameLayout
         android:id="@+id/frag_placeholder_debt_reduction"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/debt_reduction_category" />
 
@@ -114,8 +110,7 @@
     <FrameLayout
         android:id="@+id/frag_placeholder_savings"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/savings_category" />
 

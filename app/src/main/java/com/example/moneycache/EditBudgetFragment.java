@@ -40,7 +40,7 @@ public class EditBudgetFragment extends Fragment {
        View view =  inflater.inflate(R.layout.fragment_edit_budget, container, false);
         budgetAmount = view.findViewById(R.id.editBudgetAmount);
         budgetAmount.setText(getString(R.string.edit_budget_amount, amount));
-        //doneButton = view.findViewById(R.id.edit_done);
+
 
        return view;
     }

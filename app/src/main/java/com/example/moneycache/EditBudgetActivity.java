@@ -65,24 +65,36 @@ public class EditBudgetActivity extends AppCompatActivity {
      */
     public void startFragment(String placeholder){
         Bundle bundle = new Bundle();
-        bundle.putString("amount", String.valueOf(i.getText()));
+//        bundle.putString("amount", String.valueOf(i.getText()));
+//        FragmentManager fm = getSupportFragmentManager();
+//        FragmentTransaction transaction = fm.beginTransaction();
+//        transaction.setReorderingAllowed(true);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.setReorderingAllowed(true);
         switch (placeholder){
             case ("income"):
+                bundle.putString("amount", controller.getIncome());
+                transaction.setReorderingAllowed(true);
                 transaction.add(R.id.frag_placeholder_income,EditBudgetFragment.class, bundle);
                 break;
             case ("bills"):
+                bundle.putString("amount", controller.getBills());
+                transaction.setReorderingAllowed(true);
                 transaction.add(R.id.frag_placeholder_bills,EditBudgetFragment.class, bundle);
                 break;
             case ("discretionary"):
+                bundle.putString("amount", controller.getDiscretionary());
+                transaction.setReorderingAllowed(true);
                 transaction.add(R.id.frag_placeholder_discretionary,EditBudgetFragment.class, bundle);
                 break;
             case ("debt_reduction"):
+                bundle.putString("amount", controller.getDebtReduction());
+                transaction.setReorderingAllowed(true);
                 transaction.add(R.id.frag_placeholder_debt_reduction,EditBudgetFragment.class, bundle);
                 break;
             case ("savings"):
+                bundle.putString("amount", controller.getSavings());
+                transaction.setReorderingAllowed(true);
                 transaction.add(R.id.frag_placeholder_savings,EditBudgetFragment.class, bundle);
                 break;
             default:
@@ -108,12 +120,19 @@ public class EditBudgetActivity extends AppCompatActivity {
             startFragment(placeholder);
         } else if (view.getId() == R.id.discretionary_edit_button) {
             placeholder = "discretionary";
+            Toast.makeText(this, "Edit Discretionary clicked", Toast.LENGTH_LONG).show();
+            startFragment(placeholder);
         } else if (view.getId() == R.id.debt_reduction_edit_button) {
             placeholder = "debt_reduction";
+            Toast.makeText(this, "Edit Debt Reduction clicked", Toast.LENGTH_LONG).show();
+            startFragment(placeholder);
         } else if (view.getId() == R.id.savings_edit_button) {
             placeholder = "savings";
+            Toast.makeText(this, "Edit Savings clicked", Toast.LENGTH_LONG).show();
+            startFragment(placeholder);
         } else {
             placeholder = null;
+            Toast.makeText(this, "Oops, something went wrong!", Toast.LENGTH_LONG).show();
         }
     }
     public void handleUpdateButton(View view) {
