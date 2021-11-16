@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Money Cache</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="edit_budget_amount">0.00</string>
+    <string name="edit_budget_amount">$%1$s</string>
     <string name="edit_budget_category">Category Name</string>
     <string name="income_text">Income: $%1$s</string>
     <string name="bills_text">Bills: $%1$s</string>
