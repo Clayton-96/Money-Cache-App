@@ -13,10 +13,7 @@ public class EditBudgetActivity extends AppCompatActivity {
 
     private EditBudgetController controller;
 
-
-
-
-    public EditText i;
+    private EditText i;
     private EditText b;
     private EditText d;
     private EditText dr;
@@ -40,11 +37,12 @@ public class EditBudgetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_budget);
 
-        //get Budget Items from controller to fill in
+        //get Budget Items from controller to fill in as text
         //https://stackoverflow.com/questions/33164886/android-textview-do-not-concatenate-text-displayed-with-settext
         controller = new EditBudgetController(this);
         controller.start();
 
+        //set text in each category view object
         i = findViewById(R.id.income_category);
         i.setText(getString(R.string.income_text, controller.getIncome()));
         b = findViewById(R.id.bills_category);
@@ -65,10 +63,6 @@ public class EditBudgetActivity extends AppCompatActivity {
      */
     public void startFragment(String placeholder){
         Bundle bundle = new Bundle();
-//        bundle.putString("amount", String.valueOf(i.getText()));
-//        FragmentManager fm = getSupportFragmentManager();
-//        FragmentTransaction transaction = fm.beginTransaction();
-//        transaction.setReorderingAllowed(true);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         switch (placeholder){
@@ -107,7 +101,9 @@ public class EditBudgetActivity extends AppCompatActivity {
 
     /**
      * receives onClick from (category specific))_edit_button
-     * fills category and placeholder id for fragment build
+     * fills placeholder id for fragment build
+     * calls the startFragment() method, passing the placeholder parameter
+     * author: Dixie Cravens
      */
     public void handleEditButton(View view) {
         if (view.getId() == R.id.income_edit_button) {
@@ -135,8 +131,26 @@ public class EditBudgetActivity extends AppCompatActivity {
             Toast.makeText(this, "Oops, something went wrong!", Toast.LENGTH_LONG).show();
         }
     }
+
+    /**
+     * receives the onClick of Update button
+     * updates all categories to the current value in view using a setter in the controller
+     * calls the controller.onUpdate() method to save values to model/db
+     * @param view is the view object for each category
+     * Author: Dixie Cravens
+     */
     public void handleUpdateButton(View view) {
-        //hide the fragment: https://developer.android.com/guide/fragments/transactions#views
+        //save all fields to their variables use a setter() in controller
+        controller.setIncome(s.getText().toString());
+        controller.setBills(b.getText().toString());
+        controller.setDiscretionary(d.getText().toString());
+        controller.setDebtReduction(dr.getText().toString());
+        controller.setSavings(s.getText().toString());
+
+        // send new data to controller by calling onUpdate() method.
+        controller.onUpdate();
+
+        //hide or detach the fragment: https://developer.android.com/guide/fragments/transactions#views
     }
 
 }

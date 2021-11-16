@@ -1,5 +1,7 @@
 package com.example.moneycache;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EditBudgetController {
@@ -66,26 +68,18 @@ public class EditBudgetController {
         this.savings = savings;
     }
 
-    // edit data in BI  amount box
-    //   create ONE field box for editing with appropriate text (Not allowing editing of category name)
-    //should this be some sort of onClick?
-    public void editBudgetAmount(String category) {
-        switch (category) {
-            case "income":
 
-
-        }
-        //create fragment in EditBudgetActivity
-        //pass that data to fragment
-        //call the setCategory() when done editing
-    }
     // send/update model of all changes
     /**
      * update/set new category value/values
      * categories are edited in a fragment with a final update when any/all categories are edited
      */
     public void onUpdate() {
-        //call set(Category)() for all?? categories. are there exceptions that need to be dealt with like null?
+        //create a new string for List<String> items and save it to DataModel
+        // TODO: does this need to be 'new' ArrayList since it is replacing what currently exists?
+        DataModel.items = new ArrayList<>(Arrays.asList(getIncome(),
+                getBills(), getDiscretionary(), getDebtReduction(), getSavings()));
+        DataModel.updateBudgetItems();
 
     }
 
