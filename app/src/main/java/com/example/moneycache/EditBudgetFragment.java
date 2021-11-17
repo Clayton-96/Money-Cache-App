@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class EditBudgetFragment extends Fragment {
@@ -44,8 +45,11 @@ public class EditBudgetFragment extends Fragment {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               TextView a = view.findViewById(R.id.editBudgetAmount);
+               String newAmount = a.getText().toString();
                EditBudgetActivity activity = (EditBudgetActivity) getActivity();
-               activity.onDoneClick(v);
+               String placeholder = activity.getPlaceholder();
+               activity.onDoneClick(v, newAmount, placeholder);
             }
         });
 

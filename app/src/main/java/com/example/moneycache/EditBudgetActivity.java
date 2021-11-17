@@ -23,6 +23,11 @@ public class EditBudgetActivity extends AppCompatActivity {
     private EditText d;
     private EditText dr;
     private EditText s;
+
+    public String getPlaceholder() {
+        return placeholder;
+    }
+
     private String placeholder;
     EditBudgetFragment f = new EditBudgetFragment();
 
@@ -163,19 +168,75 @@ public class EditBudgetActivity extends AppCompatActivity {
     /**
      * onClick response to 'Done button in fragment edit activity
      * resets the budget item view to the new amount
-     * @param view id the selected budget category item (value only)
+     * @param amount
+     * @param placeholder
      * author: Dixie Cravens
      */
-    public void onDoneClick(View view) {
-        //getId of button being passed in to specify an if statement for each category
-        EditText a = findViewById(R.id.editBudgetAmount);
-        s.setText(getString(R.string.savings_text, a.getText().toString()));
+    public void onDoneClick(View v, String amount, String placeholder) {
+
+        this.placeholder = placeholder;
+        //EditText a = findViewById(R.id.editBudgetAmount);
+
+        //get placeholder associated with activity to specify a switch statement for each category
+        switch (placeholder) {
+            case "income":
+                i.setText(getString(R.string.income_text, amount));
+                break;
+            case "bills":
+                b.setText(getString(R.string.bills_text, amount));
+                break;
+            case "discretionary":
+                d.setText(getString(R.string.discretionary_text, amount));
+                break;
+            case "debt_reduction":
+                dr.setText(getString(R.string.debt_reduction_text,amount));
+                break;
+            case "savings":
+                s.setText(getString(R.string.savings_text, amount));
+                break;
+            default:
+                Toast.makeText(this, "Oops, something went wrong!", Toast.LENGTH_LONG).show();
+                break;
+        }
+
+
+        //s.setText(getString(R.string.savings_text, a.getText().toString()));
 
         //remove fragment from activity
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.frag_placeholder_savings);
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.remove(fragment).commit();
+        Fragment fragment;
+        FragmentTransaction transaction;
+        switch (placeholder) {
+            case "income":
+                fragment = fm.findFragmentById(R.id.frag_placeholder_income);
+                transaction = fm.beginTransaction();
+                transaction.remove(fragment).commit();
+                break;
+            case "bills":
+                fragment = fm.findFragmentById(R.id.frag_placeholder_bills);
+                transaction = fm.beginTransaction();
+                transaction.remove(fragment).commit();
+                break;
+            case "discretionary":
+                fragment = fm.findFragmentById(R.id.frag_placeholder_discretionary);
+                transaction = fm.beginTransaction();
+                transaction.remove(fragment).commit();
+                break;
+            case "debt_reduction":
+                fragment = fm.findFragmentById(R.id.frag_placeholder_debt_reduction);
+                transaction = fm.beginTransaction();
+                transaction.remove(fragment).commit();
+                break;
+            case "savings":
+                fragment = fm.findFragmentById(R.id.frag_placeholder_savings);
+                transaction = fm.beginTransaction();
+                transaction.remove(fragment).commit();
+                break;
+            default:
+                Toast.makeText(this, "Oops, something went wrong!", Toast.LENGTH_LONG).show();
+                break;
+        }
+
     }
 }
 //how do I pass info with an OnClick event?
