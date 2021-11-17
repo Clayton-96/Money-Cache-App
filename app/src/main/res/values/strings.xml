@@ -15,4 +15,7 @@
     <string name="savings_edit">Edit</string>
     <string name="edit_budget_update">Update</string>
     <string name="edit_done">Done</string>
+    <string name="edit_transaction_button">Edit Transaction</string>
+    <string name="delete_transaction_button">Delete Transaction</string>
+    <string name="update_data_button">Update Transaction</string>
 </resources>

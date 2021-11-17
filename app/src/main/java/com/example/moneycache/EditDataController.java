@@ -2,6 +2,13 @@ package com.example.moneycache;
 
 public class EditDataController {
     // bring in an instance of the Activity
+    private final EditDataActivity dataActivity;
+    private final DataModel model;
+
+    public EditDataController(EditDataActivity dataActivity){
+        this.dataActivity = dataActivity;
+        model = new DataModel();
+    }
 
     //display transactions in ListView
     //    Where is this data? Not in db...not yet. File in Shared Resources?
