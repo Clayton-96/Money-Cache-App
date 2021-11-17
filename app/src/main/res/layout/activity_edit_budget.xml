@@ -37,12 +37,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="@string/bills_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/income_category"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_income" />
 
     <FrameLayout
         android:id="@+id/frag_placeholder_bills"
@@ -58,12 +58,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="@string/discretionary_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bills_category"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_bills" />
 
     <FrameLayout
         android:id="@+id/frag_placeholder_discretionary"
@@ -84,7 +84,7 @@
         android:minHeight="48dp"
         android:text="@string/debt_reduction_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/discretionary_category" />
+        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_discretionary" />
 
     <FrameLayout
         android:id="@+id/frag_placeholder_debt_reduction"
@@ -105,7 +105,7 @@
         android:minHeight="48dp"
         android:text="@string/savings_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/debt_reduction_category" />
+        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_debt_reduction" />
 
     <FrameLayout
         android:id="@+id/frag_placeholder_savings"
@@ -139,7 +139,7 @@
         android:text="@string/bill_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bills_category"
-        app:layout_constraintTop_toBottomOf="@+id/income_edit_button" />
+        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_income" />
 
     <Button
         android:id="@+id/discretionary_edit_button"
@@ -152,7 +152,7 @@
         android:text="@string/discretionary_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/discretionary_category"
-        app:layout_constraintTop_toBottomOf="@+id/bill_edit_button" />
+        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_bills" />
 
     <Button
         android:id="@+id/debt_reduction_edit_button"
@@ -165,7 +165,7 @@
         android:text="@string/debt_reduction_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/debt_reduction_category"
-        app:layout_constraintTop_toBottomOf="@+id/discretionary_edit_button" />
+        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_discretionary" />
 
     <Button
         android:id="@+id/savings_edit_button"
@@ -178,7 +178,7 @@
         android:text="@string/savings_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/savings_category"
-        app:layout_constraintTop_toBottomOf="@+id/debt_reduction_edit_button" />
+        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_debt_reduction" />
 
     <Button
         android:id="@+id/edit_budget_update_button"
@@ -189,7 +189,7 @@
         android:text="@string/edit_budget_update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/savings_category" />
+        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_savings" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 <!--    tools:text="BILL"-->

@@ -148,7 +148,7 @@ public class EditBudgetActivity extends AppCompatActivity {
      */
     public void handleUpdateButton(View view) {
         //save all fields to their variables use a setter() in controller
-        controller.setIncome(s.getText().toString());
+        controller.setIncome(i.getText().toString());
         controller.setBills(b.getText().toString());
         controller.setDiscretionary(d.getText().toString());
         controller.setDebtReduction(dr.getText().toString());
@@ -167,6 +167,7 @@ public class EditBudgetActivity extends AppCompatActivity {
      * author: Dixie Cravens
      */
     public void onDoneClick(View view) {
+        //getId of button being passed in to specify an if statement for each category
         EditText a = findViewById(R.id.editBudgetAmount);
         s.setText(getString(R.string.savings_text, a.getText().toString()));
 
