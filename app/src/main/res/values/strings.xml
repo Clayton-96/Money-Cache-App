@@ -18,4 +18,11 @@
     <string name="edit_transaction_button">Edit Transaction</string>
     <string name="delete_transaction_button">Delete Transaction</string>
     <string name="update_data_button">Update Transaction</string>
+    <string-array name="category_array">
+        <item>Income</item>
+        <item>Bills</item>
+        <item>Discretionary</item>
+        <item>Debt Reduction</item>
+        <item>Savings</item>
+    </string-array>
 </resources>

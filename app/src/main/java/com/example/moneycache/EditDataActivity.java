@@ -8,7 +8,7 @@ import android.widget.Spinner;
 
 public class EditDataActivity extends AppCompatActivity {
     private EditDataController dataController;
-    RecyclerView recyclerView;
+    //RecyclerView recyclerView;
 
     private Spinner catSpinner;
 
@@ -23,6 +23,6 @@ public class EditDataActivity extends AppCompatActivity {
         // call the start() in controller to get data for view
         dataController.start();
 
-        recyclerView = findViewById(R.id.recyclerView);
+        //recyclerView = findViewById(R.id.recyclerView);
     }
 }
