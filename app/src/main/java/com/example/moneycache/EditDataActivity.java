@@ -4,14 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-public class EditDataActivity extends AppCompatActivity {
+public class EditDataActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditDataController dataController;
     //RecyclerView recyclerView;
-
-    private Spinner catSpinner;
+    public String categoryChosen;
 
 
 
@@ -26,13 +27,41 @@ public class EditDataActivity extends AppCompatActivity {
 
         //recyclerView = findViewById(R.id.recyclerView);
 
+        // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
         Spinner spinner = (Spinner) findViewById(R.id.assign_category_spinner);
-// Create an ArrayAdapter using the string array and a default spinner layout
+        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.category_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
+        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
+        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
     }
+
+    /**
+     * for category spinner--override on the OnItemSelectedListener interface
+     */
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        categoryChosen = (String) parent.getItemAtPosition(pos);
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+    }
+
+    /**
+     * handles the onClick for update_data button
+     * @param view is view object button
+     */
+    public void handleUpdateDataClick(View view) {
+
+        //set categoryChosen from Spinner selection
+        Spinner spinner = (Spinner) findViewById(R.id.assign_category_spinner);
+        spinner.setOnItemSelectedListener(this);
+    }
+
+
 }
