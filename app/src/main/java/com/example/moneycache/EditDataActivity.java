@@ -28,7 +28,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         //recyclerView = findViewById(R.id.recyclerView);
 
         // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
-        Spinner spinner = (Spinner) findViewById(R.id.assign_category_spinner);
+        Spinner spinner = findViewById(R.id.assign_category_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.category_array, android.R.layout.simple_spinner_item);
@@ -50,6 +50,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
+        //TODO: create an error message to user
     }
 
     /**
@@ -57,9 +58,10 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
      * @param view is view object button
      */
     public void handleUpdateDataClick(View view) {
+        //gather data and send to controller
 
         //set categoryChosen from Spinner selection
-        Spinner spinner = (Spinner) findViewById(R.id.assign_category_spinner);
+        Spinner spinner = findViewById(R.id.assign_category_spinner);
         spinner.setOnItemSelectedListener(this);
     }
 
