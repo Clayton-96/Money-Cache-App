@@ -10,7 +10,13 @@ public class EditDataController {
         model = new DataModel();
     }
 
-    //display transactions in ListView
+    public void start() {
+        //whatever needs to be given data to start the view goes here
+        //category spinner
+        //recyclerView
+    }
+
+    //display transactions in RecyclerView
     //    Where is this data? Not in db...not yet. File in Shared Resources?
     //    It needs to be Json (or maybe the list of bankData objects??)
     //    and only showing pertinent data, so 'update' is db ready
@@ -33,12 +39,6 @@ public class EditDataController {
 
     //select a category from dropdown menu
 
-    //undo assignment of category on Transaction
-    // **I don't think we will need this if selection isn't finalized until 'Select' is pushed
-
-    //select assignment of category
-    // **I don't think we will need this if we have an update button...nothing left to update.
-    //Select could update or Update can.
 
     //Update will read tranItem box and category box and pass updated Json data to model
 }
