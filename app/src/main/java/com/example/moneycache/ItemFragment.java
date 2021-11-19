@@ -3,16 +3,20 @@ package com.example.moneycache;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.selection.ItemDetailsLookup;
+import androidx.recyclerview.selection.SelectionTracker;
+import androidx.recyclerview.selection.StorageStrategy;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.moneycache.placeholder.PlaceholderContent;
 
 /**
  * A fragment representing a list of Items.
@@ -23,6 +27,7 @@ public class ItemFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 3;
+    RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -64,8 +69,40 @@ public class ItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(BankData.ITEMS));
+
+            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(BankData.jsonToObjectList(getActivity())));
         }
         return view;
+
+
+
     }
+//    SelectionTracker tracker = new SelectionTracker.Builder<>(
+//            "my-selection-string",
+//            recyclerView,
+//            new StableStringProvider(recyclerView),
+//            new MyDetailsLookup(recyclerView),
+//            StorageStrategy.createLongStorage())
+//            .build();
+//
+//    final class MyDetailsLookup extends ItemDetailsLookup {
+//        MyDetailsLookup(RecyclerView recyclerView) {
+//            //mRecyclerView = recyclerView;
+//        }
+//        @Nullable
+//        @Override
+//        public ItemDetails getItemDetails(@NonNull MotionEvent e) {
+//            View view = recyclerView.findChildViewUnder(e.getX(), e.getY());
+//            if (view != null) {
+//                MyItemRecyclerViewAdapter.ViewHolder holder = (MyItemRecyclerViewAdapter.ViewHolder) recyclerView.getChildViewHolder(view);
+//                if (holder != null) {
+//                    return holder.getItemDetails();
+//                }
+//            }
+//            return null;
+//        }
+
+
+    //}
+
 }
