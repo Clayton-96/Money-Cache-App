@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "967427113666",
+    "project_id": "moneycache-96799",
+    "storage_bucket": "moneycache-96799.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967427113666:android:ede067cad1c4c78ef0f15b",
+        "android_client_info": {
+          "package_name": "com.example.moneycache"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967427113666-grgp52k1ko1jgb3t37qbgu7kjbdptl62.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDho-FQ4hH3N2zi6lXrqHtpLKWWxIYyqfQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967427113666-grgp52k1ko1jgb3t37qbgu7kjbdptl62.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
