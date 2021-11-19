@@ -1,5 +1,7 @@
 package com.example.moneycache;
 
+import java.util.List;
+
 public class EditDataController {
     // bring in an instance of the Activity
     private final EditDataActivity dataActivity;
@@ -12,16 +14,22 @@ public class EditDataController {
 
     public void start() {
         //whatever needs to be given data to start the view goes here
-        //category spinner
-        //recyclerView
+        //recyclerView reads transactions from??? file? DB?
     }
 
-    //display transactions in RecyclerView
-    //    Where is this data? Not in db...not yet. File in Shared Resources?
-    //    It needs to be Json (or maybe the list of bankData objects??)
-    //    and only showing pertinent data, so 'update' is db ready
+    public void updateData() {
+        //get updated BankData item and category
+        String item = dataActivity.getDataItem();//json formatted orString?? BankData object
+        String category = dataActivity.getCategoryChosen();//category and date to store amount in
+        //TODO: save in temp file here until app is closing,
+        // then save file to DB at close in saveFile() called from activity onStop()
+    }
+    public void saveFile(){
 
-    //select transaction in listView..How?
+    }
+
+
+    //select transaction in recyclerView..How?
     //  Auto select first line?
 
     //display transaction in tranItem box
@@ -31,14 +39,7 @@ public class EditDataController {
     //  how much edit do we allow? They could hurt json formatting.
     // only allow editing between commas and ""...so 3 fields of editing?
 
-    // create/call 3 fields for editing with appropriate text in each one
 
     //delete Transaction ...would this need an update? Maybe a warning before delete. (Double press?)
 
-    //create a category enum for budget category dropdown menu
-
-    //select a category from dropdown menu
-
-
-    //Update will read tranItem box and category box and pass updated Json data to model
 }
