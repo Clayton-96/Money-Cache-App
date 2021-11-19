@@ -18,4 +18,10 @@
     <string name="edit_transaction_button">Edit Transaction</string>
     <string name="delete_transaction_button">Delete Transaction</string>
     <string name="update_data_button">Update Transaction</string>
+    <!--Login-->
+    <string name="go_button_label">GO</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="new_user">New User</string>
+    <string name="login">Login</string>
 </resources>
