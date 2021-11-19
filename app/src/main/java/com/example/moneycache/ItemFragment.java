@@ -77,32 +77,13 @@ public class ItemFragment extends Fragment {
 
 
     }
-//    SelectionTracker tracker = new SelectionTracker.Builder<>(
-//            "my-selection-string",
-//            recyclerView,
-//            new StableStringProvider(recyclerView),
-//            new MyDetailsLookup(recyclerView),
-//            StorageStrategy.createLongStorage())
-//            .build();
-//
-//    final class MyDetailsLookup extends ItemDetailsLookup {
-//        MyDetailsLookup(RecyclerView recyclerView) {
-//            //mRecyclerView = recyclerView;
-//        }
-//        @Nullable
-//        @Override
-//        public ItemDetails getItemDetails(@NonNull MotionEvent e) {
-//            View view = recyclerView.findChildViewUnder(e.getX(), e.getY());
-//            if (view != null) {
-//                MyItemRecyclerViewAdapter.ViewHolder holder = (MyItemRecyclerViewAdapter.ViewHolder) recyclerView.getChildViewHolder(view);
-//                if (holder != null) {
-//                    return holder.getItemDetails();
-//                }
-//            }
-//            return null;
-//        }
+    @Override
+    public void onResume() {
+
+        super.onResume();
 
 
-    //}
+    }
+
 
 }

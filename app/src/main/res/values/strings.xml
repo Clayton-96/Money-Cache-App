@@ -26,4 +26,9 @@
         <item>Savings</item>
     </string-array>
     <string name="spinner_text">Select a category…</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit_date">01/01/21</string>
+    <string name="edit_description">Some Buisness</string>
+    <string name="edit_amount">$19.99</string>
 </resources>
