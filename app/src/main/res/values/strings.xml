@@ -25,4 +25,5 @@
         <item>Debt Reduction</item>
         <item>Savings</item>
     </string-array>
+    <string name="spinner_text">Select a category…</string>
 </resources>
