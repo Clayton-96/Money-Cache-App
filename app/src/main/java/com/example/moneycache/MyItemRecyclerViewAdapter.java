@@ -63,7 +63,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 //        } else {
 //            holder.itemView.setBackgroundColor(Color.TRANSPARENT);
 //        }
-        holder.itemView.findViewById(R.id.list);
+//        holder.itemView.findViewById(R.id.list);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -31,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:onClick="handleEditTransactionClick"
         android:text="@string/edit_transaction_button"
         app:layout_constraintBottom_toTopOf="@+id/delete_transaction_button"
         app:layout_constraintEnd_toEndOf="parent"
