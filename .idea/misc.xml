@@ -5,12 +5,12 @@
       <map>
         <entry key="..\:/Users/dcrav/AndroidStudioProjects/Money-Cache-App/app/src/main/res/layout/activity_edit_budget.xml" value="0.264" />
         <entry key="..\:/Users/dcrav/AndroidStudioProjects/Money-Cache-App/app/src/main/res/layout/activity_edit_data.xml" value="0.264" />
+        <entry key="..\:/Users/dcrav/AndroidStudioProjects/Money-Cache-App/app/src/main/res/layout/activity_login.xml" value="0.22916666666666666" />
         <entry key="..\:/Users/dcrav/AndroidStudioProjects/Money-Cache-App/app/src/main/res/layout/activity_main.xml" value="0.13854166666666667" />
         <entry key="..\:/Users/dcrav/AndroidStudioProjects/Money-Cache-App/app/src/main/res/layout/fragment_edit_budget.xml" value="0.2" />
-        <entry key="..\:/Users/mackd/AndroidStudioProjects/Money-Cache-App/app/src/main/res/layout/activity_dashboard.xml" value="0.15885416666666666" />
-        <entry key="..\:/Users/mackd/AndroidStudioProjects/Money-Cache-App/app/src/main/res/layout/activity_edit_budget.xml" value="0.22333333333333336" />
-        <entry key="..\:/Users/mackd/AndroidStudioProjects/Money-Cache-App/app/src/main/res/layout/activity_edit_data.xml" value="0.25" />
-        <entry key="..\:/Users/mackd/AndroidStudioProjects/Money-Cache-App/app/src/main/res/layout/activity_login.xml" value="0.13134057971014493" />
+        <entry key="..\:/Users/dcrav/AndroidStudioProjects/Money-Cache-App/app/src/main/res/layout/fragment_edit_data.xml" value="0.264" />
+        <entry key="..\:/Users/dcrav/AndroidStudioProjects/Money-Cache-App/app/src/main/res/layout/fragment_item.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/dcrav/AndroidStudioProjects/Money-Cache-App/app/src/main/res/layout/fragment_item_list.xml" value="0.264" />
       </map>
     </option>
   </component>

@@ -8,15 +8,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DataModel {
-    static final String dataFile = "app/src/main/java/com/example/moneycache/bankData.txt";
+    static final String dataFile = "app/src/main/java/com/example/moneycache/bankdata.txt";
     public static BankData appData;
     public static List<String> items;
 
     /**
-     * get bank data either from DB or from bankData.txt
+     * get bank data either from DB or from bankdata.txt
      * and put into object BankData (and budgetCategories?)
      * called from LoginController after login is complete
-     * @param dataFile is bankData.txt--eventually should be data from DB
+     * @param dataFile is bankdata.txt--eventually should be data from DB
      */
     //TODO: should this be on a thread? or would it be a thread from calling LoginController?
     public static void toBankDataObjects (String dataFile) {
@@ -50,6 +50,17 @@ public class DataModel {
      */
     public static void updateBudgetItems() {
         //TODO: save 'items' to db or shared pref
+//        mDatabase.child("users").child(userId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                if (!task.isSuccessful()) {
+//                    Log.e("firebase", "Error getting data", task.getException());
+//                }
+//                else {
+//                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
+//                }
+//            }
+//        });
 
     }
 }

@@ -1,44 +1,55 @@
 package com.example.moneycache;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class EditDataController {
     // bring in an instance of the Activity
     private final EditDataActivity dataActivity;
     private final DataModel model;
+    // dataItem Array accepts all the edited BankData items from recyclerView and
+    // stores them until app closes and they go to permanent storage
+    private ArrayList<BankData> dataItemArray = new ArrayList<>();// same thing as MyItemRecyclerViewAdapter.items
+
+    public ArrayList<BankData> getDataItemArray() {
+        return dataItemArray;
+    }
 
     public EditDataController(EditDataActivity dataActivity){
         this.dataActivity = dataActivity;
         model = new DataModel();
     }
 
-    //display transactions in ListView
-    //    Where is this data? Not in db...not yet. File in Shared Resources?
-    //    It needs to be Json (or maybe the list of bankData objects??)
-    //    and only showing pertinent data, so 'update' is db ready
+    public void start() {
+        //whatever needs to be given data to start the view goes here
+        //recyclerView reads transactions from??? file? DB?
+    }
 
-    //select transaction in listView..How?
-    //  Auto select first line?
+    /**
+     * Saves newly uploaded and edited bank data line-item to a temporary file
+     * @param dataItem BankData in json format
+     * @param category user-selected category for BankData
+     *///TODO: what do we do with category?? It needs to be saved with every item--make a new class? Can we make a new variation of BankData?
+    public void updateData(String dataItem, String category) {
+        //get updated BankData item and category
+        //change json to BankData and save it an Array of BankData items
+        Gson gson = new Gson();
+        BankData bankData = gson.fromJson(dataItem, BankData.class);
+        dataItemArray.add(bankData);
 
-    //display transaction in tranItem box
-    //  Auto (select and) display first item in List?
+        // save in temp file here until app is closing,----dataItemArray will save objects until app closes
+        // TODO:then save file to DB at close in saveFile() called from activity onStop()
+    }
 
-    //edit Transaction
-    //  how much edit do we allow? They could hurt json formatting.
-    // only allow editing between commas and ""...so 3 fields of editing?
+    /**
+     * saves file of newly uploaded and edited BankData objects to database
+     * file contents are generated in updateData()
+     */
+    public void saveFile(){
 
-    // create/call 3 fields for editing with appropriate text in each one
+    }
 
-    //delete Transaction ...would this need an update? Maybe a warning before delete. (Double press?)
 
-    //create a category enum for budget category dropdown menu
-
-    //select a category from dropdown menu
-
-    //undo assignment of category on Transaction
-    // **I don't think we will need this if selection isn't finalized until 'Select' is pushed
-
-    //select assignment of category
-    // **I don't think we will need this if we have an update button...nothing left to update.
-    //Select could update or Update can.
-
-    //Update will read tranItem box and category box and pass updated Json data to model
 }
