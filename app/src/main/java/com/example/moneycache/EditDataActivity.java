@@ -1,11 +1,22 @@
 package com.example.moneycache;
 
+import static java.lang.String.format;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 
 public class EditDataActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -13,16 +24,22 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 
     //RecyclerView recyclerView;
     private String categoryChosen;
-    private String dataItem;
 
-    public String getDataItem() {
-        return dataItem;
-    }
+    private boolean isSelected;
+    private String dataItem;
 
     public String getCategoryChosen() {
         return categoryChosen;
     }
 
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+  //may need a toString() {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +49,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         dataController = new EditDataController(this);
         // call the start() in controller to get data for view
         dataController.start();
+
 
 
         // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
@@ -76,14 +94,41 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     public void handleUpdateDataClick(View view) {
         // retrieve edited data from ItemFragment RecyclerView
         //TODO: Replace temp dataItem with retrieved data
-        dataItem = "[\"10/12/2021\",\"MCDONALDS\",\"-4.33\"]";
+       // () -> tracker.itemKeyProvider().getPosition();
         //enter R.id when created
         //dataItem = findViewById(R.id.edited_data_string);
         //set categoryChosen from Spinner selection
         Spinner spinner = findViewById(R.id.assign_category_spinner);
         spinner.setOnItemSelectedListener(this);//sets global categoryChosen
 
-        dataController.updateData();
+        dataController.updateData(dataItem, categoryChosen);
+    }
+
+    public void handleEditTransactionClick(View view){
+        //build and inflate the edit fragment
+        Bundle bundle = new Bundle();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        // retrieve edited data from ItemFragment RecyclerView
+        //TODO: Replace temp data with data in recyclerView
+        bundle.putString("date","11/19/2021");//coming from RecyclerView as String or object--item[0]
+        bundle.putString("description", "McDonalds");
+        bundle.putString("amount", "5.76");
+        transaction.setReorderingAllowed(true);
+        transaction.add(R.id.frag_placeholder_edit_transaction,EditDataFragment.class, bundle);
+        transaction.commit();
+
+
+    }
+    public void onDoneClick(View v, String newDate, String newDescription, String newAmount) {
+        //put edited data into a JSON string
+        dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\"", newDate, newDescription, newAmount);
+
+        //remove fragment from activity
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.frag_placeholder_edit_transaction);
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.remove(fragment).commit();
     }
 }
 

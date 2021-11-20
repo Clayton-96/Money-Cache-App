@@ -28,6 +28,8 @@ public class ItemFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 3;
     RecyclerView recyclerView;
+    private EditDataActivity editDataActivity;
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -69,8 +71,9 @@ public class ItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(BankData.jsonToObjectList(getActivity())));
+//TODO: Is this right?
+            //recyclerView.setAdapter(new MyItemRecyclerViewAdapter(BankData.jsonToObjectList(getActivity())));
+            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(editDataActivity, BankData.jsonToObjectList(getActivity())));
         }
         return view;
 
