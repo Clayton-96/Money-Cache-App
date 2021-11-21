@@ -36,12 +36,12 @@ public class EditDataController {
      * @param dataItem BankData in json format
      * @param category user-selected category for BankData
      *///TODO: what do we do with category?? It needs to be saved with every item--make a new class? Can we make a new variation of BankData?
-    public void updateData(String dataItem, String category) {
+    public void updateData(BankData dataItem, String category) {
         //get updated BankData item and category
         //change json to BankData and save it an Array of BankData items
-        Gson gson = new Gson();
-        BankData bankData = gson.fromJson(dataItem, BankData.class);
-        dataItemArray.add(bankData);
+        //Gson gson = new Gson();
+        //BankData bankData = gson.fromJson(dataItem, BankData.class);
+        dataItemArray.add(dataItem);
 
         // save in temp file here until app is closing,----dataItemArray will save objects until app closes
         // TODO:then save file to DB at close in saveFile() called from activity onStop()
