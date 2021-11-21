@@ -28,8 +28,6 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     private String categoryChosen;
     private boolean isSelected;
     private String dataItem;
-    public BankData data = MyItemRecyclerViewAdapter.ViewHolder.mItem;
-    ;
 
 
     public String getCategoryChosen() {
@@ -90,7 +88,6 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     public void handleUpdateDataClick(View view) {
         // retrieve edited data from ItemFragment RecyclerView
         //TODO: Replace temp dataItem with retrieved data
-       // () -> tracker.itemKeyProvider().getPosition();
         //enter R.id when created
         //dataItem = findViewById(R.id.edited_data_string);
         //set categoryChosen from Spinner selection
@@ -101,6 +98,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void handleEditTransactionClick(View view){
+        BankData data = MyItemRecyclerViewAdapter.ViewHolder.mItem;
         //build and inflate the edit fragment
         Bundle bundle = new Bundle();
         FragmentManager fm = getSupportFragmentManager();
