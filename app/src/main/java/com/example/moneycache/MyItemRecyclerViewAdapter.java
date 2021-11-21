@@ -33,8 +33,11 @@ import java.util.List;
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
     private Context context;
     private List<BankData> items;
-    private RecyclerView recyclerView;
     int singleitem_selection_position = -1;
+
+    public List<BankData> getItems() {
+        return items;
+    }
 
     public MyItemRecyclerViewAdapter(EditDataActivity context, List<BankData> items) {
         this.items = items;
@@ -43,10 +46,6 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-//        View view = layoutInflater.inflate(R.layout.fragment_item, parent, false);
-//        ViewHolder viewHolder = new ViewHolder(FragmentItemBinding);
-//        return viewHolder;
 
         return new ViewHolder(FragmentItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
@@ -54,7 +53,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     @Override
     public void onBindViewHolder(MyItemRecyclerViewAdapter.ViewHolder holder, int position) {
-        holder.mItem = items.get(position);
+        ViewHolder.mItem = items.get(position);
         holder.mDateView.setText(items.get(position).getDate());
         holder.mDescriptionView.setText(items.get(position).getDescription());
         holder.mAmountView.setText(items.get(position).getStringAmount());
@@ -63,14 +62,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 //        } else {
 //            holder.itemView.setBackgroundColor(Color.TRANSPARENT);
 //        }
-//        holder.itemView.findViewById(R.id.list);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setSingleSelection(holder.getAbsoluteAdapterPosition());
-
-            }
-        });
+        holder.itemView.findViewById(R.id.list);
+        holder.itemView.setOnClickListener(v -> setSingleSelection(holder.getAbsoluteAdapterPosition()));
     }
 
     @Override
@@ -86,34 +79,29 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         notifyItemChanged(singleitem_selection_position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        public static BankData mItem;
         public final TextView mDateView;
         public final TextView mDescriptionView;
         public final TextView mAmountView;
-        public BankData mItem;
+        //public BankData mItem;
         //private LinearLayout fragmentItem;
 
-        public ViewHolder(FragmentItemBinding binding) {                //(FragmentItemBinding binding, View itemView) {
+        public ViewHolder(FragmentItemBinding binding) {
             super(binding.getRoot());
             mDateView = binding.date;
             mDescriptionView = binding.description;
             mAmountView = binding.amount;
-//            this.fragmentItem = itemView.findViewById(R.id.list);
-//
-//            fragmentItem.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    setSingleSelection(getAbsoluteAdapterPosition());
-//                }
-//            });
 
         }
 
 
         @Override
-        //TODO: is this how we create a JSON formatted string???(Dixie)
+        //TODO: is this how we create a JSON formatted string?
         public String toString() {
-            return super.toString() + " '" + mDescriptionView.getText() + "'";
+            return super.toString() + " '" + mDateView.getText() + "'" + " '"
+                    + mDescriptionView.getText() + "'" +  " '" + mAmountView.getText() + "'";
         }
 
     }

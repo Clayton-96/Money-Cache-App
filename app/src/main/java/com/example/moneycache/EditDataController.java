@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditDataController {
+    public EditDataActivity getDataActivity() {
+        return dataActivity;
+    }
+
     // bring in an instance of the Activity
     private final EditDataActivity dataActivity;
     private final DataModel model;

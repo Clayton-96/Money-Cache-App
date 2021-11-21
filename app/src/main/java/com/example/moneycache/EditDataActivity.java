@@ -16,30 +16,26 @@ import android.widget.Spinner;
 
 import com.google.gson.Gson;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class EditDataActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditDataController dataController;
 
-    //RecyclerView recyclerView;
+    MyItemRecyclerViewAdapter recyclerView;
     private String categoryChosen;
-
     private boolean isSelected;
     private String dataItem;
+    public BankData data = MyItemRecyclerViewAdapter.ViewHolder.mItem;
+    ;
+
 
     public String getCategoryChosen() {
         return categoryChosen;
     }
 
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
-  //may need a toString() {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,10 +106,13 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         // retrieve edited data from ItemFragment RecyclerView
-        //TODO: Replace temp data with data in recyclerView
-        bundle.putString("date","11/19/2021");//coming from RecyclerView as String or object--item[0]
-        bundle.putString("description", "McDonalds");
-        bundle.putString("amount", "5.76");
+        //TODO: Replace temp data with data in recyclerView--but how????
+        bundle.putString("date", data.getDate());
+        bundle.putString("description", data.getDescription());
+        bundle.putString("amount", String.valueOf(data.getAmount()));
+//        bundle.putString("date","11/19/2021");//coming from RecyclerView as String or object--item[0]
+//        bundle.putString("description", "McDonalds");
+//        bundle.putString("amount", "5.76");
         transaction.setReorderingAllowed(true);
         transaction.add(R.id.frag_placeholder_edit_transaction,EditDataFragment.class, bundle);
         transaction.commit();

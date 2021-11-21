@@ -18,6 +18,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Objects;
+
 /**
  * A fragment representing a list of Items.
  */
@@ -28,7 +30,9 @@ public class ItemFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 3;
     RecyclerView recyclerView;
+
     private EditDataActivity editDataActivity;
+
 
 
     /**
@@ -73,7 +77,7 @@ public class ItemFragment extends Fragment {
             }
 //TODO: Is this right?
             //recyclerView.setAdapter(new MyItemRecyclerViewAdapter(BankData.jsonToObjectList(getActivity())));
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(editDataActivity, BankData.jsonToObjectList(getActivity())));
+            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(editDataActivity, BankData.jsonToObjectList((getActivity()))));
         }
         return view;
 
