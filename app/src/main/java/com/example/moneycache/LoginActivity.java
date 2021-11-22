@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         //as soon as successful Login has happened, retrieve Bank data for this user
         //TODO: will need to specify user at some point
-        controller.retrieveBankData();
+        //controller.retrieveBankData();
 
     }
 }

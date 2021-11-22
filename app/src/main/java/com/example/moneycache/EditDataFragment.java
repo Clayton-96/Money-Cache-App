@@ -2,8 +2,13 @@ package com.example.moneycache;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,25 +16,43 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.moneycache.databinding.ActivityEditDataBinding;
+import com.example.moneycache.databinding.FragmentEditDataBinding;
+import com.example.moneycache.databinding.FragmentItemBinding;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link EditDataFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class EditDataFragment extends Fragment {
+    MyItemRecyclerViewAdapter recyclerViewAdapter;
+    MyItemRecyclerViewAdapter.ViewHolder holder;
 
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "date";
     private static final String ARG_PARAM2 = "description";
     private static final String ARG_PARAM3 = "amount";
 
-    // TODO: Rename and change types of parameters
+
     private String date;
     private String description;
     private String amount;
     private EditText editDate, editDescription, editAmount;
     private Button doneButton;
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
 
     public EditDataFragment() {
         // Required empty public constructor
@@ -62,36 +85,34 @@ public class EditDataFragment extends Fragment {
             description = getArguments().getString(ARG_PARAM2);
             amount = getArguments().getString(ARG_PARAM3);
         }
+        Log.d("EditDataFragmentCheck", "onCreate: " + getDate() );
     }
-
+//https://stackoverflow.com/questions/34706399/how-to-use-data-binding-with-fragment
+    private FragmentEditDataBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_edit_data, container, false);
-        editDate = view.findViewById(R.id.editDate);
-        //editDate.setText(getString(R.string.edit_budget_amount, amount));
-        editDescription = view.findViewById(R.id.editDescription);
-        //editDescription.setText(getString());
-        editAmount = view.findViewById(R.id.editAmount);
-        //editAmount.setText(getString());
-        doneButton = view.findViewById(R.id.edit_done);
-        doneButton.setOnClickListener(new View.OnClickListener() {
+        binding = FragmentEditDataBinding.inflate(inflater, container, false);
+        binding.editDate.setText(date);
+        binding.editDescription.setText(description);
+        binding.editAmount.setText(amount);
+        binding.doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView d = view.findViewById(R.id.editDate);
-                String newDate = d.getText().toString();
-                TextView dc = view.findViewById(R.id.editDescription);
-                String newDescription = dc.getText().toString();
-                TextView a = view.findViewById(R.id.editAmount);
-                String newAmount = a.getText().toString();
                 EditDataActivity activity = (EditDataActivity) getActivity();
-                activity.onDoneClick(v, newDate, newDescription, newAmount);
+                activity.onDoneClick(v, binding.editDate.getText().toString(),
+                        binding.editDescription.getText().toString(),
+                        binding.editAmount.getText().toString());
+                Log.d("FragmentEditData", "onClick: passing " + binding.editDescription.getText().toString());
             }
         });
-
-
+        View view = binding.getRoot();
         return view;
-        // Inflate the layout for this fragment
-       // return inflater.inflate(R.layout.fragment_edit_data, container, false);
+
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

@@ -16,30 +16,24 @@ import android.widget.Spinner;
 
 import com.google.gson.Gson;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class EditDataActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditDataController dataController;
 
-    //RecyclerView recyclerView;
+    MyItemRecyclerViewAdapter recyclerView;
     private String categoryChosen;
-
-    private boolean isSelected;
     private String dataItem;
+    BankData data;
+
 
     public String getCategoryChosen() {
         return categoryChosen;
     }
 
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
-  //may need a toString() {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +43,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         dataController = new EditDataController(this);
         // call the start() in controller to get data for view
         dataController.start();
-
-
-
+        //*****Spinner for category selection*************
         // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
         Spinner spinner = findViewById(R.id.assign_category_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -94,26 +86,25 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     public void handleUpdateDataClick(View view) {
         // retrieve edited data from ItemFragment RecyclerView
         //TODO: Replace temp dataItem with retrieved data
-       // () -> tracker.itemKeyProvider().getPosition();
-        //enter R.id when created
-        //dataItem = findViewById(R.id.edited_data_string);
+
         //set categoryChosen from Spinner selection
         Spinner spinner = findViewById(R.id.assign_category_spinner);
         spinner.setOnItemSelectedListener(this);//sets global categoryChosen
 
-        dataController.updateData(dataItem, categoryChosen);
+        dataController.updateData(data, categoryChosen);
     }
 
     public void handleEditTransactionClick(View view){
+        data = MyItemRecyclerViewAdapter.ViewHolder.mItem;
         //build and inflate the edit fragment
         Bundle bundle = new Bundle();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         // retrieve edited data from ItemFragment RecyclerView
-        //TODO: Replace temp data with data in recyclerView
-        bundle.putString("date","11/19/2021");//coming from RecyclerView as String or object--item[0]
-        bundle.putString("description", "McDonalds");
-        bundle.putString("amount", "5.76");
+        //TODO: Replace temp data with data in recyclerView--but how????
+        bundle.putString("date", data.getDate());
+        bundle.putString("description", data.getDescription());
+        bundle.putString("amount", String.valueOf(data.getAmount()));
         transaction.setReorderingAllowed(true);
         transaction.add(R.id.frag_placeholder_edit_transaction,EditDataFragment.class, bundle);
         transaction.commit();
@@ -129,6 +120,10 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         Fragment fragment = fm.findFragmentById(R.id.frag_placeholder_edit_transaction);
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.remove(fragment).commit();
+    }
+
+    public void onDeleteClick (View view) {
+        //remove from
     }
 }
 
