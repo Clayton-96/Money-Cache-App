@@ -34,6 +34,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     private Context context;
     private List<BankData> items;
     int singleitem_selection_position = -1;
+    private boolean isSelected;
 
     public List<BankData> getItems() {
         return items;
@@ -53,16 +54,17 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     @Override
     public void onBindViewHolder(MyItemRecyclerViewAdapter.ViewHolder holder, int position) {
+        context = holder.itemView.getContext();
         ViewHolder.mItem = items.get(position);
         holder.mDateView.setText(items.get(position).getDate());
         holder.mDescriptionView.setText(items.get(position).getDescription());
         holder.mAmountView.setText(items.get(position).getStringAmount());
-//        if (singleitem_selection_position == position) {
-//            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.purple_200));
-//        } else {
-//            holder.itemView.setBackgroundColor(Color.TRANSPARENT);
-//        }
         holder.itemView.findViewById(R.id.list);
+        if (singleitem_selection_position == position) {
+            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.purple_200));
+        } else {
+            holder.itemView.setBackgroundColor(Color.TRANSPARENT);
+        }
         holder.itemView.setOnClickListener(v -> setSingleSelection(holder.getAbsoluteAdapterPosition()));
     }
 
