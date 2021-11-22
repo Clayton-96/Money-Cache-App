@@ -8,6 +8,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,18 +28,31 @@ import com.example.moneycache.databinding.FragmentItemBinding;
 public class EditDataFragment extends Fragment {
     MyItemRecyclerViewAdapter recyclerViewAdapter;
     MyItemRecyclerViewAdapter.ViewHolder holder;
-    EditDataActivity activity;
+
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "date";
     private static final String ARG_PARAM2 = "description";
     private static final String ARG_PARAM3 = "amount";
 
+
     private String date;
     private String description;
     private String amount;
     private EditText editDate, editDescription, editAmount;
     private Button doneButton;
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
 
     public EditDataFragment() {
         // Required empty public constructor
@@ -71,6 +85,7 @@ public class EditDataFragment extends Fragment {
             description = getArguments().getString(ARG_PARAM2);
             amount = getArguments().getString(ARG_PARAM3);
         }
+        Log.d("EditDataFragmentCheck", "onCreate: " + getDate() );
     }
 //https://stackoverflow.com/questions/34706399/how-to-use-data-binding-with-fragment
     private FragmentEditDataBinding binding;
@@ -84,9 +99,11 @@ public class EditDataFragment extends Fragment {
         binding.doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.onDoneClick(v, editDate.getText().toString(),
-                        editDescription.getText().toString(),
-                        editAmount.getText().toString());
+                EditDataActivity activity = (EditDataActivity) getActivity();
+                activity.onDoneClick(v, binding.editDate.getText().toString(),
+                        binding.editDescription.getText().toString(),
+                        binding.editAmount.getText().toString());
+                Log.d("FragmentEditData", "onClick: passing " + binding.editDescription.getText().toString());
             }
         });
         View view = binding.getRoot();

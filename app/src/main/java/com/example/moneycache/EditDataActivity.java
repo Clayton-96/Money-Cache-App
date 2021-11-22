@@ -26,7 +26,6 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 
     MyItemRecyclerViewAdapter recyclerView;
     private String categoryChosen;
-    private boolean isSelected;
     private String dataItem;
     BankData data;
 
@@ -44,9 +43,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         dataController = new EditDataController(this);
         // call the start() in controller to get data for view
         dataController.start();
-
-
-
+        //*****Spinner for category selection*************
         // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
         Spinner spinner = findViewById(R.id.assign_category_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -108,9 +105,6 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         bundle.putString("date", data.getDate());
         bundle.putString("description", data.getDescription());
         bundle.putString("amount", String.valueOf(data.getAmount()));
-//        bundle.putString("date","11/19/2021");//coming from RecyclerView as String or object--item[0]
-//        bundle.putString("description", "McDonalds");
-//        bundle.putString("amount", "5.76");
         transaction.setReorderingAllowed(true);
         transaction.add(R.id.frag_placeholder_edit_transaction,EditDataFragment.class, bundle);
         transaction.commit();
@@ -126,6 +120,10 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         Fragment fragment = fm.findFragmentById(R.id.frag_placeholder_edit_transaction);
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.remove(fragment).commit();
+    }
+
+    public void onDeleteClick (View view) {
+        //remove from
     }
 }
 

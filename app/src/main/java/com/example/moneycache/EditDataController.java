@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditDataController {
-    public EditDataActivity getDataActivity() {
-        return dataActivity;
-    }
 
     // bring in an instance of the Activity
     private final EditDataActivity dataActivity;
@@ -25,7 +22,9 @@ public class EditDataController {
         this.dataActivity = dataActivity;
         model = new DataModel();
     }
-
+    public EditDataActivity getDataActivity() {
+        return dataActivity;
+    }
     public void start() {
         //whatever needs to be given data to start the view goes here
         //recyclerView reads transactions from??? file? DB?

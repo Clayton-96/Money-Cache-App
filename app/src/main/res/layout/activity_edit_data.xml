@@ -21,7 +21,7 @@
 
     <FrameLayout
         android:id="@+id/frag_placeholder_edit_transaction"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline2" />
@@ -35,8 +35,8 @@
         android:text="@string/edit_transaction_button"
         app:layout_constraintBottom_toTopOf="@+id/delete_transaction_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline2" />
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_edit_transaction" />
 
     <Button
         android:id="@+id/delete_transaction_button"
@@ -46,7 +46,7 @@
         android:text="@string/delete_transaction_button"
         app:layout_constraintBottom_toTopOf="@+id/assign_category_spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/edit_transaction_button" />
 
     <Button
@@ -59,7 +59,7 @@
         android:text="@string/update_data_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/assign_category_spinner" />
 
     <Spinner
@@ -71,7 +71,7 @@
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/update_data"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/delete_transaction_button"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -81,6 +81,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="210dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
