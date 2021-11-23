@@ -11,6 +11,7 @@ public class DataModel {
     static final String dataFile = "app/src/main/java/com/example/moneycache/bankdata.txt";
     public static BankData appData;
     public static List<String> items;
+    private String categoryFile = "app/src/main/res/raw/discretionary.txt";
 
     /**
      * get bank data either from DB or from bankdata.txt
@@ -61,6 +62,15 @@ public class DataModel {
 //                }
 //            }
 //        });
+
+    }
+
+    /**
+     * comes from firebase eventually
+     * @param categoryFile
+     */
+    public static void getCategoryAmount(String categoryFile){
+        Float amount = 2400f;
 
     }
 }
