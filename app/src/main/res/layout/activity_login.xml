@@ -10,30 +10,29 @@
         android:id="@+id/editTextPassword"
         android:layout_width="329dp"
         android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="350dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
         android:hint="@string/password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextUsername"
-        app:layout_constraintVertical_bias="1.0"
-        android:importantForAutofill="no" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editTextUsername"
         android:layout_width="329dp"
         android:layout_height="48dp"
-        android:layout_marginTop="248dp"
+        android:layout_marginTop="172dp"
         android:ems="10"
         android:hint="@string/username"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/go"
@@ -67,17 +66,18 @@
         android:id="@+id/login_title"
         android:layout_width="215dp"
         android:layout_height="49dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="44dp"
-        android:text="@string/login"
-        android:fontFamily="sans-serif"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:layout_marginTop="75dp"
+        android:layout_marginBottom="44dp"
+        android:fontFamily="sans-serif"
         android:gravity="center_vertical|center_horizontal"
+        android:text="@string/login"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
