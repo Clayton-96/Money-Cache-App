@@ -13,6 +13,6 @@ public class LoginController {
     // will need to specify a user at some point---that should come from LoginActivity as a param
     public void retrieveBankData() {
         // extend Thread either in LoginController or in DataModel
-        model.toBankDataObjects(dataFile);
+        DataModel.toBankDataObjects(dataFile);
     }
 }

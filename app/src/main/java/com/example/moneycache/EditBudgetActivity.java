@@ -12,17 +12,18 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class EditBudgetActivity extends AppCompatActivity {
 
     private EditBudgetController controller;
 
-    private EditText i;
-    private EditText b;
-    private EditText d;
-    private EditText dr;
-    private EditText s;
+    private TextView i;
+    private TextView b;
+    private TextView d;
+    private TextView dr;
+    private TextView s;
 
     public String getPlaceholder() {
         return placeholder;
@@ -32,10 +33,10 @@ public class EditBudgetActivity extends AppCompatActivity {
     EditBudgetFragment f = new EditBudgetFragment();
 
 
-    public EditText getI() {
+    public TextView getI() {
         return i;
     }
-    public void setI(EditText i, String amount) {
+    public void setI(TextView i, String amount) {
         this.i = i;
         i = findViewById(R.id.income_category);
         i.setText(getString(R.string.income_text, amount));
