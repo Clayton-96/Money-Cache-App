@@ -1,190 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent">
 
-    tools:context=".EditBudgetActivity">
-
-
-
-    <TextView
-        android:id="@+id/income_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:minHeight="48dp"
-        android:text="@string/income_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
-
-    <FrameLayout
-        android:id="@+id/frag_placeholder_income"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/income_category" />
+        android:layout_height="match_parent"
 
-    <TextView
-        android:id="@+id/bills_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:minHeight="48dp"
-        android:text="@string/bills_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_income" />
+        tools:context=".EditBudgetActivity">
 
-    <FrameLayout
-        android:id="@+id/frag_placeholder_bills"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bills_category" />
+        <TextView
+            android:id="@+id/income_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:minHeight="48dp"
+            android:text="@string/income_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAutofill="no" />
 
-    <TextView
-        android:id="@+id/discretionary_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:minHeight="48dp"
-        android:text="@string/discretionary_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_bills" />
+        <FrameLayout
+            android:id="@+id/frag_placeholder_income"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/income_category" />
 
-    <FrameLayout
-        android:id="@+id/frag_placeholder_discretionary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/discretionary_category" />
+        <TextView
+            android:id="@+id/bills_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:minHeight="48dp"
+            android:text="@string/bills_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frag_placeholder_income" />
 
-    <TextView
-        android:id="@+id/debt_reduction_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:minHeight="48dp"
-        android:text="@string/debt_reduction_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_discretionary" />
+        <FrameLayout
+            android:id="@+id/frag_placeholder_bills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bills_category" />
 
-    <FrameLayout
-        android:id="@+id/frag_placeholder_debt_reduction"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/debt_reduction_category" />
+        <TextView
+            android:id="@+id/discretionary_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:minHeight="48dp"
+            android:text="@string/discretionary_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frag_placeholder_bills" />
 
-    <TextView
-        android:id="@+id/savings_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:minHeight="48dp"
-        android:text="@string/savings_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_debt_reduction" />
+        <FrameLayout
+            android:id="@+id/frag_placeholder_discretionary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/discretionary_category" />
 
-    <FrameLayout
-        android:id="@+id/frag_placeholder_savings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/savings_category" />
+        <TextView
+            android:id="@+id/debt_reduction_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:minHeight="48dp"
+            android:text="@string/debt_reduction_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frag_placeholder_discretionary" />
 
-    <Button
-        android:id="@+id/income_edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:onClick="handleEditButton"
-        android:text="@string/income_edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/income_category"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        <FrameLayout
+            android:id="@+id/frag_placeholder_debt_reduction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/debt_reduction_category" />
 
-    <Button
-        android:id="@+id/bill_edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="16dp"
-        android:onClick="handleEditButton"
-        android:text="@string/bill_edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bills_category"
-        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_income" />
+        <TextView
+            android:id="@+id/savings_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:minHeight="48dp"
+            android:text="@string/savings_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frag_placeholder_debt_reduction" />
 
-    <Button
-        android:id="@+id/discretionary_edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:onClick="handleEditButton"
-        android:text="@string/discretionary_edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/discretionary_category"
-        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_bills" />
+        <FrameLayout
+            android:id="@+id/frag_placeholder_savings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/savings_category" />
 
-    <Button
-        android:id="@+id/debt_reduction_edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:onClick="handleEditButton"
-        android:text="@string/debt_reduction_edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/debt_reduction_category"
-        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_discretionary" />
+        <Button
+            android:id="@+id/income_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="handleEditButton"
+            android:text="@string/income_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/income_category"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
-    <Button
-        android:id="@+id/savings_edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:onClick="handleEditButton"
-        android:text="@string/savings_edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/savings_category"
-        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_debt_reduction" />
+        <Button
+            android:id="@+id/bill_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="handleEditButton"
+            android:text="@string/bill_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/bills_category"
+            app:layout_constraintTop_toBottomOf="@id/frag_placeholder_income" />
 
-    <Button
-        android:id="@+id/edit_budget_update_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:onClick="handleUpdateButton"
-        android:text="@string/edit_budget_update"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frag_placeholder_savings" />
+        <Button
+            android:id="@+id/discretionary_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="handleEditButton"
+            android:text="@string/discretionary_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/discretionary_category"
+            app:layout_constraintTop_toBottomOf="@id/frag_placeholder_bills" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/debt_reduction_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="handleEditButton"
+            android:text="@string/debt_reduction_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/debt_reduction_category"
+            app:layout_constraintTop_toBottomOf="@id/frag_placeholder_discretionary" />
+
+        <Button
+            android:id="@+id/savings_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="handleEditButton"
+            android:text="@string/savings_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/savings_category"
+            app:layout_constraintTop_toBottomOf="@id/frag_placeholder_debt_reduction" />
+
+        <Button
+            android:id="@+id/edit_budget_update_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:onClick="handleUpdateButton"
+            android:text="@string/edit_budget_update"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frag_placeholder_savings" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

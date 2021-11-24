@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +29,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     private String categoryChosen;
     private String dataItem;
     BankData data;
+    NavigationActivity navigation;
 
 
     public String getCategoryChosen() {
@@ -43,6 +45,11 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         dataController = new EditDataController(this);
         // call the start() in controller to get data for view
         dataController.start();
+
+        navigation = new NavigationActivity();
+        navigation.onSupportNavigateUp();
+
+
         //*****Spinner for category selection*************
         // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
         Spinner spinner = findViewById(R.id.assign_category_spinner);
