@@ -10,10 +10,12 @@ import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.moneycache.databinding.ActivityImpactBinding;
 import com.example.moneycache.databinding.ActivityNavigationBinding;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 public class NavigationActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
@@ -22,11 +24,19 @@ public class NavigationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
+        //setContentView(R.layout.activity_navigation);
 
         binding = ActivityNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setSupportActionBar(binding.appBarMain.toolbar);
+        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -64,3 +74,4 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
 }
+//navigation events: https://developer.android.com/guide/navigation/navigation-ui#listen_for_navigation_events

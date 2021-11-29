@@ -11,7 +11,13 @@
         android:theme="@style/Theme.MoneyCache">
         <activity
             android:name=".NavigationActivity"
-            android:exported="false" />
+            android:exported="false" >
+<!--        <intent-filter>-->
+<!--            <action android:name="android.intent.action.MAIN" />-->
+
+<!--            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--        </intent-filter>-->
+    </activity>
         <activity
             android:name=".ImpactActivity"
             android:exported="false" />
@@ -24,13 +30,12 @@
         <activity
             android:name=".EditBudgetActivity"
             android:exported="false">
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
         </activity>
         <activity
             android:name=".EditDataActivity"
