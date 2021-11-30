@@ -13,6 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,30 +59,30 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         // call the start() in controller to get data for view
         dataController.start();
 
-        navigation = new NavigationActivity();
-        //navigation.onSupportNavigateUp();
-        binding = ActivityNavigationBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_dashboard, R.id.nav_edit_data, R.id.nav_edit_budget, R.id.nav_impact)
-                .setOpenableLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+//        navigation = new NavigationActivity();
+//        //navigation.onSupportNavigateUp();
+//        binding = ActivityNavigationBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
+//
+//        setSupportActionBar(binding.appBarMain.toolbar);
+//        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+//        DrawerLayout drawer = binding.drawerLayout;
+//        NavigationView navigationView = binding.navView;
+//        // Passing each menu ID as a set of Ids because each
+//        // menu should be considered as top level destinations.
+//        mAppBarConfiguration = new AppBarConfiguration.Builder(
+//                R.id.nav_dashboard, R.id.nav_edit_data, R.id.nav_edit_budget, R.id.nav_impact)
+//                .setOpenableLayout(drawer)
+//                .build();
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+//        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
     @Override
@@ -157,25 +158,39 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
         return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-        if (item.getItemId() == R.id.profile_activity) {
-            new ProfileActivity();
-            return true;
+        if (item.getItemId() == R.id.nav_dashboard) {
+            Intent intent = new Intent(this, DashboardActivity.class);
+            startActivity(intent);
+            finish(); // Don't allow back to this page since we are leaving it ... activity object will get deleted
+        }
+        if (item.getItemId() == R.id.nav_edit_data) {
+            // do nothing ... we are already on this activity
+        }
+        if (item.getItemId() == R.id.nav_edit_budget) {
+            Intent intent = new Intent(this, EditBudgetActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if (item.getItemId() == R.id.nav_impact) {
+            Intent intent = new Intent(this, ImpactActivity.class);
+            startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
+//    @Override
+//    public boolean onSupportNavigateUp() {
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+//        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+//                || super.onSupportNavigateUp();
+//    }
 }
 
 

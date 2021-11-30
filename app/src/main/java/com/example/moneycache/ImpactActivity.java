@@ -8,9 +8,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -147,6 +149,36 @@ public class ImpactActivity extends AppCompatActivity {
         save.setText("");
         //TODO: clear radio buttons
 
+    }
+//********* menu for mavigation *****************
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        if (item.getItemId() == R.id.nav_dashboard) {
+            Intent intent = new Intent(this, DashboardActivity.class);
+            startActivity(intent);
+            finish(); // Don't allow back to this page since we are leaving it ... activity object will get deleted
+        }
+        if (item.getItemId() == R.id.nav_edit_data) {
+            Intent intent = new Intent(this, EditDataActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if (item.getItemId() == R.id.nav_edit_budget) {
+            Intent intent = new Intent(this, EditBudgetActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if (item.getItemId() == R.id.nav_impact) {
+            // do nothing ... we are already on this activity
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 
