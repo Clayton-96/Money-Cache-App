@@ -44,6 +44,7 @@ public class ImpactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_impact);
+        setTitle("Spending and Savings Impact");
 
         impactController = new ImpactController(this);
         amountTv = findViewById(R.id.dollar_amount_what_if);

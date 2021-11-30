@@ -53,6 +53,7 @@ public class EditBudgetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_budget);
+        setTitle("Edit Budget");
 
         //get Budget Items from controller to fill in as text
         //https://stackoverflow.com/questions/33164886/android-textview-do-not-concatenate-text-displayed-with-settext
@@ -166,6 +167,7 @@ public class EditBudgetActivity extends AppCompatActivity {
 
         // send new data to controller by calling onUpdate() method.
         controller.onUpdate();
+        Toast.makeText(this, "Budget Updated", Toast.LENGTH_LONG).show();
 
         //hide or detach the fragment: https://developer.android.com/guide/fragments/transactions#views
     }

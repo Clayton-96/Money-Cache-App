@@ -53,7 +53,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_data);
-        setTitle("Edit Data");
+        setTitle("Edit Bank Data");
         //create the controller
         dataController = new EditDataController(this);
         // call the start() in controller to get data for view
