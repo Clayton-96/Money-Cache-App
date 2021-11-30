@@ -49,64 +49,79 @@ public class ImpactActivity extends AppCompatActivity {
         save = findViewById(R.id.savings_impact_display);
 
     }
-    // in the same onResume method we would check true or false value of radio button
-    // if one time equals true "do something" add or subtract from category based on user input
-    //else if recurring "do something if we get that far but realistically same thing as one time
 
-    //send to controller
-    // when boolean is complete add or subtract
-    //then compare
-
-    //event listeners to listen for a response
-    //onclick updates the impact calls the value method and boolean method
+    /**
+     * reads the impact amount user enters in view
+     * @return amount as a Float
+     */
     public Float getUserAmount() {
-        Float amount = (Float.parseFloat(amountTv.getText().toString()));
         //create a method that reads the value from R.id.dollar_amount_what_if and assigns it to a variable
+        Float amount = (Float.parseFloat(amountTv.getText().toString()));
+
         Log.d("get user amount", "getUserAmount: " + amount);
 
         return amount;
    }
-    //this is pseudocode to explain I need to check the radio button group selection
+
+    /**
+     * could be a boolean...string that allows for forecasting if reoccurring is enabled and selected
+     * @param view of radio button group
+     * @return one-time or reoccurring
+     */
     public String radioButtonSelection(View view) {
         String string = "";
-        //true return a string giving explanation
-        //one time is true
-        //return string one time
-        //else return string
-        return "one-time"; //return something;
+        //could also return a boolean
+        //need an if/else statement for the two options
+        return "one-time";
 
     }
+
+    /**
+     * When Update button is clicked
+     * @param view is Update button
+     * gets Impact amount user entered, along with chosen frequency
+     * calls the 2 display functions for Budget Impact and Savings Impact
+     * author: Dixie Cravens
+     */
     public void updateImpactClick(View view) {
         //call method to get amount
         ImpactAmount = getUserAmount();
-        //get frequency
         //call method to get frequency
         ImpactFrequency = radioButtonSelection(view);
+        //call display methods
         displayBudgetImpact();
         displaySavingsImpact();
     }
 
-    //we have two so this has to be done a bit differently
-    //2 methods that call the display alerts
+    /**
+     * called from updateImpactClick()
+     * sets the text inside box to reflect the impact amount (zero if no impact)
+     * sets the background to green if impact is zero and red if savings is impacted at all (along with amount)
+     * author: Dixie Cravens
+     */
     public void displaySavingsImpact() {
         String impactText = String.format("%.02f",impactController.savingsImpact());
-        //set color of box to red
+
         if (impactController.isGreen()) {
-            //set color of box to green...may have to set this green color in the values/themes
+            //set color of box to green...set this green color in the values/themes
             save.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
 
         } else {
+            //set color of box to red
             save.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
         }
         //set value of impact to the TextView for savings impact
-
         save.setText(impactText);
 
     }
-
+    /**
+     * called from updateImpactClick()
+     * sets the text inside box to reflect the impact amount
+     * sets the background to green if impact is within budget and red if not and therefore affects savings
+     * author: Dixie Cravens
+     */
     public void displayBudgetImpact() {
-        // to test hard code a value in
-        //get some value from the controller
+        //get impact value from the controller
         String impactText = String.format("%.02f",impactController.budgetImpact());
         if (impactController.isGreen()) {
             spend.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
@@ -118,20 +133,23 @@ public class ImpactActivity extends AppCompatActivity {
         spend.setText(impactText);
     }
 
+    /**
+     * When Clear button is clicked
+     * @param view Clear button
+     * clears all fields to empty so activity can be run with different numbers
+     * author: Dixie Cravens
+     */
     public void onClear (View view) {
         amountTv.setText("");
         spend.setBackgroundColor(View.INVISIBLE);
         spend.setText("");
         save.setBackgroundColor(View.INVISIBLE);
         save.setText("");
-        //clear radio buttons
+        //TODO: clear radio buttons
 
     }
 }
 
-    //so the above code will allow the controller to request needed info
-
-    //
 
 
 
