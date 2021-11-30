@@ -3,18 +3,27 @@ package com.example.moneycache;
 import static java.lang.String.format;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.moneycache.databinding.ActivityNavigationBinding;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
@@ -30,6 +39,8 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     private String dataItem;
     BankData data;
     NavigationActivity navigation;
+    private AppBarConfiguration mAppBarConfiguration;
+    private ActivityNavigationBinding binding;
 
 
     public String getCategoryChosen() {
@@ -49,20 +60,30 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 
         navigation = new NavigationActivity();
         //navigation.onSupportNavigateUp();
+        binding = ActivityNavigationBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-
-        //*****Spinner for category selection*************
-        // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
-        Spinner spinner = findViewById(R.id.assign_category_spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.category_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setPrompt("Select a category");//I don't think this works by itself
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        setSupportActionBar(binding.appBarMain.toolbar);
+        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+        DrawerLayout drawer = binding.drawerLayout;
+        NavigationView navigationView = binding.navView;
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_dashboard, R.id.nav_edit_data, R.id.nav_edit_budget, R.id.nav_impact)
+                .setOpenableLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -132,6 +153,28 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 
     public void onDeleteClick (View view) {
         //remove from
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        if (item.getItemId() == R.id.profile_activity) {
+            new ProfileActivity();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 }
 
