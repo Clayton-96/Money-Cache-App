@@ -9,7 +9,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.view.View;
 import android.widget.TextView;
@@ -238,6 +242,37 @@ public class EditBudgetActivity extends AppCompatActivity {
                 break;
         }
 
+    }
+//***** menu for navigation ***********
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        if (item.getItemId() == R.id.nav_dashboard) {
+            Intent intent = new Intent(this, DashboardActivity.class);
+            startActivity(intent);
+            finish(); // Don't allow back to this page since we are leaving it ... activity object will get deleted
+        }
+        if (item.getItemId() == R.id.nav_edit_data) {
+            Intent intent = new Intent(this, EditDataActivity.class);
+            startActivity(intent);
+            finish();
+
+        }
+        if (item.getItemId() == R.id.nav_edit_budget) {
+            // do nothing ... we are already on this activity
+        }
+        if (item.getItemId() == R.id.nav_impact) {
+            Intent intent = new Intent(this, ImpactActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 //how do I pass info with an OnClick event?

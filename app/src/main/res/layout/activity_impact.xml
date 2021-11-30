@@ -1,136 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ImpactActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/impact_title"
-        android:layout_width="296dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="75dp"
-        android:fontFamily="sans-serif"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="@string/budget_impact"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/what_if"
-        android:layout_width="111dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="315dp"
-        android:text="@string/what_if"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/impact_title" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ImpactActivity">
 
-    <EditText
-        android:id="@+id/dollar_amount_what_if"
-        android:layout_width="356dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/amount"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:text="@string/amount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/what_if" />
+        <TextView
+            android:id="@+id/impact_title"
+            android:layout_width="296dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="75dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/budget_impact"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <RadioButton
-        android:id="@+id/one_time_radio"
-        android:layout_width="127dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="6dp"
-        android:text="@string/one_time"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dollar_amount_what_if" />
+        <TextView
+            android:id="@+id/what_if"
+            android:layout_width="111dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="315dp"
+            android:text="@string/what_if"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.113"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/impact_title" />
 
-    <RadioButton
-        android:id="@+id/recurring_radio"
-        android:layout_width="127dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="34dp"
-        android:text="@string/recurring"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dollar_amount_what_if" />
+        <EditText
+            android:id="@+id/dollar_amount_what_if"
+            android:layout_width="356dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/amount"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:text="@string/amount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/what_if" />
 
-    <Button
-        android:id="@+id/update_impact_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/update_impact"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/one_time_radio" />
+        <RadioButton
+            android:id="@+id/one_time_radio"
+            android:layout_width="127dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/one_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dollar_amount_what_if" />
 
-    <Button
-        android:id="@+id/clear_impact_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="38dp"
-        android:text="@string/clear_impact"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recurring_radio" />
+        <RadioButton
+            android:id="@+id/recurring_radio"
+            android:layout_width="127dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="34dp"
+            android:text="@string/recurring"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dollar_amount_what_if" />
 
-    <TextView
-        android:id="@+id/spending_impact_label"
-        android:layout_width="240dp"
-        android:layout_height="35dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="28dp"
-        android:gravity="center_vertical"
-        android:text="@string/spending_impact"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_impact_amount" />
+        <Button
+            android:id="@+id/update_impact_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="30dp"
+            android:onClick="updateImpactClick"
+            android:text="@string/update_impact"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/one_time_radio" />
 
-    <TextView
-        android:id="@+id/spending_impact_display"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spending_impact_label" />
+        <Button
+            android:id="@+id/clear_impact_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="38dp"
+            android:onClick="onClear"
+            android:text="@string/clear_impact"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recurring_radio" />
 
-    <TextView
-        android:id="@+id/savings_impact_label"
-        android:layout_width="237dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/savings_impact"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spending_impact_display" />
+        <TextView
+            android:id="@+id/spending_impact_label"
+            android:layout_width="240dp"
+            android:layout_height="35dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="28dp"
+            android:gravity="center_vertical"
+            android:text="@string/spending_impact"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/update_impact_amount" />
 
-    <TextView
-        android:id="@+id/savings_impact_display"
-        android:layout_width="237dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/savings_impact_label" />
+        <TextView
+            android:id="@+id/spending_impact_display"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spending_impact_label" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/savings_impact_label"
+            android:layout_width="237dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/savings_impact"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spending_impact_display" />
+
+        <TextView
+            android:id="@+id/savings_impact_display"
+            android:layout_width="237dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/savings_impact_label" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

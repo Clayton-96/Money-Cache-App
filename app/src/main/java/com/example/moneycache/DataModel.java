@@ -11,6 +11,7 @@ public class DataModel {
     static final String dataFile = "app/src/main/java/com/example/moneycache/bankdata.txt";
     public static BankData appData;
     public static List<String> items;
+    private String categoryFile = "app/src/main/res/raw/discretionary.txt";
 
     /**
      * get bank data either from DB or from bankdata.txt
@@ -63,4 +64,39 @@ public class DataModel {
 //        });
 
     }
+
+    /**
+     * comes from firebase eventually
+     * @param categoryFile
+     */
+    public static void getIncomeAmount(String categoryFile){
+        Float amount = 2400f;
+
+    }
+
+    /**
+     * Gets values from firebase
+     * @return Float value of budget category
+     * **right now it is just hardcoded in items
+     */
+    public Float getIncomeAmount() {
+        return Float.parseFloat(items.get(0));
+    }
+
+    public Float getBillsAmount() {
+        return Float.parseFloat(items.get(1));
+    }
+
+    public Float getDiscretionaryAmount() {
+        return Float.parseFloat(items.get(2));
+    }
+
+    public Float getDebtReductionAmount() {
+        return Float.parseFloat(items.get(3));
+    }
+
+    public Float getSavingsAmount() {
+        return Float.parseFloat(items.get(4));
+    }
+
 }

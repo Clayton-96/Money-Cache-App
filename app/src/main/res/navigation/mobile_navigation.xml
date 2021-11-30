@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_dashboard">
+    <activity
+        android:id="@+id/nav_dashboard"
+        android:name="com.example.moneycache.DashboardActivity"
+        android:label="Dashboard"
+        tools:layout="@layout/activity_dashboard" />
+    <activity
+        android:id="@+id/nav_edit_data"
+        android:name="com.example.moneycache.EditDataActivity"
+        android:label="Edit Data"
+        tools:layout="@layout/activity_edit_data" />
+
+    <activity
+        android:id="@+id/nav_edit_budget"
+        android:name="com.example.moneycache.EditBudgetActivity"
+        android:label="Edit Budget"
+        tools:layout="@layout/activity_edit_budget" />
+
+    <activity
+        android:id="@+id/nav_impact"
+        android:name="com.example.moneycache.ImpactActivity"
+        android:label="Impact"
+        tools:layout="@layout/activity_impact" />
+
+</navigation>
