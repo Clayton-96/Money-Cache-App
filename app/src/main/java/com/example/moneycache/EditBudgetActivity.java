@@ -151,10 +151,11 @@ public class EditBudgetActivity extends AppCompatActivity {
     }
 
     /**
-     * receives the onClick of Update button
-     * updates all categories to the current value in view using a setter in the controller
-     * calls the controller.onUpdate() method to save values to model/db
-     * @param view is the view object for each category
+     * Receives the onClick of Update button
+     * Updates all categories to the current value in view using a setter in the controller
+     * Calls the controller.onUpdate() method to save values to model/db
+     * Displays a Toast message that update has happened.
+     * @param view is the view object for each category (or is it the update button?)
      * Author: Dixie Cravens
      */
     public void handleUpdateButton(View view) {
