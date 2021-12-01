@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,6 +59,17 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         dataController = new EditDataController(this);
         // call the start() in controller to get data for view
         dataController.start();
+        //*****Spinner for category selection*************
+        // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
+        Spinner spinner = findViewById(R.id.assign_category_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.category_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setPrompt("Select a category");//I don't think this works by itself
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 
 //        navigation = new NavigationActivity();
 //        //navigation.onSupportNavigateUp();
@@ -121,7 +133,8 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         Spinner spinner = findViewById(R.id.assign_category_spinner);
         spinner.setOnItemSelectedListener(this);//sets global categoryChosen
 
-        dataController.updateData(data, categoryChosen);
+        //dataController.updateData(data, categoryChosen);
+        dataController.updateData(data);
     }
 
     public void handleEditTransactionClick(View view){
@@ -143,8 +156,8 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     }
     public void onDoneClick(View v, String newDate, String newDescription, String newAmount) {
         //put edited data into a JSON string
-        dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\"", newDate, newDescription, newAmount);
-
+        dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\", \"category\": \"%s\"}", newDate, newDescription, newAmount, categoryChosen);
+        Log.d("JSON string builder", "onDoneClick: " + dataItem);
         //remove fragment from activity
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.frag_placeholder_edit_transaction);
