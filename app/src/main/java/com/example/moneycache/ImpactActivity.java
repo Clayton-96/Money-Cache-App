@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -144,9 +145,9 @@ public class ImpactActivity extends AppCompatActivity {
      */
     public void onClear (View view) {
         amountTv.setText("");
-        spend.setBackgroundColor(View.INVISIBLE);
+        spend.setBackgroundColor(Color.TRANSPARENT);
         spend.setText("");
-        save.setBackgroundColor(View.INVISIBLE);
+        save.setBackgroundColor(Color.TRANSPARENT);
         save.setText("");
         //TODO: clear radio buttons
 
