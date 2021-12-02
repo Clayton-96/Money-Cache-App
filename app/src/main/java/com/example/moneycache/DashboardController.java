@@ -6,7 +6,7 @@ public class DashboardController {
     private final DashboardActivity dbActivity;
     private final DataModel model;
 
-    List<String> items;
+    private List<String> items;
 
     public DashboardController(DashboardActivity dbActivity) {
         this.dbActivity = dbActivity;
