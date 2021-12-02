@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
 public class DashboardActivity extends AppCompatActivity {
 
     NavigationActivity navigation;
+    DashboardController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +20,17 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         setTitle("Dashboard");
 
-        navigation = new NavigationActivity();
+        DashboardController controller = new DashboardController(this);
+        controller.start();
+
+        //navigation = new NavigationActivity();
     }
+
+    List<String> pieChartData = controller.getItems();
+
+
+
+
 //****** menu for navigation *************
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,4 +62,5 @@ public class DashboardActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

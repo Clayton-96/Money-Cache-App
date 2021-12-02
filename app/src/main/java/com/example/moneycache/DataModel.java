@@ -99,4 +99,8 @@ public class DataModel {
         return Float.parseFloat(items.get(4));
     }
 
+    public static List<String> getItems() {
+        return items;
+    }
+
 }
