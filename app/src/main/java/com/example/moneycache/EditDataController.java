@@ -13,6 +13,7 @@ public class EditDataController {
     // dataItem Array accepts all the edited BankData items from recyclerView and
     // stores them until app closes and they go to permanent storage
     private ArrayList<BankData> dataItemArray = new ArrayList<>();// same thing as MyItemRecyclerViewAdapter.items
+    private String category;
 
     public ArrayList<BankData> getDataItemArray() {
         return dataItemArray;
@@ -33,13 +34,13 @@ public class EditDataController {
     /**
      * Saves newly uploaded and edited bank data line-item to a temporary file
      * @param dataItem BankData in json format
-     * @param //category user-selected category for BankData
+     *
      *///TODO: what do we do with category?? It needs to be saved with every item--make a new class? Can we make a new variation of BankData?
     public void updateData(BankData dataItem) {
         //get updated BankData item and category
         //change json to BankData and save it an Array of BankData items
-        //Gson gson = new Gson();
-        //BankData bankData = gson.fromJson(dataItem, BankData.class);
+//        Gson gson = new Gson();
+//        BankData bankData = gson.fromJson(dataItem, BankData.class);
         dataItemArray.add(dataItem);
 
         // save in temp file here until app is closing,----dataItemArray will save objects until app closes

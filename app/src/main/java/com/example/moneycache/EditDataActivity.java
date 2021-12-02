@@ -67,15 +67,14 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         //*****Spinner for category selection*************
         // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
         Spinner spinner = findViewById(R.id.assign_category_spinner);
-        //spinner.setOnItemClickListener((AdapterView.OnItemClickListener) this);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.category_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setPrompt("Select a category");//I don't think this works by itself
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
 //        navigation = new NavigationActivity();
 //        //navigation.onSupportNavigateUp();
@@ -132,21 +131,21 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
      * @param view is view update button
      */
     public void handleUpdateDataClick(View view) {
-        // retrieve edited data from ItemFragment RecyclerView
-        //TODO: Replace temp dataItem with retrieved data
-
         //set categoryChosen from Spinner selection
         Spinner spinner = findViewById(R.id.assign_category_spinner);
-        spinner.setOnItemSelectedListener(this);
-         //sets global categoryChosen
+        spinner.setOnItemSelectedListener(this); //sets global categoryChosen
         //dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\", \"category\": \"%s\"}", newDate, newDescription, newAmount, categoryChosen);
         JsonElement j = new Gson().fromJson(dataItem, JsonElement.class);
-        JsonObject c = j.getAsJsonObject();
-        c.addProperty("category", categoryChosen);
-        Log.d("editedData", "handleUpdateDataClick: " + dataItem);
+        JsonObject newData = j.getAsJsonObject();
+        newData.addProperty("category", categoryChosen);
+        Gson gson = new Gson();
+        BankData bankData = gson.fromJson(newData, BankData.class);
+        //BankData bankData1 = gson.fromJson(bankData, BankData.class);
 
-        //dataController.updateData(data, categoryChosen);
-        dataController.updateData(data);
+        Log.d("editedData", "handleUpdateDataClick: " + newData);
+
+        dataController.updateData(bankData);
+        //dataController.updateData(data);
     }
 
     public void handleEditTransactionClick(View view){
@@ -182,6 +181,9 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     public void onDeleteClick (View view) {
         //remove from
     }
+
+
+    //*******Navigation Menu ********
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -212,12 +214,6 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-//        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
 }
 
 
