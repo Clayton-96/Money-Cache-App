@@ -27,6 +27,10 @@ import com.example.moneycache.databinding.ActivityNavigationBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -39,6 +43,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     MyItemRecyclerViewAdapter recyclerView;
     private String categoryChosen;
     private String dataItem;
+    String editedData;
     BankData data;
     NavigationActivity navigation;
     private AppBarConfiguration mAppBarConfiguration;
@@ -62,6 +67,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         //*****Spinner for category selection*************
         // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
         Spinner spinner = findViewById(R.id.assign_category_spinner);
+        //spinner.setOnItemClickListener((AdapterView.OnItemClickListener) this);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.category_array, android.R.layout.simple_spinner_item);
@@ -131,7 +137,13 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 
         //set categoryChosen from Spinner selection
         Spinner spinner = findViewById(R.id.assign_category_spinner);
-        spinner.setOnItemSelectedListener(this);//sets global categoryChosen
+        spinner.setOnItemSelectedListener(this);
+         //sets global categoryChosen
+        //dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\", \"category\": \"%s\"}", newDate, newDescription, newAmount, categoryChosen);
+        JsonElement j = new Gson().fromJson(dataItem, JsonElement.class);
+        JsonObject c = j.getAsJsonObject();
+        c.addProperty("category", categoryChosen);
+        Log.d("editedData", "handleUpdateDataClick: " + dataItem);
 
         //dataController.updateData(data, categoryChosen);
         dataController.updateData(data);
@@ -156,7 +168,9 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     }
     public void onDoneClick(View v, String newDate, String newDescription, String newAmount) {
         //put edited data into a JSON string
-        dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\", \"category\": \"%s\"}", newDate, newDescription, newAmount, categoryChosen);
+        dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\"}", newDate, newDescription, newAmount);
+//        Gson gson = new Gson();
+//        editedData = gson.toJson(dataItem, BankData.class);
         Log.d("JSON string builder", "onDoneClick: " + dataItem);
         //remove fragment from activity
         FragmentManager fm = getSupportFragmentManager();

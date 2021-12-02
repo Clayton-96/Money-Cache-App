@@ -47,8 +47,9 @@ public class BankData {
         category = "";
     }
     /**
+     * changes JSON string/file to List of BankData objects
      *https://futurestud.io/tutorials/gson-mapping-of-arrays-and-lists-of-objects
-     * @return List<BankData>
+     * @return List<BankData> as bankDataList
      */
     public static List<BankData> jsonToObjectList(Activity activity) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(activity.getResources().openRawResource(R.raw.bankdata)));
