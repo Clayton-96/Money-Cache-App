@@ -30,22 +30,26 @@ public class BankData {
     private Float amount;
     // amount2 for files that have separate debit and credit columns
     //private float amount2;
+    private String category;
 
 
     public BankData(String date, String memo, String amount) {
         this.date = date;
         this.memo = memo;
         this.amount = Float.parseFloat(amount);
+        category = "";
     }
     public BankData(String date, String memo, String amount, String amount2) {
         this.date = date;
         this.memo = memo;
         this.amount = Float.parseFloat(amount) + Float.parseFloat(amount2);
         //this.amount2 = amount2;
+        category = "";
     }
     /**
+     * changes JSON string/file to List of BankData objects
      *https://futurestud.io/tutorials/gson-mapping-of-arrays-and-lists-of-objects
-     * @return List<BankData>
+     * @return List<BankData> as bankDataList
      */
     public static List<BankData> jsonToObjectList(Activity activity) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(activity.getResources().openRawResource(R.raw.bankdata)));
@@ -87,12 +91,19 @@ public class BankData {
         return Float.toString(amount);
     }
 
+    public String getCategory() { return category; }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "BankData{" +
                 "date='" + date + '\'' +
                 ", memo='" + memo + '\'' +
                 ", amount=" + amount +
+                ", category='" + category + '\'' +
                 '}';
     }
 }

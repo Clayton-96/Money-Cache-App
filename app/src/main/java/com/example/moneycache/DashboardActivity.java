@@ -4,12 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
 public class DashboardActivity extends AppCompatActivity {
 
-    NavigationActivity navigation;
+    //NavigationActivity navigation;
+    DashboardController controller;
+    List<String> pieChartData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +22,20 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         setTitle("Dashboard");
 
-        navigation = new NavigationActivity();
+        controller = new DashboardController(this);
+        controller.start();
+        pieChartData = controller.getItems();
+        Log.d("Created controller", "onCreate: ");
+
+        //navigation = new NavigationActivity();
     }
+//this needs to be properly brought into the activity so it can be used to populate the piechart
+    //List<String> pieChartData = controller.getItems();
+
+
+
+
+
 //****** menu for navigation *************
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,4 +67,5 @@ public class DashboardActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
