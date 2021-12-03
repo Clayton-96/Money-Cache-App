@@ -50,6 +50,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     private ActivityNavigationBinding binding;
 
 
+
     public String getCategoryChosen() {
         return categoryChosen;
     }
@@ -64,6 +65,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         dataController = new EditDataController(this);
         // call the start() in controller to get data for view
         dataController.start();
+
         //*****Spinner for category selection*************
         // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
         Spinner spinner = findViewById(R.id.assign_category_spinner);
@@ -155,7 +157,6 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         // retrieve edited data from ItemFragment RecyclerView
-        //TODO: Replace temp data with data in recyclerView--but how????
         bundle.putString("date", data.getDate());
         bundle.putString("description", data.getDescription());
         bundle.putString("amount", String.valueOf(data.getAmount()));
@@ -168,8 +169,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     public void onDoneClick(View v, String newDate, String newDescription, String newAmount) {
         //put edited data into a JSON string
         dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\"}", newDate, newDescription, newAmount);
-//        Gson gson = new Gson();
-//        editedData = gson.toJson(dataItem, BankData.class);
+
         Log.d("JSON string builder", "onDoneClick: " + dataItem);
         //remove fragment from activity
         FragmentManager fm = getSupportFragmentManager();
@@ -179,7 +179,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void onDeleteClick (View view) {
-        //remove from
+        //completely remove transaction from data
     }
 
 

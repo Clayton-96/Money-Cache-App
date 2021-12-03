@@ -11,52 +11,54 @@
         tools:context=".DashboardActivity">
 
         <TextView
-            android:id="@+id/textView5"
-            android:layout_width="245dp"
-            android:layout_height="49dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="75dp"
-            android:fontFamily="sans-serif"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="@string/dashboard"
-            android:textSize="40sp"
+            android:id="@+id/pie_chart"
+            android:layout_width="286dp"
+            android:layout_height="236dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/future_pie_chart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/cash_flow_display"
-            android:layout_width="231dp"
-            android:layout_height="28dp"
-            android:layout_marginTop="34dp"
-            android:layout_marginBottom="208dp"
-            android:text="@string/income_expenses"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/bills_alert"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pie_chart" />
 
         <TextView
-            android:id="@+id/pie_chart"
-            android:layout_width="286dp"
-            android:layout_height="236dp"
-            android:layout_marginTop="60dp"
-            android:text="@string/future_pie_chart"
+            android:id="@+id/discretionary_alert"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/bills_alert" />
 
         <TextView
-            android:id="@+id/alert_goal_progress"
-            android:layout_width="285dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="45dp"
-            android:text="@string/goal_progress"
+            android:id="@+id/debtreduction_alert"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cash_flow_display" />
+            app:layout_constraintTop_toBottomOf="@+id/discretionary_alert" />
+
+        <TextView
+            android:id="@+id/savings_alert"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/debtreduction_alert" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
