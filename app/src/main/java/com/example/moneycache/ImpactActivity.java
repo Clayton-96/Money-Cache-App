@@ -6,6 +6,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -39,6 +40,7 @@ public class ImpactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_impact);
+        setTitle("Spending and Savings Impact");
 
         impactController = new ImpactController(this);
         amountTv = findViewById(R.id.dollar_amount_what_if);
@@ -138,9 +140,9 @@ public class ImpactActivity extends AppCompatActivity {
      */
     public void onClear (View view) {
         amountTv.setText("");
-        spend.setBackgroundColor(View.INVISIBLE);
+        spend.setBackgroundColor(Color.TRANSPARENT);
         spend.setText("");
-        save.setBackgroundColor(View.INVISIBLE);
+        save.setBackgroundColor(Color.TRANSPARENT);
         save.setText("");
         //TODO: clear radio buttons
 

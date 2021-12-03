@@ -1,15 +1,25 @@
 package com.example.moneycache;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.List;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    NavigationActivity navigation;
+    //NavigationActivity navigation;
+    DashboardController controller;
+    List<String> pieChartData;
+    TextView b, d, dr, s;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +27,53 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         setTitle("Dashboard");
 
-        navigation = new NavigationActivity();
+        controller = new DashboardController(this);
+        controller.start();
+        pieChartData = controller.getItems();
+        Log.d("Created controller", "onCreate: ");
+        b = (TextView) findViewById(R.id.bills_alert);
+        d = (TextView) findViewById(R.id.discretionary_alert);
+        dr = (TextView) findViewById(R.id.debtreduction_alert);
+        s = (TextView) findViewById(R.id.savings_alert);
+        Float bAmt = controller.billsAmt;
+        Float dAmt = controller.discretionaryAmt;
+        Float drAmt = controller.debtReductionAmt;
+        Float sAmt = controller.savingsAmt;
+
+
+        if (controller.billsAmtGreen) {
+            b.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+        } else {
+            b.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
+        }
+        b.setText(bAmt.toString());
+        if (controller.discretionarAmtGreen) {
+            d.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+        } else {
+            d.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
+        }
+        d.setText(dAmt.toString());
+        if (controller.debtReductionAmtGreen) {
+            dr.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+        } else {
+            dr.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
+        }
+        dr.setText(drAmt.toString());
+        if (controller.savingsAmtGreen) {
+            s.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+        } else {
+            s.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
+        }
+        s.setText(sAmt.toString());
+
+        //navigation = new NavigationActivity();
     }
+
+
+
+
+
+
 //****** menu for navigation *************
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,4 +105,5 @@ public class DashboardActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

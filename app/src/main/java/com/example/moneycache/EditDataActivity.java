@@ -7,11 +7,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,8 +23,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-
+import com.example.moneycache.databinding.ActivityNavigationBinding;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -33,8 +43,11 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     MyItemRecyclerViewAdapter recyclerView;
     private String categoryChosen;
     private String dataItem;
+    String editedData;
     BankData data;
-
+    NavigationActivity navigation;
+    private AppBarConfiguration mAppBarConfiguration;
+    private ActivityNavigationBinding binding;
 
 
 
@@ -47,11 +60,12 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_data);
-        setTitle("Edit Data");
+        setTitle("Edit Bank Data");
         //create the controller
         dataController = new EditDataController(this);
         // call the start() in controller to get data for view
         dataController.start();
+
         //*****Spinner for category selection*************
         // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
         Spinner spinner = findViewById(R.id.assign_category_spinner);
@@ -60,9 +74,10 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
                 R.array.category_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setPrompt("Select a category");//I don't think this works by itself
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
 //        navigation = new NavigationActivity();
 //        //navigation.onSupportNavigateUp();
 //        binding = ActivityNavigationBinding.inflate(getLayoutInflater());
@@ -118,14 +133,21 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
      * @param view is view update button
      */
     public void handleUpdateDataClick(View view) {
-        // retrieve edited data from ItemFragment RecyclerView
-        //TODO: Replace temp dataItem with retrieved data
-
         //set categoryChosen from Spinner selection
         Spinner spinner = findViewById(R.id.assign_category_spinner);
-        spinner.setOnItemSelectedListener(this);//sets global categoryChosen
+        spinner.setOnItemSelectedListener(this); //sets global categoryChosen
+        //dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\", \"category\": \"%s\"}", newDate, newDescription, newAmount, categoryChosen);
+        JsonElement j = new Gson().fromJson(dataItem, JsonElement.class);
+        JsonObject newData = j.getAsJsonObject();
+        newData.addProperty("category", categoryChosen);
+        Gson gson = new Gson();
+        BankData bankData = gson.fromJson(newData, BankData.class);
+        //BankData bankData1 = gson.fromJson(bankData, BankData.class);
 
-        dataController.updateData(data, categoryChosen);
+        Log.d("editedData", "handleUpdateDataClick: " + newData);
+
+        dataController.updateData(bankData);
+        //dataController.updateData(data);
     }
 
     public void handleEditTransactionClick(View view){
@@ -135,7 +157,6 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         // retrieve edited data from ItemFragment RecyclerView
-        //TODO: Replace temp data with data in recyclerView--but how????
         bundle.putString("date", data.getDate());
         bundle.putString("description", data.getDescription());
         bundle.putString("amount", String.valueOf(data.getAmount()));
@@ -147,8 +168,9 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     }
     public void onDoneClick(View v, String newDate, String newDescription, String newAmount) {
         //put edited data into a JSON string
-        dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\"", newDate, newDescription, newAmount);
+        dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\"}", newDate, newDescription, newAmount);
 
+        Log.d("JSON string builder", "onDoneClick: " + dataItem);
         //remove fragment from activity
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.frag_placeholder_edit_transaction);
@@ -157,8 +179,11 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void onDeleteClick (View view) {
-        //remove from
+        //completely remove transaction from data
     }
+
+
+    //*******Navigation Menu ********
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -189,12 +214,6 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-//        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
 }
 
 

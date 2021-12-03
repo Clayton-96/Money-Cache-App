@@ -1,6 +1,9 @@
 package com.example.moneycache;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
+//import com.google.firebase.firestore;
 
 import java.sql.Array;
 import java.util.ArrayList;
@@ -12,6 +15,56 @@ public class DataModel {
     public static BankData appData;
     public static List<String> items;
     private String categoryFile = "app/src/main/res/raw/discretionary.txt";
+
+    Float income;
+    Float bills;
+    Float discretionary;
+    Float debt_reduction;
+    Float savings;
+
+    public Float getIncome() {
+        return income;
+    }
+
+    public void setIncome(Float income) {
+        this.income = income;
+    }
+
+    public Float getBills() {
+        return bills;
+    }
+
+    public void setBills(Float bills) {
+        this.bills = bills;
+    }
+
+    public Float getDiscretionary() {
+        return discretionary;
+    }
+
+    public void setDiscretionary(Float discretionary) {
+        this.discretionary = discretionary;
+    }
+
+    public Float getDebt_reduction() {
+        return debt_reduction;
+    }
+
+    public void setDebt_reduction(Float debt_reduction) {
+        this.debt_reduction = debt_reduction;
+    }
+
+    public Float getSavings() {
+        return savings;
+    }
+
+    public void setSavings(Float savings) {
+        this.savings = savings;
+    }
+
+    public void loadData(Context context) {
+        getCategoryAmounts();
+    }
 
     /**
      * get bank data either from DB or from bankdata.txt
@@ -66,37 +119,59 @@ public class DataModel {
     }
 
     /**
-     * comes from firebase eventually
-     * @param categoryFile
+     * comes from firebase for month selected
+     * DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").where("monthYear", "==", "December2021");
+     * Brings back entire document of current spending totals per category
+     *
      */
-    public static void getIncomeAmount(String categoryFile){
-        Float amount = 2400f;
+    public void getCategoryAmounts(){
+        //DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").where("monthYear", "==", "December2021");
+        income = 2400f;//document.income;
+        bills = 950f;//document.bills;
+        discretionary = 256.66f;//document.discretionary;
+        debt_reduction = 200f;//document.debtReduction;
+        savings = 150f;//document.savings;
 
     }
 
     /**
-     * Gets values from firebase
+     * Gets values from firebase for budget GOAL categories
      * @return Float value of budget category
      * **right now it is just hardcoded in items
      */
-    public Float getIncomeAmount() {
+    //First call the document "budget" from db. contains all budget fields and amounts.
+    //DocumentReference document = db.collection("users").document("dcravens").collection("budget");
+    // then return and/or populate the budget category fields
+    // these fields are also used to compare goals with actual spending
+
+    public Float getIncomeGoal() {
+        //income = document.bills;
+        //return income;
         return Float.parseFloat(items.get(0));
     }
 
-    public Float getBillsAmount() {
+    public Float getBillsGoal() {
         return Float.parseFloat(items.get(1));
     }
 
-    public Float getDiscretionaryAmount() {
+    public Float getDiscretionaryGoal() {
         return Float.parseFloat(items.get(2));
     }
 
-    public Float getDebtReductionAmount() {
+    public Float getDebtReductionGoal() {
         return Float.parseFloat(items.get(3));
     }
 
-    public Float getSavingsAmount() {
+    public Float getSavingsGoal() {
         return Float.parseFloat(items.get(4));
     }
 
+    public static List<String> getItems() {
+        return items;
+    }
+
 }
+// to call the budget category (goal) for "bills". This returns 1245 as a number (int? float?)
+//DocumentReference document = db.collection("users").document("dcravens").collection("budget").orderBy("bills", "asc");
+// to get to the actual amount for a particular month: (this returns the 'bills' for November and December)
+//DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").orderBy("bills", "asc");

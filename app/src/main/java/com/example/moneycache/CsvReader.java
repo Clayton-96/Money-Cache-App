@@ -72,7 +72,6 @@ import com.opencsv.exceptions.CsvValidationException;
                 System.out.println(index++ +": " + n);
             }
             //have user pick number that corresponds to date, then description, then amount--or just click on the line that matches
-            //what do I do if there is a column for debits and a column for credits?
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Which [number] corresponds with the transaction DATE field?");
