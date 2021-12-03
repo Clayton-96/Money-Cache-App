@@ -81,14 +81,19 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         notifyItemChanged(singleitem_selection_position);
     }
 
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        //public static BankData mItem;
+
+        public BankData getmItem() {
+            return mItem;
+        }
 
         public static BankData mItem;
         public final TextView mDateView;
         public final TextView mDescriptionView;
         public final TextView mAmountView;
-        //public BankData mItem;
-        //private LinearLayout fragmentItem;
 
         public ViewHolder(FragmentItemBinding binding) {
             super(binding.getRoot());
@@ -99,12 +104,18 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         }
 
 
-        @Override
-        //TODO: is this how we create a JSON formatted string?
+
         public String toString() {
             return super.toString() + " '" + mDateView.getText() + "'" + " '"
                     + mDescriptionView.getText() + "'" +  " '" + mAmountView.getText() + "'";
         }
 
     }
+    private void removeItem(int position) {
+
+        items.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, items.size());
+    }
+
 }

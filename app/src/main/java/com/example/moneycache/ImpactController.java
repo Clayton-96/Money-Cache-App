@@ -28,8 +28,8 @@ public class ImpactController {
     public Float budgetImpact() {
         ImpactAmount = impactActivity.getImpactAmount();
         ImpactFrequency = impactActivity.getImpactFrequency();//not using this to do any calculations at the moment
-        Float income = model.getIncomeAmount();
-        Float totalBills = model.getBillsAmount() + model.getDiscretionaryAmount() + model.getDebtReductionAmount() + model.getSavingsAmount();
+        Float income = model.getIncomeGoal();
+        Float totalBills = model.getBillsGoal() + model.getDiscretionaryGoal() + model.getDebtReductionGoal() + model.getSavingsGoal();
         Float impactResult = (income - (totalBills + ImpactAmount));
         if  (impactResult >= 0) {
             green = true;
@@ -49,7 +49,7 @@ public class ImpactController {
      * author: Dixie Cravens
      */
     public Float savingsImpact() {
-        Float savingsTotal = model.getSavingsAmount();
+        Float savingsTotal = model.getSavingsGoal();
         Float impact = null;
         if (green != true) {
             impact = savingsTotal - Math.abs(budgetImpact());

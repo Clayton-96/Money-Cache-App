@@ -50,6 +50,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     private ActivityNavigationBinding binding;
 
 
+
     public String getCategoryChosen() {
         return categoryChosen;
     }
@@ -156,7 +157,6 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         // retrieve edited data from ItemFragment RecyclerView
-        //TODO: Replace temp data with data in recyclerView--but how????
         bundle.putString("date", data.getDate());
         bundle.putString("description", data.getDescription());
         bundle.putString("amount", String.valueOf(data.getAmount()));
@@ -179,7 +179,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void onDeleteClick (View view) {
-        //remove from data
+        //completely remove transaction from data
     }
 
 
