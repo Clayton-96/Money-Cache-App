@@ -7,10 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -22,9 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.moneycache.databinding.ActivityNavigationBinding;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
+
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
@@ -39,9 +34,8 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     private String categoryChosen;
     private String dataItem;
     BankData data;
-    NavigationActivity navigation;
-    private AppBarConfiguration mAppBarConfiguration;
-    private ActivityNavigationBinding binding;
+
+
 
 
     public String getCategoryChosen() {
@@ -58,7 +52,17 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         dataController = new EditDataController(this);
         // call the start() in controller to get data for view
         dataController.start();
-
+        //*****Spinner for category selection*************
+        // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
+        Spinner spinner = findViewById(R.id.assign_category_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.category_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setPrompt("Select a category");//I don't think this works by itself
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 //        navigation = new NavigationActivity();
 //        //navigation.onSupportNavigateUp();
 //        binding = ActivityNavigationBinding.inflate(getLayoutInflater());
