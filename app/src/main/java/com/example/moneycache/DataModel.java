@@ -81,20 +81,21 @@ public class DataModel {
     }
 
     /**
-     * Gets the String (?) values of the User's EditBudget categories from SharedPreferences
-     * and returns an ArrayList to EditBudgetController start().
+     * Gets the String values of the User's EditBudget GOAL categories from SharedPreferences
+     * and returns an ArrayList to EditBudgetController start(), and DashboardController start().
      * Listed in order of: [0]Income, [1]Bills, [2]Discretionary, [3]Debt reduction, and [4]Savings.
      * @return 'items' as Array
      * author: Dixie Cravens
      */
     public static List<String> getBudgetItems(Context context) {
-        //gets data from SharedPreferences
+
         String income;
         String bills;
         String discretionary;
         String debtReduction;
         String savings;
 
+        //get data from SharedPreferences--have to have the "else 0" because the first time there is no data to get
         SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
         if (sp.contains("goal_income")) {
             income = sp.getString("goal_income", "");
@@ -129,15 +130,14 @@ public class DataModel {
     }
 
     /**
-     * updates to storage a List<String> of category values. Stored in order of:
-     * [0]Income, [1]Bills, [2]Discretionary, [3]Debt reduction, and [4]Savings.
-     * author: Dixie Cravens and....
+     * updates to sharedPreferences as category GOAL values.
+     * Data comes from user in EditDataActivity.
+     * author: Dixie Cravens
      */
     public static void updateBudgetItems(Context context) {
         //save goals in SharedPreferences
         SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        // maybe this would work AFTER the text is removed from the EditBudgetActivity TextViews
         editor.putString("goal_income", String.valueOf(items.get(0)));
         editor.putString("goal_bills", String.valueOf(items.get(1)));
         editor.putString("goal_discretionary", String.valueOf(items.get(2)));
@@ -165,7 +165,8 @@ public class DataModel {
      * comes from firebase for month selected
      * DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").where("monthYear", "==", "December2021");
      * Brings back entire document of current spending totals per category
-     *
+     *TODO: Track this in sharedPreferences with Month-Year and category. Amount is added as
+     * transactions are edited and categorized
      */
     public void getCategoryAmounts(){
         //DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").where("monthYear", "==", "December2021");
@@ -178,7 +179,7 @@ public class DataModel {
     }
 
     /**
-     * Gets values from firebase for budget GOAL categories
+     * Gets values from sharedPreferences for budget GOAL categories
      * @return Float value of budget category
      * **right now it is just hardcoded in items
      */
@@ -187,15 +188,9 @@ public class DataModel {
     // then return and/or populate the budget category fields
     // these fields are also used to compare goals with actual spending
 
-    public Float getIncomeGoal() {
-        //income = document.bills;
-        //return income;
-        return Float.parseFloat(items.get(0));
-    }
+    public Float getIncomeGoal() { return Float.parseFloat(items.get(0)); }
 
-    public Float getBillsGoal() {
-        return Float.parseFloat(items.get(1));
-    }
+    public Float getBillsGoal() { return Float.parseFloat(items.get(1)); }
 
     public Float getDiscretionaryGoal() {
         return Float.parseFloat(items.get(2));
@@ -209,9 +204,7 @@ public class DataModel {
         return Float.parseFloat(items.get(4));
     }
 
-    public static List<String> getItems() {
-        return items;
-    }
+    public static List<String> getItems() { return items; }
 
 }
 // to call the budget category (goal) for "bills". This returns 1245 as a number (int? float?)
