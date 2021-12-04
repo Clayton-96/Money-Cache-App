@@ -46,25 +46,25 @@ public class DashboardActivity extends AppCompatActivity {
         } else {
             b.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
         }
-        b.setText(bAmt.toString());
+        b.setText(getString(R.string.bills_alert, String.format("%.2f", bAmt)));
         if (controller.discretionarAmtGreen) {
             d.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
         } else {
             d.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
         }
-        d.setText(dAmt.toString());
+        d.setText(getString(R.string.discretionary_alert, String.format("%.2f", dAmt)));
         if (controller.debtReductionAmtGreen) {
             dr.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
         } else {
             dr.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
         }
-        dr.setText(drAmt.toString());
+        dr.setText(getString(R.string.debtreduction_alert, String.format("%.2f", drAmt)));
         if (controller.savingsAmtGreen) {
             s.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
         } else {
             s.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
         }
-        s.setText(sAmt.toString());
+        s.setText(getString(R.string.savings_alert, String.format("%.2f", sAmt)));
 
         //navigation = new NavigationActivity();
     }

@@ -25,6 +25,9 @@ public class DashboardController {
         model = new DataModel();
     }
 
+    /**
+     * gets all of the data needed to run the activity
+     */
     public void start() {
         //DataModel model = new DataModel();
         model.loadData(dbActivity);
@@ -39,13 +42,29 @@ public class DashboardController {
         return items;
     }
 
+    /**
+     * retrieves budget goal for BILLS category
+     * retrieves actual spending for BILLS category
+     * subtracts actual spending from goal. if amount is <= 0, set color to green.
+     * If spending is greater than goal, set color to red
+     * Displays the result of the calculation.
+     * Author: Dixie Cravens
+     */
     public void alertBills() {
         float goal = model.getBillsGoal();
         float spent = model.getBills();
         boolean green;
         billsAmt = goal - spent;
-        if (spent < goal) billsAmtGreen = true;
+        if (spent <= goal) billsAmtGreen = true;
     }
+    /**
+     * retrieves budget goal for DISCRETIONARY category
+     * retrieves actual spending for DISCRETIONARY category
+     * subtracts actual spending from goal. if amount is < 0, set color to green.
+     * If spending is greater than goal or 0, set color to red.
+     * Displays the result of the calculation.
+     * Author: Dixie Cravens
+     */
     public void alertDiscretionary() {
         float goal = model.getDiscretionaryGoal();
         float spent = model.getDiscretionary();
@@ -58,14 +77,14 @@ public class DashboardController {
         float spent = model.getDebt_reduction();
         boolean green;
         debtReductionAmt = goal - spent;
-        if (spent < goal) debtReductionAmtGreen = true;
+        if (spent >= goal) debtReductionAmtGreen = true;
     }
     public void alertSavings() {
         float goal = model.getSavingsGoal();
         float spent = model.getSavings();
         boolean green;
         savingsAmt = goal - spent;
-        if (spent < goal) savingsAmtGreen = true;
+        if (spent >= goal) savingsAmtGreen = true;
     }
 
 }
