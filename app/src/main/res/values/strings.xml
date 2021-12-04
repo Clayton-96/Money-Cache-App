@@ -3,11 +3,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="edit_budget_amount">%1$s</string>
     <string name="edit_budget_category">Category Name</string>
-    <string name="income_text">Income: $%1$s</string>
-    <string name="bills_text">Bills: $%1$s</string>
-    <string name="discretionary_text">Discretionary: $%1$s</string>
-    <string name="debt_reduction_text">Debt Reduction: $%1$s</string>
-    <string name="savings_text">Savings: $%1$s</string>
+    <string name="income_title">Income:</string>
+    <string name="income_text">%1$s</string>
+    <string name="bills_title">Bills:</string>
+    <string name="bills_text">%1$s</string>
+    <string name="discretionary_title">Discretionary:</string>
+    <string name="discretionary_text">%1$s</string>
+    <string name="debt_reduction_title">Debt Reduction:</string>
+    <string name="debt_reduction_text">%1$s</string>
+    <string name="savings_title">Savings:</string>
+    <string name="savings_text">%1$s</string>
     <string name="income_edit">Edit</string>
     <string name="bill_edit">Edit</string>
     <string name="discretionary_edit">Edit</string>
