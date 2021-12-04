@@ -33,7 +33,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edit_date">01/01/21</string>
-    <string name="edit_description">Some Buisness</string>
+    <string name="edit_description">Some Business</string>
     <string name="edit_amount">$19.99</string>
     <!--Login-->
     <string name="go_button_label">GO</string>
