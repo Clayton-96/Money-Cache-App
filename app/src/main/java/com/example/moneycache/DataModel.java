@@ -17,12 +17,14 @@ public class DataModel {
     public static List<String> items;
     private String categoryFile = "app/src/main/res/raw/discretionary.txt";
 
+    //these fields are for the (need to be) saved current category totals derived from EditDataActivity.
     Float income;
     Float bills;
     Float discretionary;
     Float debt_reduction;
     Float savings;
 
+    //Getters and setters for the above fields to be called from other classes. (May not need all of them)
     public Float getIncome() {
         return income;
     }
@@ -63,6 +65,13 @@ public class DataModel {
         this.savings = savings;
     }
 
+    /**
+     * This data will eventually TODO: be called from Shared Preferences.
+     * Right now it is hard-coded.
+     * Data comes from the edited bank transactions.This is the 'spent' amount.
+     * One of the first things that needs to happen when the app starts.
+     * @param context of the activity calling for the data.
+     */
     public void loadData(Context context) {
         getCategoryAmounts();
     }
@@ -70,10 +79,9 @@ public class DataModel {
     /**
      * get bank data from bankdata.txt(started as a CSV file, changed to JSON)
      * and put into object BankData (and budgetCategories?)
-     * called from LoginController after login is complete
-     * @param dataFile is bankdata.txt--eventually should be data from DB
+     * TODO: ideally called from LoginController after login is complete
+     * @param dataFile is bankdata.txt
      */
-    //TODO: should this be on a thread? or would it be a thread from calling LoginController?
     public static void toBankDataObjects (String dataFile) {
         Gson gson = new Gson();
         appData = gson.fromJson(dataFile, BankData.class);
@@ -82,9 +90,10 @@ public class DataModel {
 
     /**
      * Gets the String values of the User's EditBudget GOAL categories from SharedPreferences
-     * and returns an ArrayList to EditBudgetController start(), and DashboardController start().
+     * and returns an ArrayList 'items' to EditBudgetController start(), and DashboardController start().
      * Listed in order of: [0]Income, [1]Bills, [2]Discretionary, [3]Debt reduction, and [4]Savings.
      * @return 'items' as Array
+     * @param context is the activity calling the method
      * author: Dixie Cravens
      */
     public static List<String> getBudgetItems(Context context) {
@@ -135,7 +144,7 @@ public class DataModel {
      * author: Dixie Cravens
      */
     public static void updateBudgetItems(Context context) {
-        //save goals in SharedPreferences
+        //save goals by category in SharedPreferences
         SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("goal_income", String.valueOf(items.get(0)));
@@ -165,8 +174,8 @@ public class DataModel {
      * comes from firebase for month selected
      * DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").where("monthYear", "==", "December2021");
      * Brings back entire document of current spending totals per category
-     *TODO: Track this in sharedPreferences with Month-Year and category. Amount is added as
-     * transactions are edited and categorized
+     *TODO: Save this in sharedPreferences with Month-Year and category. Amount is added as
+     * transactions are edited and categorized.
      */
     public void getCategoryAmounts(){
         //DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").where("monthYear", "==", "December2021");
@@ -181,7 +190,6 @@ public class DataModel {
     /**
      * Gets values from sharedPreferences for budget GOAL categories
      * @return Float value of budget category
-     * **right now it is just hardcoded in items
      */
     //First call the document "budget" from db. contains all budget fields and amounts.
     //DocumentReference document = db.collection("users").document("dcravens").collection("budget");
