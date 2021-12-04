@@ -18,6 +18,10 @@
     <string name="edit_transaction_button">Edit Transaction</string>
     <string name="delete_transaction_button">Delete Transaction</string>
     <string name="update_data_button">Update Transaction</string>
+    <string name="bills_alert">Bills: $%1$s</string>
+    <string name="discretionary_alert">Discretionary: $%1$s</string>
+    <string name="debtreduction_alert">Debt Reduction: $%1$s</string>
+    <string name="savings_alert">Savings: $%1$s</string>
     <string-array name="category_array">
         <item>Income</item>
         <item>Bills</item>
