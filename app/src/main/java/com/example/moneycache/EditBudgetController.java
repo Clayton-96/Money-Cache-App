@@ -24,7 +24,7 @@ public class EditBudgetController {
         //  ask model for correct data for each BI box--what format is this coming from the DB in?
         //  Fill variables with stored values from DB.
         //https://github.com/macbeth-byui/MVP_Android/blob/master/app/src/main/java/t/macbeth/mvp_android/MVP1/Presenter.java
-        List<String> items = DataModel.getBudgetItems();
+        List<String> items = DataModel.getBudgetItems(budgetActivity);
         income = items.get(0);
         bills = items.get(1);
         discretionary = items.get(2);
@@ -79,7 +79,7 @@ public class EditBudgetController {
         // TODO: does this need to be 'new' ArrayList since it is replacing what currently exists?
         DataModel.items = new ArrayList<>(Arrays.asList(getIncome(),
                 getBills(), getDiscretionary(), getDebtReduction(), getSavings()));
-        DataModel.updateBudgetItems();
+        DataModel.updateBudgetItems(budgetActivity);
 
     }
 

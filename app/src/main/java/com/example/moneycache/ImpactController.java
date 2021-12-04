@@ -9,7 +9,7 @@ public class ImpactController {
 
     public ImpactController(ImpactActivity impactActivity){
         this.impactActivity = impactActivity;
-        model.getBudgetItems();//this adds data to 'items' array for use in the Impact controller
+        model.getBudgetItems(impactActivity);//this adds data to 'items' array for use in the Impact controller
 
     }
     public boolean isGreen() {

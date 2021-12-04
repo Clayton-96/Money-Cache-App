@@ -1,6 +1,7 @@
 package com.example.moneycache;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 //import com.google.firebase.firestore;
@@ -67,7 +68,7 @@ public class DataModel {
     }
 
     /**
-     * get bank data either from DB or from bankdata.txt
+     * get bank data from bankdata.txt(started as a CSV file, changed to JSON)
      * and put into object BankData (and budgetCategories?)
      * called from LoginController after login is complete
      * @param dataFile is bankdata.txt--eventually should be data from DB
@@ -80,20 +81,50 @@ public class DataModel {
     }
 
     /**
-     * Gets the String values of the User's EditBudget categories from DB
+     * Gets the String (?) values of the User's EditBudget categories from SharedPreferences
      * and returns an ArrayList to EditBudgetController start().
-     * String format works best since this number doesn't need to be computed.
      * Listed in order of: [0]Income, [1]Bills, [2]Discretionary, [3]Debt reduction, and [4]Savings.
      * @return 'items' as Array
-     * author: Dixie Cravens and....
+     * author: Dixie Cravens
      */
-    public static List<String> getBudgetItems() {
-        //temporary data for getBudgetItems--
-        // when this updates from EditBudgetController.onUpdate()...what happens to this hardcoded data?
-        items = new ArrayList<>(Arrays.asList("4085.00", "2795.34", "800.00", "200.00", "200.00"));
+    public static List<String> getBudgetItems(Context context) {
+        //gets data from SharedPreferences
+        String income;
+        String bills;
+        String discretionary;
+        String debtReduction;
+        String savings;
 
-        //TODO: get values from DB and return the String values of the User's EditBudget categories
-        // to EditBudgetController
+        SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
+        if (sp.contains("goal_income")) {
+            income = sp.getString("goal_income", "");
+        }else {
+            income = "0";
+        }
+        if (sp.contains("goal_bills")) {
+            bills = sp.getString("goal_bills", "");
+        } else {
+            bills = "0";
+        }
+        if (sp.contains("goal_discretionary")) {
+            discretionary = sp.getString("goal_discretionary", "");
+        }else {
+            discretionary = "0";
+        }
+        if (sp.contains("goal_debtreduction")) {
+            debtReduction = sp.getString("goal_debtreduction", "");
+        } else {
+            debtReduction = "0";
+        }
+        if (sp.contains("goal_savings")) {
+            savings = sp.getString("goal_savings", "");
+        } else {
+            savings = "0";
+        }
+
+        items = new ArrayList<String>(Arrays.asList(income, bills, discretionary, debtReduction, savings));
+        //items = new ArrayList<>(Arrays.asList("4085.00", "2795.34", "800.00", "200.00", "200.00"));
+
         return items;
     }
 
@@ -102,8 +133,20 @@ public class DataModel {
      * [0]Income, [1]Bills, [2]Discretionary, [3]Debt reduction, and [4]Savings.
      * author: Dixie Cravens and....
      */
-    public static void updateBudgetItems() {
-        //TODO: save 'items' to db or shared pref
+    public static void updateBudgetItems(Context context) {
+        //save goals in SharedPreferences
+        SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        // maybe this would work AFTER the text is removed from the EditBudgetActivity TextViews
+        editor.putString("goal_income", String.valueOf(items.get(0)));
+        editor.putString("goal_bills", String.valueOf(items.get(1)));
+        editor.putString("goal_discretionary", String.valueOf(items.get(2)));
+        editor.putString("goal_debtreduction", String.valueOf(items.get(3)));
+        editor.putString("goal_savings", String.valueOf(items.get(4)));
+        editor.commit();
+
+
+
 //        mDatabase.child("users").child(userId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 //            @Override
 //            public void onComplete(@NonNull Task<DataSnapshot> task) {
