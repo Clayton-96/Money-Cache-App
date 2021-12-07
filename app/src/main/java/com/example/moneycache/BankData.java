@@ -48,6 +48,7 @@ public class BankData {
     }
     /**
      * changes JSON string/file to List of BankData objects
+     * reads from bankData.txt file in res/raw
      *https://futurestud.io/tutorials/gson-mapping-of-arrays-and-lists-of-objects
      * @return List<BankData> as bankDataList
      */
