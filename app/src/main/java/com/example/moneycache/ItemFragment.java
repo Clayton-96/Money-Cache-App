@@ -77,7 +77,7 @@ public class ItemFragment extends Fragment {
             }
 //TODO: Is this right?
             //recyclerView.setAdapter(new MyItemRecyclerViewAdapter(BankData.jsonToObjectList(getActivity())));
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(editDataActivity, BankData.jsonToObjectList((getActivity()))));
+            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(editDataActivity, BankData.jsonToObjectList(getActivity())));
         }
         return view;
 

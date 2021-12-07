@@ -84,8 +84,6 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        //public static BankData mItem;
-
         public BankData getmItem() {
             return mItem;
         }
