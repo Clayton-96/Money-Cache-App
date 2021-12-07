@@ -18,7 +18,8 @@ public class DashboardActivity extends AppCompatActivity {
     DashboardController controller;
     List<String> pieChartData;
     TextView b, d, dr, s;
-
+    Float bAmt, drAmt, dAmt, sAmt;
+    Float income; //(income = controller.getIncome())
 
 
     @Override
@@ -35,10 +36,10 @@ public class DashboardActivity extends AppCompatActivity {
         d = (TextView) findViewById(R.id.discretionary_alert);
         dr = (TextView) findViewById(R.id.debtreduction_alert);
         s = (TextView) findViewById(R.id.savings_alert);
-        Float bAmt = controller.billsAmt;
-        Float dAmt = controller.discretionaryAmt;
-        Float drAmt = controller.debtReductionAmt;
-        Float sAmt = controller.savingsAmt;
+        bAmt = controller.billsAmt;
+        dAmt = controller.discretionaryAmt;
+        drAmt = controller.debtReductionAmt;
+        sAmt = controller.savingsAmt;
 
 
         if (controller.billsAmtGreen) {
@@ -47,7 +48,7 @@ public class DashboardActivity extends AppCompatActivity {
             b.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
         }
         b.setText(getString(R.string.bills_alert, String.format("%.2f", bAmt)));
-        if (controller.discretionarAmtGreen) {
+        if (controller.discretionaryAmtGreen) {
             d.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
         } else {
             d.setBackgroundColor(ContextCompat.getColor(this, R.color.red));

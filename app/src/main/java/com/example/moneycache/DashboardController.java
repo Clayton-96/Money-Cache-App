@@ -12,8 +12,14 @@ public class DashboardController {
     Float discretionaryAmt;
     Float debtReductionAmt;
     Float savingsAmt;
+
+    public Float getIncome() {
+        return income;
+    }
+
+    Float income;
     boolean billsAmtGreen;
-    boolean discretionarAmtGreen;
+    boolean discretionaryAmtGreen;
     boolean debtReductionAmtGreen;
     boolean savingsAmtGreen;
 
@@ -31,6 +37,7 @@ public class DashboardController {
     public void start() {
         //DataModel model = new DataModel();
         model.loadData(dbActivity);
+        income = model.getIncomeGoal();
         items = DataModel.getItems();
         alertBills();
         alertDiscretionary();
@@ -70,7 +77,7 @@ public class DashboardController {
         float spent = model.getDiscretionary();
         boolean green;
         discretionaryAmt = goal - spent;
-        if (spent < goal) discretionarAmtGreen = true;
+        if (spent < goal) discretionaryAmtGreen = true;
     }
     public void alertDebtReduction() {
         float goal = model.getDebtReductionGoal();
