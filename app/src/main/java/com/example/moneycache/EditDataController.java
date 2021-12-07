@@ -1,5 +1,7 @@
 package com.example.moneycache;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -59,15 +61,7 @@ public class EditDataController {
      * asks for new bank data to be pulled into app
      */
     public void getNewData() {
-        String JSON_FILE = "app/src/main/java/com/example/moneycache/bankdata.txt";
-        String csv_file = model.userFileToString();
-        //run CsvReader to change CSV to JSON
-        CsvReader bankFile = new CsvReader();
-        bankFile.readCSVFile(csv_file);//---this needs to open a fragment in the EditDataActivity---
-
-        //this writes to the internal file that BankData.java reads
-        // from to create the recyclerView
-        bankFile.writeToJson(JSON_FILE);
+        model.userFileToString(dataActivity);
 
         //TODO: need a listener that tells recyclerView new data has been added to JSON_FILE
 
