@@ -45,9 +45,9 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     private String dataItem;
     String editedData;
     BankData data;
-    NavigationActivity navigation;
-    private AppBarConfiguration mAppBarConfiguration;
-    private ActivityNavigationBinding binding;
+//    NavigationActivity navigation;
+//    private AppBarConfiguration mAppBarConfiguration;
+//    private ActivityNavigationBinding binding;
 
 
 
@@ -127,50 +127,59 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 
 
     /**
-     * handles the onClick for update_data button
-     * sets BankData and categoryChosen from view and sends to controller updateData()
-     *
+     * Handles the onClick for update_data button.
+     * Updates bankData with category (categoryChosen from spinner)
+     * and sends to controller updateData().
      * @param view is view update button
+     * author: Dixie Cravens
      */
     public void handleUpdateDataClick(View view) {
         //set categoryChosen from Spinner selection
         Spinner spinner = findViewById(R.id.assign_category_spinner);
         spinner.setOnItemSelectedListener(this); //sets global categoryChosen
-        //dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\", \"category\": \"%s\"}", newDate, newDescription, newAmount, categoryChosen);
+       //add category to bankData object
         JsonElement j = new Gson().fromJson(dataItem, JsonElement.class);
         JsonObject newData = j.getAsJsonObject();
         newData.addProperty("category", categoryChosen);
         Gson gson = new Gson();
         BankData bankData = gson.fromJson(newData, BankData.class);
-        //BankData bankData1 = gson.fromJson(bankData, BankData.class);
-
-        Log.d("editedData", "handleUpdateDataClick: " + newData);
 
         dataController.updateData(bankData);
-        //dataController.updateData(data);
     }
 
+    /**
+     * Creates an EditData Fragment with data copied from item selected in recycler view fragment
+     * @param view is 'Edit Transaction' button
+     * author: Dixie Cravens
+     */
     public void handleEditTransactionClick(View view){
         data = MyItemRecyclerViewAdapter.ViewHolder.mItem;
         //build and inflate the edit fragment
         Bundle bundle = new Bundle();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        // retrieve edited data from ItemFragment RecyclerView
+        // retrieve to-be edited data from ItemFragment RecyclerView
         bundle.putString("date", data.getDate());
         bundle.putString("description", data.getDescription());
         bundle.putString("amount", String.valueOf(data.getAmount()));
         transaction.setReorderingAllowed(true);
         transaction.add(R.id.frag_placeholder_edit_transaction,EditDataFragment.class, bundle);
         transaction.commit();
-
-
     }
+
+    /**
+     * Copies data from the EditData Fragment and stores it into a JSON string,
+     * then removes fragment.
+     * @param v is 'Done' button in EditDataFragment
+     * @param newDate is date from user editing
+     * @param newDescription is description for user editing
+     * @param newAmount is amount from user editing
+     * author: Dixie Cravens
+     */
     public void onDoneClick(View v, String newDate, String newDescription, String newAmount) {
-        //put edited data into a JSON string
+        //put edited data into a JSON string (could have used BankData.toString() ?)
         dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\"}", newDate, newDescription, newAmount);
 
-        Log.d("JSON string builder", "onDoneClick: " + dataItem);
         //remove fragment from activity
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.frag_placeholder_edit_transaction);
@@ -180,6 +189,15 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 
     public void onDeleteClick (View view) {
         //completely remove transaction from data
+    }
+
+    /**
+     * starts DataController getNewData()
+     * @param view Upload Bank Data button
+     * author: Dixie Cravens
+     */
+    public void handleUploadData (View view) {
+        dataController.getNewData();
     }
 
 
