@@ -37,8 +37,8 @@ public class DashboardController {
     public void start() {
         //DataModel model = new DataModel();
         model.loadData(dbActivity);
-        income = model.getIncomeGoal();
         items = DataModel.getItems();
+        income = model.getIncomeGoal();
         alertBills();
         alertDiscretionary();
         alertDebtReduction();

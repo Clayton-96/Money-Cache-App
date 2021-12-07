@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 
+import androidx.core.app.ActivityCompat;
+
 import com.google.gson.Gson;
 //import com.google.firebase.firestore;
 
@@ -17,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DataModel {
-    //private static final String JSON_FILE = "app/src/main/java/com/example/moneycache/bankdata.txt";
+    private static final String JSON_FILE = "app/src/main/java/com/example/moneycache/bankdata.txt";
     String FILENAME = "csv_file.txt";
     static final String dataFile = "app/src/main/java/com/example/moneycache/bankdata.txt";
     public static BankData appData;
@@ -81,6 +83,7 @@ public class DataModel {
      */
     public void loadData(Context context) {
         getCategoryAmounts();
+        getBudgetItems(context);
     }
 
     /**
@@ -91,10 +94,10 @@ public class DataModel {
      * TODO: ideally called from LoginController after login is complete
      * author: Dixie Cravens
      */
-    public String userFileToString() {
+    public void userFileToString(Context context) {
         StringBuilder newCSV = null;
         try{
-            File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            String folder = Environment.getExternalStorageDirectory().getAbsolutePath();
             File myFile = new File(folder, FILENAME);
             FileInputStream fstream = new FileInputStream(myFile);
             newCSV = new StringBuilder();
@@ -109,14 +112,14 @@ public class DataModel {
             e.printStackTrace();
         }
         assert newCSV != null;
-        return newCSV.toString();
+        String csv_file = newCSV.toString();
 
-//        //run CsvReader to change CSV to JSON
-//        CsvReader bankFile = new CsvReader();
-//        bankFile.readCSVFile(csv_file);//---this needs to open a fragment in the EditDataActivity
-//        bankFile.writeToJson(JSON_FILE);//this writes to the internal file that BankData.java reads
-//                                        // from to create the recyclerView
-//
+        //run CsvReader to change CSV to JSON
+        CsvReader bankFile = new CsvReader();
+        bankFile.readCSVFile(csv_file);//---this needs to open a fragment in the EditDataActivity
+        bankFile.writeToJson(JSON_FILE);//this writes to the internal file that BankData.java reads
+                                        // from to create the recyclerView
+
 //        // use GSON to change JSON to BankData objects--so far nothing in app is using appData.
 //        Gson gson = new Gson();
 //        appData = gson.fromJson(dataFile, BankData.class);
@@ -319,3 +322,6 @@ public class DataModel {
 //DocumentReference document = db.collection("users").document("dcravens").collection("budget").orderBy("bills", "asc");
 // to get to the actual amount for a particular month: (this returns the 'bills' for November and December)
 //DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").orderBy("bills", "asc");
+
+
+//https://stackoverflow.com/questions/8854359/exception-open-failed-eacces-permission-denied-on-android#:~:text=In%20addition%20to%20all%20answers,if%20you%20have%20given%20any.
