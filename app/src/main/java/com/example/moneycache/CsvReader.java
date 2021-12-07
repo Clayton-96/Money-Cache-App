@@ -38,10 +38,11 @@ import com.opencsv.exceptions.CsvValidationException;
         static List<List<String>> records = new ArrayList<>();
 
         //returns the INDEX number for these fields in CSV file:
-        static int date;
-        static int description;
-        static int amount;
-        static int amount2;
+        //HARD_CODED to Dixie's csv for testing purposes
+        static int date = 1;
+        static int description = 3;
+        static int amount = 4;
+        static int amount2 = 99;
 
         /**
          * Method to create the List of column names from csv file.
@@ -72,22 +73,27 @@ import com.opencsv.exceptions.CsvValidationException;
             //TODO: change this to check sharedPref for "colNames". If available, use the stored
             // values to populate the index values.
             // Else, run this code.
-            int index = 0;
-            for (String n : colNames) {
-                System.out.println(index++ +": " + n);
-            }
-            //have user pick number that corresponds to date, then description, then amount--or just click on the line that matches
-            //TODO: change this to display and read data from a fragment in Android
-            Scanner scanner = new Scanner(System.in);
+            if (date >= 0) {
+                //do nothing
+            } else {
 
-            System.out.println("Which [number] corresponds with the transaction DATE field?");
-            date = scanner.nextInt();
-            System.out.println("Which [number] corresponds with the transaction DESCRIPTION field?");
-            description = scanner.nextInt();
-            System.out.println("Which [number] corresponds with the (first or only) transaction AMOUNT field?");
-            amount = scanner.nextInt();
-            System.out.println("Which [number] corresponds with the (second) transaction AMOUNT field? Enter '99' if not");
-            amount2 = scanner.nextInt();
+                int index = 0;
+                for (String n : colNames) {
+                    System.out.println(index++ + ": " + n);
+                }
+                //have user pick number that corresponds to date, then description, then amount--or just click on the line that matches
+                //TODO: change this to display and read data from a fragment in Android
+                Scanner scanner = new Scanner(System.in);
+
+                System.out.println("Which [number] corresponds with the transaction DATE field?");
+                date = scanner.nextInt();
+                System.out.println("Which [number] corresponds with the transaction DESCRIPTION field?");
+                description = scanner.nextInt();
+                System.out.println("Which [number] corresponds with the (first or only) transaction AMOUNT field?");
+                amount = scanner.nextInt();
+                System.out.println("Which [number] corresponds with the (second) transaction AMOUNT field? Enter '99' if not");
+                amount2 = scanner.nextInt();
+            }
 
         }
 
