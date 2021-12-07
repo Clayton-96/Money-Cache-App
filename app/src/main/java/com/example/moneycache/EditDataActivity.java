@@ -3,6 +3,7 @@ package com.example.moneycache;
 import static java.lang.String.format;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,7 +14,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -53,6 +57,34 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 
     public String getCategoryChosen() {
         return categoryChosen;
+    }
+
+    // Storage Permissions
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    /**
+     * Checks if the app has permission to write to device storage
+     *
+     * If the app does not has permission then the user will be prompted to grant permissions
+     *
+     * @param activity
+     */
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
 
 
@@ -134,6 +166,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
      * author: Dixie Cravens
      */
     public void handleUpdateDataClick(View view) {
+
         //set categoryChosen from Spinner selection
         Spinner spinner = findViewById(R.id.assign_category_spinner);
         spinner.setOnItemSelectedListener(this); //sets global categoryChosen
@@ -197,6 +230,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
      * author: Dixie Cravens
      */
     public void handleUploadData (View view) {
+        verifyStoragePermissions(this);
         dataController.getNewData();
     }
 
