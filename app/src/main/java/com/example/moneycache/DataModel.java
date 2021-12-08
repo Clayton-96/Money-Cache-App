@@ -73,8 +73,11 @@ public class DataModel {
      * @param context of the activity calling for the data.
      */
     public void loadData(Context context) {
+
         getCategoryAmounts();
+        getBudgetItems(context);
     }
+
 
     /**
      * get bank data from bankdata.txt(started as a CSV file, changed to JSON)

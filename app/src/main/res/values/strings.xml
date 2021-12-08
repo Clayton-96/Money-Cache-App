@@ -68,5 +68,13 @@
     <string name="string_textview">Budget Impact</string>
     <string name="income_expenses">Income - Expenses = $</string>
     <string name="future_pie_chart">Future Pie Chart</string>
-    <string name="goal_progress">Goal Progress</string>
+    <!--<string name="goal_progress">Goal Progress</string>-->
+
+    <!--Pie Chart -->
+    <string name="pie_chart_title">Income vs Expenses</string>
+    <string name="inside_title">Expenses</string>
+    <!--<string name="burn">Burn.</string>
+    <string name="cons">Cons.</string>
+    <string name="add">Add</string>-->
+
 </resources>

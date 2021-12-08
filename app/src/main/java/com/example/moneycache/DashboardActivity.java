@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -19,6 +20,9 @@ public class DashboardActivity extends AppCompatActivity {
     List<String> pieChartData;
     TextView b, d, dr, s;
 
+    //Variables needed for pie chart
+    Float bAmt, drAmt, dAmt, sAmt;
+    Float income; //(income = controller.getIncome())
 
 
     @Override
@@ -26,7 +30,8 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         setTitle("Dashboard");
-
+    // when we create the page we run a start method that creates all the data needed for the page
+    //
         controller = new DashboardController(this);
         controller.start();
         pieChartData = controller.getItems();
@@ -35,10 +40,12 @@ public class DashboardActivity extends AppCompatActivity {
         d = (TextView) findViewById(R.id.discretionary_alert);
         dr = (TextView) findViewById(R.id.debtreduction_alert);
         s = (TextView) findViewById(R.id.savings_alert);
-        Float bAmt = controller.billsAmt;
-        Float dAmt = controller.discretionaryAmt;
-        Float drAmt = controller.debtReductionAmt;
-        Float sAmt = controller.savingsAmt;
+        bAmt = controller.billsAmt;
+        dAmt = controller.discretionaryAmt;
+        drAmt = controller.debtReductionAmt;
+        sAmt = controller.savingsAmt;
+
+
 
 
         if (controller.billsAmtGreen) {
@@ -47,7 +54,7 @@ public class DashboardActivity extends AppCompatActivity {
             b.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
         }
         b.setText(getString(R.string.bills_alert, String.format("%.2f", bAmt)));
-        if (controller.discretionarAmtGreen) {
+        if (controller.discretionaryAmtGreen) {
             d.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
         } else {
             d.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
@@ -66,8 +73,34 @@ public class DashboardActivity extends AppCompatActivity {
         }
         s.setText(getString(R.string.savings_alert, String.format("%.2f", sAmt)));
 
-        //navigation = new NavigationActivity();
+        //Pie Chart Update
+            // Calculate the slice size and update the pie chart:
+            ProgressBar pieChart = findViewById(R.id.stats_progressbar);
+
+            //Float income = controller.getIncome();
+            int bills = (int)controller.pieChartBills();
+            int discretionary = (int)controller.pieChartDiscretionary();
+            int debtReduction = (int)controller.pieChartReduction();
+            int savings = (int)controller.pieChartSavings();
+            //int progress = (int) (d * 100);
+            pieChart.setProgress(bills);
+            pieChart.setProgress(discretionary);
+            pieChart.setProgress(debtReduction);
+            pieChart.setProgress(savings);
+
     }
+    //
+//    private void updateChart(){
+//        // Update the text in a center of the chart:
+//        TextView numberOfCals = findViewById(R.id.number_of_calories);
+//        numberOfCals.setText(String.valueOf(calsBurned) + " / " + calsConsumed);
+//
+//        // Calculate the slice size and update the pie chart:
+//        ProgressBar pieChart = findViewById(R.id.stats_progressbar);
+//        double d = (double) calsBurned / (double) calsConsumed;
+//        int progress = (int) (d * 100);
+//        pieChart.setProgress(progress);
+//    }
 
 
 
