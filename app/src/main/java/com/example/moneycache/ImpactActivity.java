@@ -104,13 +104,16 @@ public class ImpactActivity extends AppCompatActivity {
         if (impactController.isGreen()) {
             //set color of box to green...set this green color in the values/themes
             save.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+            //set value of impact to the TextView for savings impact
+            save.setText(impactText + " impact on savings");
 
         } else {
             //set color of box to red
             save.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
+            //set value of impact to the TextView for savings impact
+            save.setText(impactText + " would be saved");
         }
-        //set value of impact to the TextView for savings impact
-        save.setText(impactText);
+
 
     }
     /**
@@ -124,12 +127,15 @@ public class ImpactActivity extends AppCompatActivity {
         String impactText = String.format("%.02f",impactController.budgetImpact());
         if (impactController.isGreen()) {
             spend.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+            //set value of impact to the TextView for spending impact
+            spend.setText(impactText + " within budget");
 
         } else {
             spend.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
+            //set value of impact to the TextView for spending impact
+            spend.setText(impactText + " over budget");
         }
-        //set value of impact to the TextView for spending impact
-        spend.setText(impactText);
+
     }
 
     /**
