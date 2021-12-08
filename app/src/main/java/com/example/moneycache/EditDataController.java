@@ -1,5 +1,7 @@
 package com.example.moneycache;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -14,7 +16,6 @@ public class EditDataController {
     // stores them until app closes and they go to permanent storage
     private ArrayList<BankData> dataItemArray = new ArrayList<>();// same thing as MyItemRecyclerViewAdapter.items
     private String category;
-
     public ArrayList<BankData> getDataItemArray() {
         return dataItemArray;
     }
@@ -40,7 +41,8 @@ public class EditDataController {
         //change json to BankData and save it an Array of BankData items
 //        Gson gson = new Gson();
 //        BankData bankData = gson.fromJson(dataItem, BankData.class);
-        dataItemArray.add(dataItem);
+        //dataItemArray.add(dataItem);
+
 
         // save in temp file here until app is closing,----dataItemArray will save objects until app closes
         // TODO:then save file to DB at close in saveFile() called from activity onStop()
@@ -51,6 +53,18 @@ public class EditDataController {
      * file contents are generated in updateData()
      */
     public void saveFile(){
+
+    }
+
+    /**
+     * Calls DataModel userFileToBankObjects()
+     * asks for new bank data to be pulled into app
+     */
+    public void getNewData() {
+        model.userFileToString(dataActivity);
+
+        //TODO: need a listener that tells recyclerView new data has been added to JSON_FILE
+
 
     }
 

@@ -36,10 +36,13 @@ import com.opencsv.exceptions.CsvValidationException;
         //static List<Bank_data> data;
         static List<String> colNames = new ArrayList<>();
         static List<List<String>> records = new ArrayList<>();
-        static int date;
-        static int description;
-        static int amount;
-        static int amount2;
+
+        //returns the INDEX number for these fields in CSV file:
+        //HARD_CODED to Dixie's csv for testing purposes
+        static int date = 1;
+        static int description = 3;
+        static int amount = 4;
+        static int amount2 = 99;
 
         /**
          * Method to create the List of column names from csv file.
@@ -67,21 +70,30 @@ import com.opencsv.exceptions.CsvValidationException;
          * when collecting data to build Bank_data object.
          */
         public static void getColumnIndex() {
-            int index = 0;
-            for (String n : colNames) {
-                System.out.println(index++ +": " + n);
-            }
-            //have user pick number that corresponds to date, then description, then amount--or just click on the line that matches
-            Scanner scanner = new Scanner(System.in);
+            //TODO: change this to check sharedPref for "colNames". If available, use the stored
+            // values to populate the index values.
+            // Else, run this code.
+            if (date >= 0) {
+                //do nothing
+            } else {
 
-            System.out.println("Which [number] corresponds with the transaction DATE field?");
-            date = scanner.nextInt();
-            System.out.println("Which [number] corresponds with the transaction DESCRIPTION field?");
-            description = scanner.nextInt();
-            System.out.println("Which [number] corresponds with the (first or only) transaction AMOUNT field?");
-            amount = scanner.nextInt();
-            System.out.println("Which [number] corresponds with the (second) transaction AMOUNT field? Enter '99' if not");
-            amount2 = scanner.nextInt();
+                int index = 0;
+                for (String n : colNames) {
+                    System.out.println(index++ + ": " + n);
+                }
+                //have user pick number that corresponds to date, then description, then amount--or just click on the line that matches
+                //TODO: change this to display and read data from a fragment in Android
+                Scanner scanner = new Scanner(System.in);
+
+                System.out.println("Which [number] corresponds with the transaction DATE field?");
+                date = scanner.nextInt();
+                System.out.println("Which [number] corresponds with the transaction DESCRIPTION field?");
+                description = scanner.nextInt();
+                System.out.println("Which [number] corresponds with the (first or only) transaction AMOUNT field?");
+                amount = scanner.nextInt();
+                System.out.println("Which [number] corresponds with the (second) transaction AMOUNT field? Enter '99' if not");
+                amount2 = scanner.nextInt();
+            }
 
         }
 
@@ -129,11 +141,11 @@ import com.opencsv.exceptions.CsvValidationException;
         }
 
         /**
-         * Writes a List of Bank_data objects (stored in 'data') to Json format
+         * Writes a List of Bank_data objects (stored in 'records') to Json format
          * using Gson.
          * [Code examples from week 03 team assignment were helpful (Team-01-03 in IntelliJ).]
          * @param filename is the name of the .txt file to write the Json to.
-         * TODO: append new data to end of file instead of overwriting. Needed?
+         * TODO: APPEND new data to end of file instead of overwriting. Needed? Yes.
          */
         public void writeToJson(String filename) {
             //for compact printing of JSON string--all on one line(may be preferable for shared preferences storage):

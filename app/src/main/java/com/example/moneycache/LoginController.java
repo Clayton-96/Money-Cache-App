@@ -7,12 +7,14 @@ public class LoginController {
     DataModel model;
 
     public LoginController(LoginActivity loginActivity) {
+
         this.loginActivity = loginActivity;
+        model = new DataModel();
     }
     //as soon as successful login is complete, retrieve bank data (from file or DB)
     // will need to specify a user at some point---that should come from LoginActivity as a param
     public void retrieveBankData() {
         // extend Thread either in LoginController or in DataModel
-        DataModel.toBankDataObjects(dataFile);
+        //DataModel.toBankDataObjects(dataFile);
     }
 }

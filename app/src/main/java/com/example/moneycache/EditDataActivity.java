@@ -3,6 +3,7 @@ package com.example.moneycache;
 import static java.lang.String.format;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,7 +14,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -45,14 +49,42 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
     private String dataItem;
     String editedData;
     BankData data;
-    NavigationActivity navigation;
-    private AppBarConfiguration mAppBarConfiguration;
-    private ActivityNavigationBinding binding;
+//    NavigationActivity navigation;
+//    private AppBarConfiguration mAppBarConfiguration;
+//    private ActivityNavigationBinding binding;
 
 
 
     public String getCategoryChosen() {
         return categoryChosen;
+    }
+
+    // Storage Permissions
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    /**
+     * Checks if the app has permission to write to device storage
+     *
+     * If the app does not has permission then the user will be prompted to grant permissions
+     *
+     * @param activity
+     */
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
 
 
@@ -127,50 +159,60 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 
 
     /**
-     * handles the onClick for update_data button
-     * sets BankData and categoryChosen from view and sends to controller updateData()
-     *
+     * Handles the onClick for update_data button.
+     * Updates bankData with category (categoryChosen from spinner)
+     * and sends to controller updateData().
      * @param view is view update button
+     * author: Dixie Cravens
      */
     public void handleUpdateDataClick(View view) {
+
         //set categoryChosen from Spinner selection
         Spinner spinner = findViewById(R.id.assign_category_spinner);
         spinner.setOnItemSelectedListener(this); //sets global categoryChosen
-        //dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\", \"category\": \"%s\"}", newDate, newDescription, newAmount, categoryChosen);
+       //add category to bankData object
         JsonElement j = new Gson().fromJson(dataItem, JsonElement.class);
         JsonObject newData = j.getAsJsonObject();
         newData.addProperty("category", categoryChosen);
         Gson gson = new Gson();
         BankData bankData = gson.fromJson(newData, BankData.class);
-        //BankData bankData1 = gson.fromJson(bankData, BankData.class);
-
-        Log.d("editedData", "handleUpdateDataClick: " + newData);
 
         dataController.updateData(bankData);
-        //dataController.updateData(data);
     }
 
+    /**
+     * Creates an EditData Fragment with data copied from item selected in recycler view fragment
+     * @param view is 'Edit Transaction' button
+     * author: Dixie Cravens
+     */
     public void handleEditTransactionClick(View view){
         data = MyItemRecyclerViewAdapter.ViewHolder.mItem;
         //build and inflate the edit fragment
         Bundle bundle = new Bundle();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        // retrieve edited data from ItemFragment RecyclerView
+        // retrieve to-be edited data from ItemFragment RecyclerView
         bundle.putString("date", data.getDate());
         bundle.putString("description", data.getDescription());
         bundle.putString("amount", String.valueOf(data.getAmount()));
         transaction.setReorderingAllowed(true);
         transaction.add(R.id.frag_placeholder_edit_transaction,EditDataFragment.class, bundle);
         transaction.commit();
-
-
     }
+
+    /**
+     * Copies data from the EditData Fragment and stores it into a JSON string,
+     * then removes fragment.
+     * @param v is 'Done' button in EditDataFragment
+     * @param newDate is date from user editing
+     * @param newDescription is description for user editing
+     * @param newAmount is amount from user editing
+     * author: Dixie Cravens
+     */
     public void onDoneClick(View v, String newDate, String newDescription, String newAmount) {
-        //put edited data into a JSON string
+        //put edited data into a JSON string (could have used BankData.toString() ?)
         dataItem = String.format("{\"date\": \"%s\", \"memo\": \"%s\", \"amount\": \"%s\"}", newDate, newDescription, newAmount);
 
-        Log.d("JSON string builder", "onDoneClick: " + dataItem);
         //remove fragment from activity
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.frag_placeholder_edit_transaction);
@@ -180,6 +222,16 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 
     public void onDeleteClick (View view) {
         //completely remove transaction from data
+    }
+
+    /**
+     * starts DataController getNewData()
+     * @param view Upload Bank Data button
+     * author: Dixie Cravens
+     */
+    public void handleUploadData (View view) {
+        verifyStoragePermissions(this);
+        dataController.getNewData();
     }
 
 

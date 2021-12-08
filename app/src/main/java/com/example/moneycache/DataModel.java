@@ -2,16 +2,25 @@ package com.example.moneycache;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Environment;
+
+import androidx.core.app.ActivityCompat;
 
 import com.google.gson.Gson;
 //import com.google.firebase.firestore;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class DataModel {
+    private static final String JSON_FILE = "app/src/main/java/com/example/moneycache/bankdata.txt";
+    String FILENAME = "csv_file.txt";
     static final String dataFile = "app/src/main/java/com/example/moneycache/bankdata.txt";
     public static BankData appData;
     public static List<String> items;
@@ -80,14 +89,42 @@ public class DataModel {
 
 
     /**
-     * get bank data from bankdata.txt(started as a CSV file, changed to JSON)
-     * and put into object BankData (and budgetCategories?)
+     * get bank data from user CSV file, saved in Downloads folder, named 'csv_file.txt'
+     * it is changed into object BankData (and budgetCategories?)
+     * brings new bank data into app
+     * button in EditData Activity 'Upload Bank Data' starts process
      * TODO: ideally called from LoginController after login is complete
-     * @param dataFile is bankdata.txt
+     * author: Dixie Cravens
      */
-    public static void toBankDataObjects (String dataFile) {
-        Gson gson = new Gson();
-        appData = gson.fromJson(dataFile, BankData.class);
+    public void userFileToString(Context context) {
+        StringBuilder newCSV = null;
+        try{
+            String folder = Environment.getExternalStorageDirectory().getAbsolutePath();
+            File myFile = new File(folder, FILENAME);
+            FileInputStream fstream = new FileInputStream(myFile);
+            newCSV = new StringBuilder();
+            int i;
+            while ((i = fstream.read())!= -1){
+                newCSV.append((char)i);
+            }
+            fstream.close();
+        }  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert newCSV != null;
+        String csv_file = newCSV.toString();
+
+        //run CsvReader to change CSV to JSON
+        CsvReader bankFile = new CsvReader();
+        bankFile.readCSVFile(csv_file);//---this needs to open a fragment in the EditDataActivity
+        bankFile.writeToJson(JSON_FILE);//this writes to the internal file that BankData.java reads
+                                        // from to create the recyclerView
+
+//        // use GSON to change JSON to BankData objects--so far nothing in app is using appData.
+//        Gson gson = new Gson();
+//        appData = gson.fromJson(dataFile, BankData.class);
 
     }
 
@@ -174,9 +211,9 @@ public class DataModel {
     }
 
     /**
-     * comes from firebase for month selected
-     * DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").where("monthYear", "==", "December2021");
-     * Brings back entire document of current spending totals per category
+     * comes from SharedPreferences (firebase/firestore) for month selected
+     * (firestore)DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").where("monthYear", "==", "December2021");
+     * (firestore)Brings back entire document of current spending totals per category
      *TODO: Save this in sharedPreferences with Month-Year and category. Amount is added as
      * transactions are edited and categorized.
      */
@@ -187,8 +224,73 @@ public class DataModel {
         discretionary = 256.66f;//document.discretionary;
         debt_reduction = 200f;//document.debtReduction;
         savings = 150f;//document.savings;
+    }
+
+
+    /**
+     *  get individual category TOTALS from sharedPreferences and update them
+     *      * determines which KEY to use by the @param category
+     *      * uses key to access correct category total saved in ShredPreferences
+     *      * gets total, adds @param addAmount to it
+     *      * saves new total back into SharedPreferences
+     * @param category category assigned by EditData
+     * @param addAmount amount of transaction
+     */
+    public void updateCategoryTotals(String category, Float addAmount, Context context) {
+        String key = "";
+        SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        //TODO: account for negative and positive amounts with Math.abs(variable)??
+        switch (category) {
+            case ("income"):
+                key = "income_total";
+                if (sp.contains(key)) {
+                    String totalString = sp.getString(key, "");
+                    income = Float.parseFloat(totalString) + addAmount;
+                    editor.putString(key, String.valueOf(income));
+                    editor.apply();
+                }
+                break;
+            case ("bills"):
+                key = "bills_total";
+                if (sp.contains(key)) {
+                    String totalString = sp.getString(key, "");
+                    bills = Float.parseFloat(totalString) + addAmount;
+                    editor.putString(key, String.valueOf(bills));
+                    editor.apply();
+                }
+                break;
+            case ("discretionary"):
+                key = "discretionary_total";
+                if (sp.contains(key)) {
+                    String totalString = sp.getString(key, "");
+                    discretionary = Float.parseFloat(totalString) + addAmount;
+                    editor.putString(key, String.valueOf(discretionary));
+                    editor.apply();
+                }
+                break;
+            case ("debtReduction"):
+                key = "debtreduction_total";
+                if (sp.contains(key)) {
+                    String totalString = sp.getString(key, "");
+                    debt_reduction = Float.parseFloat(totalString) + addAmount;
+                    editor.putString(key, String.valueOf(debt_reduction));
+                    editor.apply();
+                }
+                break;
+            case ("savings"):
+                key = "savings_total";
+                if (sp.contains(key)) {
+                    String totalString = sp.getString(key, "");
+                    savings = Float.parseFloat(totalString) + addAmount;
+                    editor.putString(key, String.valueOf(savings));
+                    editor.apply();
+                }
+                break;
+        }
 
     }
+
 
     /**
      * Gets values from sharedPreferences for budget GOAL categories
@@ -222,3 +324,6 @@ public class DataModel {
 //DocumentReference document = db.collection("users").document("dcravens").collection("budget").orderBy("bills", "asc");
 // to get to the actual amount for a particular month: (this returns the 'bills' for November and December)
 //DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").orderBy("bills", "asc");
+
+
+//https://stackoverflow.com/questions/8854359/exception-open-failed-eacces-permission-denied-on-android#:~:text=In%20addition%20to%20all%20answers,if%20you%20have%20given%20any.
