@@ -69,6 +69,7 @@
     <string name="income_expenses">Income - Expenses = $</string>
     <string name="future_pie_chart">Future Pie Chart</string>
     <!--<string name="goal_progress">Goal Progress</string>-->
+    <string name="get_data_button">Upload Bank Data</string>
 
     <!--Pie Chart -->
     <string name="pie_chart_title">Income vs Expenses</string>
