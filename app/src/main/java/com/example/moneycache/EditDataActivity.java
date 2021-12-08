@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.moneycache.databinding.ActivityNavigationBinding;
 import com.google.android.material.navigation.NavigationView;
@@ -176,7 +177,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         newData.addProperty("category", categoryChosen);
         Gson gson = new Gson();
         BankData bankData = gson.fromJson(newData, BankData.class);
-
+        Toast.makeText(this, "Transaction Updated!", Toast.LENGTH_SHORT).show();
         dataController.updateData(bankData);
     }
 
