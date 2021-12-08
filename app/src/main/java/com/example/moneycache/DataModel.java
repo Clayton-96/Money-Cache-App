@@ -9,9 +9,11 @@ import androidx.core.app.ActivityCompat;
 import com.google.gson.Gson;
 //import com.google.firebase.firestore;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Array;
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class DataModel {
     String FILENAME = "csv_file.txt";
     static final String dataFile = "app/src/main/java/com/example/moneycache/bankdata.txt";
     public static BankData appData;
-    public static List<String> items;
+    public static List<String> items;//category goals
     private String categoryFile = "app/src/main/res/raw/discretionary.txt";
 
     //these fields are for the (need to be) saved current category totals derived from EditDataActivity.
@@ -83,7 +85,7 @@ public class DataModel {
      */
     public void loadData(Context context) {
 
-        getCategoryAmounts();
+        getCategoryAmounts(context);
         getBudgetItems(context);
     }
 
@@ -97,24 +99,37 @@ public class DataModel {
      * author: Dixie Cravens
      */
     public void userFileToString(Context context) {
-        StringBuilder newCSV = null;
-        try{
-            String folder = Environment.getExternalStorageDirectory().getAbsolutePath();
-            File myFile = new File(folder, FILENAME);
-            FileInputStream fstream = new FileInputStream(myFile);
-            newCSV = new StringBuilder();
-            int i;
-            while ((i = fstream.read())!= -1){
-                newCSV.append((char)i);
-            }
-            fstream.close();
-        }  catch (FileNotFoundException e) {
-            e.printStackTrace();
+        //StringBuilder newCSV = null;
+        String result = null;
+        //public static final String ACTION_OPEN_DOCUMENT = "android.intent.action.OPEN_DOCUMENT";
+        //File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File path = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+        File file = new File(path,FILENAME);
+        System.out.println(file);
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            result = reader.readLine();
+            System.out.println(result);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        assert newCSV != null;
-        String csv_file = newCSV.toString();
+//        try{
+//            File folder = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+//            File myFile = new File(folder, FILENAME);
+//            FileInputStream fstream = new FileInputStream(myFile);
+//            newCSV = new StringBuilder();
+//            int i;
+//            while ((i = fstream.read())!= -1){
+//                newCSV.append((char)i);
+//            }
+//            fstream.close();
+//        }  catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        assert result != null;
+        String csv_file = result.toString();
 
         //run CsvReader to change CSV to JSON
         CsvReader bankFile = new CsvReader();
@@ -204,9 +219,9 @@ public class DataModel {
      *TODO: Save this in sharedPreferences with Month-Year and category. Amount is added as
      * transactions are edited and categorized.
      */
-    public void getCategoryAmounts(){
-        //DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").where("monthYear", "==", "December2021");
-        income = 2400f;//document.income;
+    public void getCategoryAmounts(Context context){
+        SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
+        income = 2400f;//sp.getString( "income_total", "");
         bills = 950f;//document.bills;
         discretionary = 256.66f;//document.discretionary;
         debt_reduction = 200f;//document.debtReduction;
@@ -224,55 +239,69 @@ public class DataModel {
      * @param addAmount amount of transaction
      */
     public void updateCategoryTotals(String category, Float addAmount, Context context) {
-        String key = "";
+        //String key = "";
         SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         //TODO: account for negative and positive amounts with Math.abs(variable)??
         switch (category) {
-            case ("income"):
-                key = "income_total";
+            case ("Income"):
+                String key = "income_total";
                 if (sp.contains(key)) {
                     String totalString = sp.getString(key, "");
                     income = Float.parseFloat(totalString) + addAmount;
-                    editor.putString(key, String.valueOf(income));
-                    editor.apply();
+                } else {
+                    income = addAmount;
                 }
+                editor.putString(key, String.valueOf(income));
+                editor.apply();
                 break;
-            case ("bills"):
+            case ("Bills"):
                 key = "bills_total";
                 if (sp.contains(key)) {
                     String totalString = sp.getString(key, "");
                     bills = Float.parseFloat(totalString) + addAmount;
-                    editor.putString(key, String.valueOf(bills));
-                    editor.apply();
+
+                } else {
+                    bills = addAmount;
                 }
+                editor.putString(key, String.valueOf(bills));
+                editor.apply();
                 break;
-            case ("discretionary"):
+            case ("Discretionary"):
                 key = "discretionary_total";
                 if (sp.contains(key)) {
                     String totalString = sp.getString(key, "");
                     discretionary = Float.parseFloat(totalString) + addAmount;
-                    editor.putString(key, String.valueOf(discretionary));
-                    editor.apply();
+
+                } else {
+                    discretionary = addAmount;
                 }
+                editor.putString(key, String.valueOf(discretionary));
+                editor.apply();
                 break;
-            case ("debtReduction"):
+            case ("Debt Reduction"):
                 key = "debtreduction_total";
                 if (sp.contains(key)) {
                     String totalString = sp.getString(key, "");
                     debt_reduction = Float.parseFloat(totalString) + addAmount;
-                    editor.putString(key, String.valueOf(debt_reduction));
-                    editor.apply();
+
+                } else {
+                    debt_reduction = addAmount;
                 }
+                editor.putString(key, String.valueOf(debt_reduction));
+                editor.apply();
                 break;
-            case ("savings"):
+            case ("Savings"):
                 key = "savings_total";
                 if (sp.contains(key)) {
                     String totalString = sp.getString(key, "");
                     savings = Float.parseFloat(totalString) + addAmount;
-                    editor.putString(key, String.valueOf(savings));
-                    editor.apply();
+
+                } else {
+                    savings = addAmount;
                 }
+                editor.putString(key, String.valueOf(savings));
+                editor.apply();
                 break;
         }
 
