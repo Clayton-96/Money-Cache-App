@@ -9,8 +9,68 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".DashboardActivity">
+        <!-- Doughnut chart starts here -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/bills_alert"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <TextView
+            <!-- ProgressBar that represents a total of 100% -->
+            <ProgressBar
+                android:id="@+id/background_progressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="@dimen/chart_width"
+                android:layout_height="@dimen/chart_width"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="100"
+                android:progressDrawable="@drawable/piechart_full"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- ProgressBar that represents a chart slice, where "android:progress" is the % value of the slice -->
+            <ProgressBar
+                android:id="@+id/stats_progressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="@dimen/chart_width"
+                android:layout_height="@dimen/chart_width"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="75"
+                android:progressDrawable="@drawable/piechart_progress"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- The text that goes in a center of the chart -->
+            <TextView
+                android:id="@+id/number_of_calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/inside_title"
+                android:textSize="@dimen/inside_title_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Doughnut chart ends here -->
+
+        <!--old code prior to Pie Chart Paste-->
+
+        <!--<TextView
             android:id="@+id/pie_chart"
             android:layout_width="286dp"
             android:layout_height="236dp"
@@ -18,7 +78,7 @@
             android:text="@string/future_pie_chart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />-->
 
         <TextView
             android:id="@+id/bills_alert"
@@ -29,7 +89,7 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pie_chart" />
+            app:layout_constraintTop_toBottomOf="@id/constraintLayout" />
 
         <TextView
             android:id="@+id/discretionary_alert"
@@ -63,6 +123,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/debtreduction_alert" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

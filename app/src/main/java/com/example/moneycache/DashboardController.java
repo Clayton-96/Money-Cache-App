@@ -8,7 +8,8 @@ public class DashboardController {
     private final DashboardActivity dbActivity;
     private final DataModel model;
 
-    Float billsAmt;
+    //variables used to get income & goal amounts
+    Float billsAmt; //different than master
     Float discretionaryAmt;
     Float debtReductionAmt;
     Float savingsAmt;
@@ -16,8 +17,29 @@ public class DashboardController {
     public Float getIncome() {
         return income;
     }
-
     Float income;
+
+    /**
+     * Logic for pie chart on Dashboard //if it wants a decimal take out the * 100
+     */
+    public float pieChartIncome () {
+        return getIncome();
+    }
+    public float pieChartBills () {
+        return (billsAmt/income) * 100;
+    }
+    public float pieChartDiscretionary () {
+        return (discretionaryAmt/income) * 100;
+    }
+    public float pieChartReduction () {
+        return (debtReductionAmt/income) * 100;
+    }
+    public float pieChartSavings () {
+        return (savingsAmt/income) * 100;
+    }
+    /**
+     * Logic for alerts on the Dashboard
+     */
     boolean billsAmtGreen;
     boolean discretionaryAmtGreen;
     boolean debtReductionAmtGreen;
@@ -36,6 +58,7 @@ public class DashboardController {
      */
     public void start() {
         //DataModel model = new DataModel();
+
         model.loadData(dbActivity);
         items = DataModel.getItems();
         income = model.getIncomeGoal();
