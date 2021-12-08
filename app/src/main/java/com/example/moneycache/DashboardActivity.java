@@ -88,6 +88,7 @@ public class DashboardActivity extends AppCompatActivity {
             pieChart.setProgress(debtReduction);
             pieChart.setProgress(savings);
 
+
     }
     //
 //    private void updateChart(){

@@ -116,6 +116,7 @@
             android:layout_width="240dp"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spending_impact_label" />
@@ -136,6 +137,7 @@
             android:layout_width="237dp"
             android:layout_height="38dp"
             android:layout_marginTop="5dp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/savings_impact_label" />

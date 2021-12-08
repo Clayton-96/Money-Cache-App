@@ -75,7 +75,7 @@ public class ItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-//TODO: Is this right?
+//This is how the recycler view gets the bankData!!!!
             //recyclerView.setAdapter(new MyItemRecyclerViewAdapter(BankData.jsonToObjectList(getActivity())));
             recyclerView.setAdapter(new MyItemRecyclerViewAdapter(editDataActivity, BankData.jsonToObjectList(getActivity())));
         }

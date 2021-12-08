@@ -18,7 +18,10 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +29,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.moneycache.databinding.ActivityNavigationBinding;
 import com.google.android.material.navigation.NavigationView;
@@ -36,6 +40,10 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +105,27 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         dataController = new EditDataController(this);
         // call the start() in controller to get data for view
         dataController.start();
+//        if (Environment.isExternalStorageManager()) {
+//            //todo when permission is granted--check file for new data (in controller)
+//            dataController.getNewData();
+//        } else {
+//            //request for the permission
+//            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+//            Uri uri = Uri.fromParts("package", getPackageName(), null);
+//            intent.setData(uri);
+//            startActivity(intent);
+//            finish();
+//        }
+//        File path = this.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+//        File file = new File(path,"O51968_100.csv");
+//        System.out.println(file);
+//        try {
+//            BufferedReader reader = new BufferedReader(new FileReader(file));
+//            String result = reader.readLine();
+//            System.out.println(result);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         //*****Spinner for category selection*************
         // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
@@ -110,30 +139,6 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-//        navigation = new NavigationActivity();
-//        //navigation.onSupportNavigateUp();
-//        binding = ActivityNavigationBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-//
-//        setSupportActionBar(binding.appBarMain.toolbar);
-//        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-//        DrawerLayout drawer = binding.drawerLayout;
-//        NavigationView navigationView = binding.navView;
-//        // Passing each menu ID as a set of Ids because each
-//        // menu should be considered as top level destinations.
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.nav_dashboard, R.id.nav_edit_data, R.id.nav_edit_budget, R.id.nav_impact)
-//                .setOpenableLayout(drawer)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
     @Override
@@ -176,8 +181,10 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         newData.addProperty("category", categoryChosen);
         Gson gson = new Gson();
         BankData bankData = gson.fromJson(newData, BankData.class);
-
+        Toast.makeText(this, "Transaction Updated!", Toast.LENGTH_SHORT).show();
         dataController.updateData(bankData);
+        // need to delete selection
+        // //need to update recyclerview
     }
 
     /**

@@ -38,14 +38,17 @@ public class EditDataController {
      */
     public void updateData(BankData dataItem) {
         //get updated BankData item and category
-        //change json to BankData and save it an Array of BankData items
+//        //is not going to work for sharedPref-- change json to BankData and save it an Array of BankData items
 //        Gson gson = new Gson();
 //        BankData bankData = gson.fromJson(dataItem, BankData.class);
-        //dataItemArray.add(dataItem);
+//        dataItemArray.add(dataItem);
 
+        //dataItem can be used to save amount into correct category_total in sharedPref (dataItem.date, dataItem.category,) dataItem.amount
+        String category =  dataItem.getCategory();
+        Float amount = dataItem.getAmount();
 
-        // save in temp file here until app is closing,----dataItemArray will save objects until app closes
-        // TODO:then save file to DB at close in saveFile() called from activity onStop()
+        model.updateCategoryTotals(category, amount, dataActivity);
+
     }
 
     /**
@@ -67,6 +70,7 @@ public class EditDataController {
 
 
     }
+
 
 
 }
