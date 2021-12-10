@@ -9,12 +9,17 @@ import androidx.core.app.ActivityCompat;
 import com.google.gson.Gson;
 //import com.google.firebase.firestore;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,10 +28,12 @@ import java.util.List;
 public class DataModel {
     private static final String JSON_FILE = "app/src/main/java/com/example/moneycache/bankdata.txt";
     String FILENAME = "csv_file.txt";
-    static final String dataFile = "app/src/main/java/com/example/moneycache/bankdata.txt";
+    static final String dataFile = "app/src/main/res/raw/bankdata.txt";
+    //app/src/main/res/raw/bankdata.txt
     public static BankData appData;
     public static List<String> items;//category goals
     private String categoryFile = "app/src/main/res/raw/discretionary.txt";
+    private String dataString;
 
     //these fields are for the (need to be) saved current category totals derived from EditDataActivity.
     Float income;
@@ -83,10 +90,43 @@ public class DataModel {
      * One of the first things that needs to happen when the app starts.
      * @param context of the activity calling for the data.
      */
-    public void loadData(Context context) {
+    public void loadData(Context context){
+        getCategoryAmounts(context);//category totals saved in SP
+        getBudgetItems(context);//category GOALS saved in SP
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.bankdata)));
+            StringBuilder sb = new StringBuilder();
+            boolean done = false;
+            do {
+                String text = reader.readLine();
+                if (text != null) {
+                    sb.append(text);
+                    sb.append("\n");
+                } else {
+                    done = true;
+                }
+            } while (!done);
+            dataString = sb.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("bankData", dataString);
+        editor.commit();
 
-        getCategoryAmounts(context);
-        getBudgetItems(context);
+//        try {
+//            //read json file bankData.txt (dataFile) into sharedPref
+//            File file = new File(getResources().openRawResource(R.raw.bankdata));
+//            String data = FileUtils.readFileToString(file, Charset.defaultCharset());
+//            SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
+//            SharedPreferences.Editor editor = sp.edit();
+//            editor.putString("bankData", data);
+//            editor.commit();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
 
@@ -221,7 +261,12 @@ public class DataModel {
      */
     public void getCategoryAmounts(Context context){
         SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
-        income = 2400f;//sp.getString( "income_total", "");
+        if (sp.contains("income_total")) {
+            income = Float.parseFloat(sp.getString("income_total", ""));
+        } else {
+            income = 0f;
+        }
+        //income = 2400f;//sp.getString( "income_total", "");
         bills = 950f;//document.bills;
         discretionary = 256.66f;//document.discretionary;
         debt_reduction = 200f;//document.debtReduction;
