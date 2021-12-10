@@ -10,7 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import com.github.phil;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -23,6 +28,9 @@ public class DashboardActivity extends AppCompatActivity {
     //Variables needed for pie chart
     Float bAmt, drAmt, dAmt, sAmt;
     Float income; //(income = controller.getIncome())
+    PieChart pieChart;
+    PieData pieData;
+    List<PieEntry> pieEntryList = new ArrayList<PieEntry>();
 
 
     @Override
@@ -35,7 +43,18 @@ public class DashboardActivity extends AppCompatActivity {
         controller = new DashboardController(this);
         controller.start();
 
-        pieChartData = controller.getItems();
+        pieChart = findViewById(R.id.pieChart);
+        pieChart.setUsePercentValues(true);
+        pieEntryList.add(new PieEntry(10,"India"));
+        pieEntryList.add(new PieEntry(5,"US"));
+        pieEntryList.add(new PieEntry(7,"UK"));
+        pieEntryList.add(new PieEntry(3,"NZ"));
+        PieDataSet pieDataSet = new PieDataSet(pieEntryList,"country");
+        pieData = new PieData(pieDataSet);
+        pieChart.setData(pieData);
+        pieChart.invalidate();
+
+        //pieChartData = controller.getItems();
         Log.d("Created controller", "onCreate: ");
         b = (TextView) findViewById(R.id.bills_alert);
         d = (TextView) findViewById(R.id.discretionary_alert);
@@ -76,18 +95,20 @@ public class DashboardActivity extends AppCompatActivity {
 
         //Pie Chart Update
             // Calculate the slice size and update the pie chart:
-            ProgressBar pieChart = findViewById(R.id.stats_progressbar);
+            //ProgressBar pieChart = findViewById(R.id.stats_progressbar);
 
-            //Float income = controller.getIncome();
-            int bills = (int)controller.pieChartBills();
-            int discretionary = (int)controller.pieChartDiscretionary();
-            int debtReduction = (int)controller.pieChartReduction();
-            int savings = (int)controller.pieChartSavings();
-            //int progress = (int) (d * 100);
-            pieChart.setProgress(bills);
-            pieChart.setProgress(discretionary);
-            pieChart.setProgress(debtReduction);
-            pieChart.setProgress(savings);
+
+
+//            //Float income = controller.getIncome();
+//            int bills = (int)controller.pieChartBills();
+//            int discretionary = (int)controller.pieChartDiscretionary();
+//            int debtReduction = (int)controller.pieChartReduction();
+//            int savings = (int)controller.pieChartSavings();
+//            //int progress = (int) (d * 100);
+//            pieChart.setProgress(bills);
+//            pieChart.setProgress(discretionary);
+//            pieChart.setProgress(debtReduction);
+//            pieChart.setProgress(savings);
 
 
     }

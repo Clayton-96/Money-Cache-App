@@ -52,5 +52,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.0.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 
 }
