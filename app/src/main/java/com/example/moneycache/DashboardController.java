@@ -8,37 +8,51 @@ public class DashboardController {
     private final DashboardActivity dbActivity;
     private final DataModel model;
 
-    //variables used to get income & goal amounts
-    Float billsAmt; //different than master
+    //variables used to get income & goal amounts for alerts
+    Float billsAmt;
     Float discretionaryAmt;
     Float debtReductionAmt;
     Float savingsAmt;
 
-    public Float getIncome() {
-        return income;
-    }
-    Float income;
+    //spent amounts for each category. Given values in alert[Category](). Used for pie chart.
+    float spentB = 0.0f;
+    float spentD = 0.0f;
+    float spentDR = 0.0f;
+    float spentS = 0.0f;
 
     /**
-     * Logic for pie chart on Dashboard //if it wants a decimal take out the * 100
+     * Logic for pie chart on Dashboard
+     * takes total actual amount spent as base
+     * divided each category total against the combined total for each piece
      */
-    public float pieChartIncome () {
-        return getIncome();
-    }
+
     public float pieChartBills () {
-        return (billsAmt/income) * 100;
+        float totalAmtSpent = spentB + spentD + spentDR + spentS;
+        if (totalAmtSpent != 0){
+        return spentB/totalAmtSpent * 100;
+        } else return 0;
     }
     public float pieChartDiscretionary () {
-        return (discretionaryAmt/income) * 100;
+        float totalAmtSpent = spentB + spentD + spentDR + spentS;
+        if (totalAmtSpent != 0){
+            return spentD/totalAmtSpent * 100;
+        } else return 0;
     }
     public float pieChartReduction () {
-        return (debtReductionAmt/income) * 100;
+        float totalAmtSpent = spentB + spentD + spentDR + spentS;
+        if (totalAmtSpent != 0){
+        return spentDR/totalAmtSpent * 100;
+        } else return 0;
     }
     public float pieChartSavings () {
-        return (savingsAmt/income) * 100;
+        float totalAmtSpent = spentB + spentD + spentDR + spentS;
+        if (totalAmtSpent != 0){
+        return spentS/totalAmtSpent * 100;
+        } else return 0;
     }
     /**
      * Logic for alerts on the Dashboard
+     * is green = true, is red = false
      */
     boolean billsAmtGreen;
     boolean discretionaryAmtGreen;
@@ -59,8 +73,7 @@ public class DashboardController {
     public void start() {
 
         model.loadData(dbActivity);
-        items = DataModel.getItems();
-        income = model.getIncomeGoal();
+        //items = DataModel.getItems();
         alertBills();
         alertDiscretionary();
         alertDebtReduction();
@@ -81,10 +94,10 @@ public class DashboardController {
      */
     public void alertBills() {
         float goal = model.getBillsGoal();
-        float spent = model.getBills();
+        spentB = Math.abs(model.getBills());
         boolean green;
-        billsAmt = goal - spent;
-        if (spent <= goal) billsAmtGreen = true;
+        billsAmt = goal - spentB;
+        if (spentB <= goal) billsAmtGreen = true;
     }
     /**
      * retrieves budget goal for DISCRETIONARY category
@@ -96,24 +109,24 @@ public class DashboardController {
      */
     public void alertDiscretionary() {
         float goal = model.getDiscretionaryGoal();
-        float spent = model.getDiscretionary();
+        spentD = Math.abs(model.getDiscretionary());
         boolean green;
-        discretionaryAmt = goal - spent;
-        if (spent < goal) discretionaryAmtGreen = true;
+        discretionaryAmt = goal - spentD;
+        if (spentD < goal) discretionaryAmtGreen = true;
     }
     public void alertDebtReduction() {
         float goal = model.getDebtReductionGoal();
-        float spent = model.getDebt_reduction();
+        spentDR = Math.abs(model.getDebt_reduction());
         boolean green;
-        debtReductionAmt = goal - spent;
-        if (spent >= goal) debtReductionAmtGreen = true;
+        debtReductionAmt = goal - spentDR;
+        if (spentDR >= goal) debtReductionAmtGreen = true;
     }
     public void alertSavings() {
         float goal = model.getSavingsGoal();
-        float spent = model.getSavings();
+        spentS = Math.abs(model.getSavings());
         boolean green;
-        savingsAmt = goal - spent;
-        if (spent >= goal) savingsAmtGreen = true;
+        savingsAmt = goal - spentS;
+        if (spentS >= goal) savingsAmtGreen = true;
     }
 
 }

@@ -204,7 +204,7 @@ public class DataModel {
         if (sp.contains("goal_income")) {
             income = sp.getString("goal_income", "");
         }else {
-            income = "0";
+            income = "0";//can't be 0, division by 0 is illegal
         }
         if (sp.contains("goal_bills")) {
             bills = sp.getString("goal_bills", "");

@@ -34,6 +34,7 @@ public class DashboardActivity extends AppCompatActivity {
     //
         controller = new DashboardController(this);
         controller.start();
+
         pieChartData = controller.getItems();
         Log.d("Created controller", "onCreate: ");
         b = (TextView) findViewById(R.id.bills_alert);
