@@ -12,6 +12,7 @@ public class EditDataController {
     // bring in an instance of the Activity
     private final EditDataActivity dataActivity;
     private final DataModel model;
+    MyItemRecyclerViewAdapter recyclerView;
     // dataItem Array accepts all the edited BankData items from recyclerView and
     // stores them until app closes and they go to permanent storage
     private ArrayList<BankData> dataItemArray = new ArrayList<>();// same thing as MyItemRecyclerViewAdapter.items
@@ -30,6 +31,7 @@ public class EditDataController {
     public void start() {
         //whatever needs to be given data to start the view goes here
         //recyclerView reads transactions from??? file? DB?
+
     }
 
     /**
@@ -48,6 +50,9 @@ public class EditDataController {
         Float amount = dataItem.getAmount();
 
         model.updateCategoryTotals(category, amount, dataActivity);
+
+        //recyclerView.removeItem();
+
 
     }
 

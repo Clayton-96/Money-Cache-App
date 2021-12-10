@@ -1,6 +1,8 @@
 package com.example.moneycache;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -53,12 +55,13 @@ public class BankData {
      * @return List<BankData> as bankDataList
      */
     public static List<BankData> jsonToObjectList(Activity activity) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(activity.getResources().openRawResource(R.raw.bankdata)));
-
+        //BufferedReader reader = new BufferedReader(new InputStreamReader(activity.getResources().openRawResource(R.raw.bankdata)));
+        SharedPreferences sp = activity.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
+        String data = sp.getString("bankData", "");
         Gson gson = new Gson();
         //BankData bankData = gson.fromJson(dataJson, BankData.class);
         Type bankDataListType = new TypeToken<ArrayList<BankData>>(){}.getType();
-        List<BankData> bankDataList = gson.fromJson(reader, bankDataListType);
+        List<BankData> bankDataList = gson.fromJson(data, bankDataListType);
 
         return bankDataList;
 

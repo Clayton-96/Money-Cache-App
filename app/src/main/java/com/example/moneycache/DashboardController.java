@@ -57,7 +57,6 @@ public class DashboardController {
      * gets all of the data needed to run the activity
      */
     public void start() {
-        //DataModel model = new DataModel();
 
         model.loadData(dbActivity);
         items = DataModel.getItems();

@@ -107,7 +107,8 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         dataController.start();
 //        if (Environment.isExternalStorageManager()) {
 //            //todo when permission is granted--check file for new data (in controller)
-//            dataController.getNewData();
+//            //dataController.start();
+//            //dataController.getNewData();
 //        } else {
 //            //request for the permission
 //            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
@@ -117,7 +118,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 //            finish();
 //        }
 //        File path = this.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
-//        File file = new File(path,"O51968_100.csv");
+//        File file = new File(path,"csv_file.txt");
 //        System.out.println(file);
 //        try {
 //            BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -126,7 +127,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-
+        //
         //*****Spinner for category selection*************
         // code came from:https://developer.android.com/guide/topics/ui/controls/spinner
         Spinner spinner = findViewById(R.id.assign_category_spinner);
@@ -184,6 +185,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         Toast.makeText(this, "Transaction Updated!", Toast.LENGTH_SHORT).show();
         dataController.updateData(bankData);
         // need to delete selection
+        ItemFragment.remove();
         // //need to update recyclerview
     }
 
@@ -205,6 +207,7 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
         transaction.setReorderingAllowed(true);
         transaction.add(R.id.frag_placeholder_edit_transaction,EditDataFragment.class, bundle);
         transaction.commit();
+
     }
 
     /**

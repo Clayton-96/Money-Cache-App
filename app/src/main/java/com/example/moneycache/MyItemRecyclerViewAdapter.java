@@ -36,6 +36,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     int singleitem_selection_position = -1;
     private boolean isSelected;
 
+
+
     public List<BankData> getItems() {
         return items;
     }
@@ -66,6 +68,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             holder.itemView.setBackgroundColor(Color.TRANSPARENT);
         }
         holder.itemView.setOnClickListener(v -> setSingleSelection(holder.getAbsoluteAdapterPosition()));
+
     }
 
     @Override
@@ -79,6 +82,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         notifyItemChanged(singleitem_selection_position);
         singleitem_selection_position = adapterPosition;
         notifyItemChanged(singleitem_selection_position);
+
     }
 
 
@@ -109,7 +113,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         }
 
     }
-    private void removeItem(int position) {
+
+    public void removeItem(int position) {
 
         items.remove(position);
         notifyItemRemoved(position);

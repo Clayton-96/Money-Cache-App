@@ -30,6 +30,7 @@ public class ItemFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 3;
     RecyclerView recyclerView;
+    MyItemRecyclerViewAdapter adapter;
 
     private EditDataActivity editDataActivity;
 
@@ -76,8 +77,10 @@ public class ItemFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
 //This is how the recycler view gets the bankData!!!!
+           adapter = new MyItemRecyclerViewAdapter(editDataActivity, BankData.jsonToObjectList(getActivity()));
+
             //recyclerView.setAdapter(new MyItemRecyclerViewAdapter(BankData.jsonToObjectList(getActivity())));
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(editDataActivity, BankData.jsonToObjectList(getActivity())));
+            recyclerView.setAdapter(adapter);
         }
         return view;
 
@@ -89,6 +92,11 @@ public class ItemFragment extends Fragment {
 
         super.onResume();
 
+
+
+    }
+    public static void remove() {
+        //adapter.removeItem(get position);
 
     }
 

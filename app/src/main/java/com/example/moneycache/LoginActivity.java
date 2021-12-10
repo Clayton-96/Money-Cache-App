@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         if (enteredName.equals(savedName) && enteredPassword.equals(savedPassword)) {
             //if login is correct, open Dashboard Activity view
+            controller.start();
             Intent intent = new Intent(this, DashboardActivity.class);
             startActivity(intent);
             //probably need to do other things to get data going
