@@ -266,11 +266,31 @@ public class DataModel {
         } else {
             income = 0f;
         }
+        if (sp.contains("bills_total")) {
+            bills = Float.parseFloat(sp.getString("bills_total", ""));
+        } else {
+            bills = 0f;
+        }
+        if (sp.contains("discretionary_total")) {
+            discretionary = Float.parseFloat(sp.getString("discretionary_total", ""));
+        } else {
+            discretionary = 0f;
+        }
+        if (sp.contains("debtreduction_total")) {
+            debt_reduction = Float.parseFloat(sp.getString("debtreduction_total", ""));
+        } else {
+            debt_reduction = 0f;
+        }
+        if (sp.contains("savings_total")) {
+            savings = Float.parseFloat(sp.getString("savings_total", ""));
+        } else {
+            savings = 0f;
+        }
         //income = 2400f;//sp.getString( "income_total", "");
-        bills = 950f;//document.bills;
-        discretionary = 256.66f;//document.discretionary;
-        debt_reduction = 200f;//document.debtReduction;
-        savings = 150f;//document.savings;
+        //bills = 950f;//document.bills;
+        //discretionary = 256.66f;//document.discretionary;
+        //debt_reduction = 200f;//document.debtReduction;
+        //savings = 150f;//document.savings;
     }
 
 
