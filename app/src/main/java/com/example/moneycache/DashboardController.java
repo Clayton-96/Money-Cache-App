@@ -15,55 +15,17 @@ public class DashboardController {
     Float savingsAmt;
 
     //spent amounts for each category. Given values in alert[Category](). Used for pie chart.
-    float spentB = 0.0f;
-    float spentD = 0.0f;
-    float spentDR = 0.0f;
-    float spentS = 0.0f;
+    float spentB;
+    float spentD;
+    float spentDR;
+    float spentS;
 
-    public float getTotalSpent() {
-        return spentB + spentD + spentDR + spentS;
-    }
-
-    /**
-     * Logic for pie chart on Dashboard
-     * takes total actual amount spent as base
-     * divided each category total against the combined total for each piece
-     */
-
-    public float pieChartBills () {
-        float totalAmtSpent = spentB + spentD + spentDR + spentS;
-        if (totalAmtSpent != 0){
-        return spentB/totalAmtSpent * 100;
-        } else return 0;
-    }
-    public float pieChartDiscretionary () {
-        float totalAmtSpent = spentB + spentD + spentDR + spentS;
-        if (totalAmtSpent != 0){
-            return spentD/totalAmtSpent * 100;
-        } else return 0;
-    }
-    public float pieChartReduction () {
-        float totalAmtSpent = spentB + spentD + spentDR + spentS;
-        if (totalAmtSpent != 0){
-        return spentDR/totalAmtSpent * 100;
-        } else return 0;
-    }
-    public float pieChartSavings () {
-        float totalAmtSpent = spentB + spentD + spentDR + spentS;
-        if (totalAmtSpent != 0){
-        return spentS/totalAmtSpent * 100;
-        } else return 0;
-    }
-    /**
-     * Logic for alerts on the Dashboard
-     * is green = true, is red = false
-     */
+     //Logic for alerts on the Dashboard
+     //is green = true
     boolean billsAmtGreen;
     boolean discretionaryAmtGreen;
     boolean debtReductionAmtGreen;
     boolean savingsAmtGreen;
-
-    private List<String> items;
 
 
     public DashboardController(DashboardActivity dbActivity) {
@@ -75,17 +37,42 @@ public class DashboardController {
      * gets all of the data needed to run the activity
      */
     public void start() {
-
         model.loadData(dbActivity);
-        //items = DataModel.getItems();
         alertBills();
         alertDiscretionary();
         alertDebtReduction();
         alertSavings();
-
     }
-    public List<String> getItems() {
-        return items;
+
+    /**
+     * Logic for pie chart on Dashboard
+     * takes total actual amount spent as base
+     * divided each category total against the combined total for each piece
+     * authors: Dixie Cravens and Sara Mack
+     */
+    public float pieChartBills () {
+        float totalAmtSpent = spentB + spentD + spentDR + spentS;
+        if (totalAmtSpent != 0){  //cannot be 0. Division by 0 is illegal.
+            return spentB/totalAmtSpent * 100;
+        } else return 0;
+    }
+    public float pieChartDiscretionary () {
+        float totalAmtSpent = spentB + spentD + spentDR + spentS;
+        if (totalAmtSpent != 0){
+            return spentD/totalAmtSpent * 100;
+        } else return 0;
+    }
+    public float pieChartReduction () {
+        float totalAmtSpent = spentB + spentD + spentDR + spentS;
+        if (totalAmtSpent != 0){
+            return spentDR/totalAmtSpent * 100;
+        } else return 0;
+    }
+    public float pieChartSavings () {
+        float totalAmtSpent = spentB + spentD + spentDR + spentS;
+        if (totalAmtSpent != 0){
+            return spentS/totalAmtSpent * 100;
+        } else return 0;
     }
 
     /**
@@ -94,7 +81,7 @@ public class DashboardController {
      * subtracts actual spending from goal. if amount is <= 0, set color to green.
      * If spending is greater than goal, set color to red
      * Displays the result of the calculation.
-     * Author: Dixie Cravens
+     * Author: Dixie Cravens and Sara Mack
      */
     public void alertBills() {
         float goal = model.getBillsGoal();
@@ -109,7 +96,7 @@ public class DashboardController {
      * subtracts actual spending from goal. if amount is < 0, set color to green.
      * If spending is greater than goal or 0, set color to red.
      * Displays the result of the calculation.
-     * Author: Dixie Cravens
+     * Author: Dixie Cravens and Sara Mack
      */
     public void alertDiscretionary() {
         float goal = model.getDiscretionaryGoal();
@@ -118,6 +105,14 @@ public class DashboardController {
         discretionaryAmt = goal - spentD;
         if (spentD < goal) discretionaryAmtGreen = true;
     }
+    /**
+     * retrieves budget goal for DEBT REDUCTION category
+     * retrieves actual spending for DEBT REDUCTION category
+     * subtracts actual spending from goal. if amount is >= 0, set color to green.
+     * If spending is less than goal or 0, set color to red.
+     * Displays the result of the calculation.
+     * Author: Dixie Cravens and Sara Mack
+     */
     public void alertDebtReduction() {
         float goal = model.getDebtReductionGoal();
         spentDR = Math.abs(model.getDebt_reduction());
@@ -125,6 +120,14 @@ public class DashboardController {
         debtReductionAmt = goal - spentDR;
         if (spentDR >= goal) debtReductionAmtGreen = true;
     }
+    /**
+     * retrieves budget goal for SAVINGS category
+     * retrieves actual spending for SAVINGS category
+     * subtracts actual spending (or saving) from goal. if amount is >= 0, set color to green.
+     * If spending is less than goal or 0, set color to red.
+     * Displays the result of the calculation.
+     * Author: Dixie Cravens and Sara Mack
+     */
     public void alertSavings() {
         float goal = model.getSavingsGoal();
         spentS = Math.abs(model.getSavings());
