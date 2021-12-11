@@ -35,24 +35,25 @@
             android:id="@+id/edit_transaction_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:onClick="handleEditTransactionClick"
             android:text="@string/edit_transaction_button"
-            app:layout_constraintBottom_toTopOf="@+id/delete_transaction_button"
+            app:layout_constraintBottom_toTopOf="@id/assign_category_spinner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guideline3"
             app:layout_constraintTop_toBottomOf="@id/frag_placeholder_edit_transaction" />
 
-        <Button
-            android:id="@+id/delete_transaction_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/delete_transaction_button"
-            app:layout_constraintBottom_toTopOf="@+id/assign_category_spinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/edit_transaction_button" />
+<!--        <Button-->
+<!--            android:id="@+id/delete_transaction_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:text="@string/delete_transaction_button"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/assign_category_spinner"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="@id/guideline3"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/edit_transaction_button" />-->
 
         <Button
             android:id="@+id/update_data"
@@ -76,8 +77,9 @@
             android:minHeight="48dp"
             app:layout_constraintBottom_toTopOf="@+id/update_data"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.571"
             app:layout_constraintStart_toStartOf="@id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/delete_transaction_button"
+            app:layout_constraintTop_toBottomOf="@id/edit_transaction_button"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -94,17 +96,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="210dp" />
 
-        <Button
-            android:id="@+id/get_data_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            android:onClick="handleUploadData"
-            android:text="@string/get_data_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/update_data"
-            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
