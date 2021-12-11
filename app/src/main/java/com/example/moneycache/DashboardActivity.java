@@ -1,21 +1,20 @@
 package com.example.moneycache;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.github.phil;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import com.razerdp.widget.animatedpieview.AnimatedPieView;
+import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig;
+import com.razerdp.widget.animatedpieview.data.SimplePieInfo;
+
 import java.util.List;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -28,9 +27,6 @@ public class DashboardActivity extends AppCompatActivity {
     //Variables needed for pie chart
     Float bAmt, drAmt, dAmt, sAmt;
     Float income; //(income = controller.getIncome())
-    PieChart pieChart;
-    PieData pieData;
-    List<PieEntry> pieEntryList = new ArrayList<PieEntry>();
 
 
     @Override
@@ -43,18 +39,8 @@ public class DashboardActivity extends AppCompatActivity {
         controller = new DashboardController(this);
         controller.start();
 
-        pieChart = findViewById(R.id.pieChart);
-        pieChart.setUsePercentValues(true);
-        pieEntryList.add(new PieEntry(10,"India"));
-        pieEntryList.add(new PieEntry(5,"US"));
-        pieEntryList.add(new PieEntry(7,"UK"));
-        pieEntryList.add(new PieEntry(3,"NZ"));
-        PieDataSet pieDataSet = new PieDataSet(pieEntryList,"country");
-        pieData = new PieData(pieDataSet);
-        pieChart.setData(pieData);
-        pieChart.invalidate();
 
-        //pieChartData = controller.getItems();
+        pieChartData = controller.getItems();
         Log.d("Created controller", "onCreate: ");
         b = (TextView) findViewById(R.id.bills_alert);
         d = (TextView) findViewById(R.id.discretionary_alert);
@@ -93,13 +79,11 @@ public class DashboardActivity extends AppCompatActivity {
         }
         s.setText(getString(R.string.savings_alert, String.format("%.2f", sAmt)));
 
-        //Pie Chart Update
-            // Calculate the slice size and update the pie chart:
-            //ProgressBar pieChart = findViewById(R.id.stats_progressbar);
-
-
-
-//            //Float income = controller.getIncome();
+//        //Pie Chart Update
+//            // Calculate the slice size and update the pie chart:
+//            ProgressBar pieChart = findViewById(R.id.stats_progressbar);
+//
+//            Float totalSpent = controller.getTotalSpent();
 //            int bills = (int)controller.pieChartBills();
 //            int discretionary = (int)controller.pieChartDiscretionary();
 //            int debtReduction = (int)controller.pieChartReduction();
@@ -109,8 +93,30 @@ public class DashboardActivity extends AppCompatActivity {
 //            pieChart.setProgress(discretionary);
 //            pieChart.setProgress(debtReduction);
 //            pieChart.setProgress(savings);
+        drawPie();
 
 
+    }
+
+    public void drawPie() {
+        int bills = (int)controller.pieChartBills();
+        int discretionary = (int)controller.pieChartDiscretionary();
+        int debtReduction = (int)controller.pieChartReduction();
+        int savings = (int)controller.pieChartSavings();
+
+        AnimatedPieView mAnimatedPieView = findViewById(R.id.animatedPieView);
+        AnimatedPieViewConfig config = new AnimatedPieViewConfig();
+        config.startAngle(-90)// Starting angle offset
+                .addData(new SimplePieInfo(bills, R.color.bills, "Bills"))//Data (bean that implements the IPieInfo interface)
+                .addData(new SimplePieInfo(discretionary, R.color.discretionary, "Discretionary"))
+                .addData(new SimplePieInfo(debtReduction, R.color.debtReduction, "Debtreduction"))
+                .addData(new SimplePieInfo(savings, R.color.savings, "Savings")).drawText(true).strokeMode(false)
+
+      .duration(2000).textSize(30);// draw pie animation duration
+
+// The following two sentences can be replace directly 'mAnimatedPieView.start (config); '
+        mAnimatedPieView.applyConfig(config);
+        mAnimatedPieView.start();
     }
     //
 //    private void updateChart(){

@@ -13,5 +13,9 @@
     <color name="green">#27e84e</color>
     <color name="red">#e6150e</color>
     <!--Pie Chart Colors-->
+    <color name="bills">#32a836</color>
+    <color name="discretionary">#37bdb6</color>
+    <color name="debtReduction">#2631d1</color>
+    <color name="savings">#691294</color>
 
 </resources>

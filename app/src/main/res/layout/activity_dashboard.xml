@@ -17,40 +17,49 @@
             app:layout_constraintBottom_toTopOf="@id/bills_alert"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.razerdp.widget.animatedpieview.AnimatedPieView
+                android:id="@+id/animatedPieView"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <!-- ProgressBar that represents a total of 100% -->
-            <ProgressBar
-                android:id="@+id/background_progressbar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="@dimen/chart_width"
-                android:layout_height="@dimen/chart_width"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="100"
-                android:progressDrawable="@drawable/piechart_full"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <!--            <ProgressBar-->
+            <!--                android:id="@+id/background_progressbar"-->
+            <!--                style="?android:attr/progressBarStyleHorizontal"-->
+            <!--                android:layout_width="@dimen/chart_width"-->
+            <!--                android:layout_height="@dimen/chart_width"-->
+            <!--                android:indeterminate="false"-->
+            <!--                android:max="100"-->
+            <!--                android:progress="100"-->
+            <!--                android:progressDrawable="@drawable/piechart_full"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintHorizontal_bias="0.5"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-            <!-- ProgressBar that represents a chart slice, where "android:progress" is the % value of the slice -->
-            <ProgressBar
-                android:id="@+id/stats_progressbar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="@dimen/chart_width"
-                android:layout_height="@dimen/chart_width"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="75"
-                android:progressDrawable="@drawable/piechart_progress"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <!--            &lt;!&ndash; ProgressBar that represents a chart slice, where "android:progress" is the % value of the slice &ndash;&gt;-->
+            <!--            <ProgressBar-->
+            <!--                android:id="@+id/stats_progressbar"-->
+            <!--                style="?android:attr/progressBarStyleHorizontal"-->
+            <!--                android:layout_width="@dimen/chart_width"-->
+            <!--                android:layout_height="@dimen/chart_width"-->
+            <!--                android:indeterminate="false"-->
+            <!--                android:max="100"-->
+            <!--                android:progress="75"-->
+            <!--                android:progressDrawable="@drawable/piechart_progress"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintHorizontal_bias="0.5"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <!-- The text that goes in a center of the chart -->
             <TextView
@@ -59,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/inside_title"
+                android:textColor="@color/white"
                 android:textSize="@dimen/inside_title_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -124,6 +134,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/debtreduction_alert" />
 
+        <TextView
+            android:id="@+id/explanation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/alert_explanation"
+            app:layout_constraintBottom_toTopOf="@+id/bills_alert"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

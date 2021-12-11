@@ -20,6 +20,10 @@ public class DashboardController {
     float spentDR = 0.0f;
     float spentS = 0.0f;
 
+    public float getTotalSpent() {
+        return spentB + spentD + spentDR + spentS;
+    }
+
     /**
      * Logic for pie chart on Dashboard
      * takes total actual amount spent as base
