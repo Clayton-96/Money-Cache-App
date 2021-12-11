@@ -107,10 +107,10 @@ public class DashboardActivity extends AppCompatActivity {
         AnimatedPieView mAnimatedPieView = findViewById(R.id.animatedPieView);
         AnimatedPieViewConfig config = new AnimatedPieViewConfig();
         config.startAngle(-90)// Starting angle offset
-                .addData(new SimplePieInfo(bills, R.color.bills, "Bills"))//Data (bean that implements the IPieInfo interface)
-                .addData(new SimplePieInfo(discretionary, R.color.discretionary, "Discretionary"))
-                .addData(new SimplePieInfo(debtReduction, R.color.debtReduction, "Debtreduction"))
-                .addData(new SimplePieInfo(savings, R.color.savings, "Savings")).drawText(true).strokeMode(false)
+                .addData(new SimplePieInfo(bills, ContextCompat.getColor(this, R.color.bills), "Bills"))//Data (bean that implements the IPieInfo interface)
+                .addData(new SimplePieInfo(discretionary, ContextCompat.getColor(this,R.color.discretionary), "Discretionary"))
+                .addData(new SimplePieInfo(debtReduction, ContextCompat.getColor(this,R.color.debtReduction), "Debtreduction"))
+                .addData(new SimplePieInfo(savings, ContextCompat.getColor(this,R.color.savings), "Savings")).drawText(true).strokeMode(false)
 
       .duration(2000).textSize(30);// draw pie animation duration
 
