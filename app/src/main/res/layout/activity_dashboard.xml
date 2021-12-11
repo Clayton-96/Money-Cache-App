@@ -10,6 +10,16 @@
         android:layout_height="match_parent"
         tools:context=".DashboardActivity">
         <!-- Doughnut chart starts here -->
+        <TextView
+            android:id="@+id/pie_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/piechart_explanation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="wrap_content"
@@ -69,11 +79,13 @@
                 android:gravity="center"
                 android:text="@string/inside_title"
                 android:textSize="@dimen/inside_title_text_size"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- Doughnut chart ends here -->
 
