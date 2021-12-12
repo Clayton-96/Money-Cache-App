@@ -19,10 +19,12 @@ public class EditBudgetController {
         this.budgetActivity = budgetActivity;
         model = new DataModel();
     }
+
+    /**
+     * get data from model for each category
+     * Author: Dixie Cravens
+     */
     public void start() {
-        //display budget item (BI) boxes with correct text
-        //  ask model for correct data for each BI box--what format is this coming from the DB in?
-        //  Fill variables with stored values from DB.
         //https://github.com/macbeth-byui/MVP_Android/blob/master/app/src/main/java/t/macbeth/mvp_android/MVP1/Presenter.java
         List<String> items = DataModel.getBudgetItems(budgetActivity);
         income = items.get(0);
@@ -32,6 +34,10 @@ public class EditBudgetController {
         savings = items.get(4);
     }
 
+    /**
+     * Getters and Setters for above fields
+     * @return
+     */
     public String getIncome() {
         return income;
     }
@@ -68,15 +74,13 @@ public class EditBudgetController {
         this.savings = savings;
     }
 
-
-    // send/update model of all changes
     /**
      * update/set new category value/values
      * categories are edited in a fragment with a final update when any/all categories are edited
+     * Author:Dixie Cravens
      */
     public void onUpdate() {
         //create a new string for List<String> items and save it to DataModel
-        // TODO: does this need to be 'new' ArrayList since it is replacing what currently exists?
         DataModel.items = new ArrayList<>(Arrays.asList(getIncome(),
                 getBills(), getDiscretionary(), getDebtReduction(), getSavings()));
         DataModel.updateBudgetItems(budgetActivity);

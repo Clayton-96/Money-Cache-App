@@ -52,16 +52,6 @@ public class EditDataController {
         model.updateCategoryTotals(category, amount, dataActivity);
 
         //recyclerView.removeItem();
-
-
-    }
-
-    /**
-     * saves file of newly uploaded and edited BankData objects to database
-     * file contents are generated in updateData()
-     */
-    public void saveFile(){
-
     }
 
     /**

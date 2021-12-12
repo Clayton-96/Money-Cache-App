@@ -79,6 +79,7 @@ public class DashboardActivity extends AppCompatActivity {
      * Draws an animated pie chart based on total spent/each category spending
      * https://github.com/razerdp/AnimatedPieView
      * https://www.youtube.com/watch?v=cA-HNN2_-TY&t=35s
+     * author:Dixie Cravens and Sara Mack
      */
     public void drawPie() {
         int bills = (int)controller.pieChartBills();

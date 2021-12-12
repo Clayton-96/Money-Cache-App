@@ -142,12 +142,6 @@ public class EditDataActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        dataController.saveFile();
-    }
-
     /**
      * for category spinner--override on the OnItemSelectedListener interface
      */
