@@ -84,8 +84,7 @@ public class DataModel {
     }
 
     /**
-     * This data will eventually TODO: be called from Shared Preferences.
-     * Right now it is hard-coded.
+     * This data is called from Shared Preferences.
      * Data comes from the edited bank transactions.This is the 'spent' amount.
      * One of the first things that needs to happen when the app starts.
      * @param context of the activity calling for the data.
@@ -248,16 +247,15 @@ public class DataModel {
         editor.putString("goal_debtreduction", String.valueOf(items.get(3)));
         editor.putString("goal_savings", String.valueOf(items.get(4)));
         editor.commit();
-
-
     }
 
     /**
      * comes from SharedPreferences (firebase/firestore) for month selected
      * (firestore)DocumentReference document = db.collection("users").document("dcravens").collection("transactByCategory").where("monthYear", "==", "December2021");
      * (firestore)Brings back entire document of current spending totals per category
-     *TODO: Save this in sharedPreferences with Month-Year and category. Amount is added as
-     * transactions are edited and categorized.
+     * Amount is added as transactions are edited and categorized.
+     *  Author: Dixie Cravens
+     *TODO: Save this in sharedPreferences with Month-Year
      */
     public void getCategoryAmounts(Context context){
         SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
@@ -286,11 +284,7 @@ public class DataModel {
         } else {
             savings = 0f;
         }
-        //income = 2400f;//sp.getString( "income_total", "");
-        //bills = 950f;//document.bills;
-        //discretionary = 256.66f;//document.discretionary;
-        //debt_reduction = 200f;//document.debtReduction;
-        //savings = 150f;//document.savings;
+
     }
 
 
@@ -302,12 +296,12 @@ public class DataModel {
      *      * saves new total back into SharedPreferences
      * @param category category assigned by EditData
      * @param addAmount amount of transaction
+     * Author: Dixie Cravens and Sara Mack
      */
     public void updateCategoryTotals(String category, Float addAmount, Context context) {
-        //String key = "";
         SharedPreferences sp = context.getSharedPreferences("MoneyCache", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        //TODO: account for negative and positive amounts with Math.abs(variable)??
+
         switch (category) {
             case ("Income"):
                 String key = "income_total";
@@ -325,7 +319,6 @@ public class DataModel {
                 if (sp.contains(key)) {
                     String totalString = sp.getString(key, "");
                     bills = Float.parseFloat(totalString) + addAmount;
-
                 } else {
                     bills = addAmount;
                 }
@@ -337,7 +330,6 @@ public class DataModel {
                 if (sp.contains(key)) {
                     String totalString = sp.getString(key, "");
                     discretionary = Float.parseFloat(totalString) + addAmount;
-
                 } else {
                     discretionary = addAmount;
                 }
